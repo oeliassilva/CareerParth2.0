@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contratos a Assinar - CareerPath</title>
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/pages/contratos-assinar.css">
+</head>
+<body>
+    <div class="contracts-container">
+        <!-- Header -->
+        <div class="contracts-header">
+            <div class="header-left">
+                <button class="back-btn" onclick="window.location.hash='#perfil/resumo-dia'">
+                    <span class="material-icons-outlined">arrow_back</span>
+                    Voltar
+                </button>
+                <div class="header-info">
+                    <h1>Contratos a Assinar</h1>
+                    <p class="header-subtitle">Gerencie seus contratos pendentes de assinatura</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="contracts-stats">
+                    <div class="stat-item urgent">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Urgentes</span>
+                    </div>
+                    <div class="stat-item total">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Total</span>
+                    </div>
+                </div>
+                <button class="refresh-btn" onclick="refreshContracts()">
+                    <span class="material-icons-outlined">refresh</span>
+                    Atualizar
+                </button>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="contracts-filters">
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">
+                    <span class="filter-count">5</span>
+                    Todos
+                </button>
+                <button class="filter-btn" data-filter="clt">
+                    <span class="filter-count">3</span>
+                    CLT
+                </button>
+                <button class="filter-btn" data-filter="pj">
+                    <span class="filter-count">2</span>
+                    PJ
+                </button>
+                <button class="filter-btn urgent" data-filter="urgent">
+                    <span class="filter-count">2</span>
+                    Urgentes
+                </button>
+            </div>
+            <div class="search-group">
+                <div class="search-box">
+                    <span class="material-icons-outlined">search</span>
+                    <input type="text" placeholder="Buscar por empresa, valor..." id="searchInput">
+                </div>
+                <button class="sort-btn" onclick="toggleSort()">
+                    <span class="material-icons-outlined">sort</span>
+                    Ordenar
+                </button>
+            </div>
+        </div>
+
+        <!-- Contracts Table -->
+        <div class="contracts-table-container">
+            <table class="contracts-table">
+                <thead>
+                    <tr>
+                        <th class="col-status">Status</th>
+                        <th class="col-company">Empresa</th>
+                        <th class="col-position">Posição</th>
+                        <th class="col-type">Tipo</th>
+                        <th class="col-value">Valor</th>
+                        <th class="col-deadline">Prazo</th>
+                        <th class="col-representative">Representante</th>
+                        <th class="col-actions">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Contrato 1 - AWS - Urgente -->
+                    <tr class="contract-row urgent" data-type="clt" data-company="aws">
+                        <td class="col-status">
+                            <div class="status-badge urgent">
+                                <span class="material-icons-outlined">schedule</span>
+                                Urgente
+                            </div>
+                        </td>
+                        <td class="col-company">
+                            <div class="company-info">
+                                <div class="company-logo aws-logo">AWS</div>
+                                <div class="company-details">
+                                    <span class="company-name">Amazon Web Services</span>
+                                    <span class="company-location">São Paulo, SP</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-position">
+                            <span class="position-title">Senior Software Engineer</span>
+                        </td>
+                        <td class="col-type">
+                            <div class="contract-type clt">
+                                <span class="type-icon">👔</span>
+                                CLT
+                            </div>
+                        </td>
+                        <td class="col-value">
+                            <div class="value-info">
+                                <span class="value-amount">R$ 18.500</span>
+                                <span class="value-period">/mês</span>
+                            </div>
+                        </td>
+                        <td class="col-deadline">
+                            <div class="deadline-info urgent">
+                                <span class="deadline-date">Hoje</span>
+                                <span class="deadline-time">até 18:00</span>
+                            </div>
+                        </td>
+                        <td class="col-representative">
+                            <div class="representative-info">
+                                <div class="rep-avatar">RS</div>
+                                <div class="rep-details">
+                                    <span class="rep-name">Roberto Silva</span>
+                                    <span class="rep-role">Tech Recruiter</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-actions">
+                            <div class="action-buttons">
+                                <button class="action-btn primary" onclick="signContract(1)">
+                                    <span class="material-icons-outlined">edit</span>
+                                    Assinar
+                                </button>
+                                <button class="action-btn secondary" onclick="viewContract(1)">
+                                    <span class="material-icons-outlined">visibility</span>
+                                </button>
+                                <button class="action-btn secondary" onclick="downloadContract(1)">
+                                    <span class="material-icons-outlined">download</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Contrato 2 - Itaú - Normal -->
+                    <tr class="contract-row" data-type="clt" data-company="itau">
+                        <td class="col-status">
+                            <div class="status-badge pending">
+                                <span class="material-icons-outlined">pending</span>
+                                Pendente
+                            </div>
+                        </td>
+                        <td class="col-company">
+                            <div class="company-info">
+                                <div class="company-logo itau-logo">Itaú</div>
+                                <div class="company-details">
+                                    <span class="company-name">Itaú Unibanco</span>
+                                    <span class="company-location">São Paulo, SP</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-position">
+                            <span class="position-title">Desenvolvedor Full Stack</span>
+                        </td>
+                        <td class="col-type">
+                            <div class="contract-type clt">
+                                <span class="type-icon">👔</span>
+                                CLT
+                            </div>
+                        </td>
+                        <td class="col-value">
+                            <div class="value-info">
+                                <span class="value-amount">R$ 15.200</span>
+                                <span class="value-period">/mês</span>
+                            </div>
+                        </td>
+                        <td class="col-deadline">
+                            <div class="deadline-info normal">
+                                <span class="deadline-date">22 Jul</span>
+                                <span class="deadline-time">5 dias</span>
+                            </div>
+                        </td>
+                        <td class="col-representative">
+                            <div class="representative-info">
+                                <div class="rep-avatar">AP</div>
+                                <div class="rep-details">
+                                    <span class="rep-name">Ana Paula</span>
+                                    <span class="rep-role">HR Manager</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-actions">
+                            <div class="action-buttons">
+                                <button class="action-btn primary" onclick="signContract(2)">
+                                    <span class="material-icons-outlined">edit</span>
+                                    Assinar
+                                </button>
+                                <button class="action-btn secondary" onclick="viewContract(2)">
+                                    <span class="material-icons-outlined">visibility</span>
+                                </button>
+                                <button class="action-btn secondary" onclick="downloadContract(2)">
+                                    <span class="material-icons-outlined">download</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Contrato 3 - iFood - PJ -->
+                    <tr class="contract-row" data-type="pj" data-company="ifood">
+                        <td class="col-status">
+                            <div class="status-badge pending">
+                                <span class="material-icons-outlined">pending</span>
+                                Pendente
+                            </div>
+                        </td>
+                        <td class="col-company">
+                            <div class="company-info">
+                                <div class="company-logo ifood-logo">iFood</div>
+                                <div class="company-details">
+                                    <span class="company-name">iFood</span>
+                                    <span class="company-location">São Paulo, SP</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-position">
+                            <span class="position-title">Tech Lead Frontend</span>
+                        </td>
+                        <td class="col-type">
+                            <div class="contract-type pj">
+                                <span class="type-icon">💼</span>
+                                PJ
+                            </div>
+                        </td>
+                        <td class="col-value">
+                            <div class="value-info">
+                                <span class="value-amount">R$ 22.000</span>
+                                <span class="value-period">/mês</span>
+                            </div>
+                        </td>
+                        <td class="col-deadline">
+                            <div class="deadline-info normal">
+                                <span class="deadline-date">25 Jul</span>
+                                <span class="deadline-time">8 dias</span>
+                            </div>
+                        </td>
+                        <td class="col-representative">
+                            <div class="representative-info">
+                                <div class="rep-avatar">CS</div>
+                                <div class="rep-details">
+                                    <span class="rep-name">Carlos Santos</span>
+                                    <span class="rep-role">Engineering Manager</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-actions">
+                            <div class="action-buttons">
+                                <button class="action-btn primary" onclick="signContract(3)">
+                                    <span class="material-icons-outlined">edit</span>
+                                    Assinar
+                                </button>
+                                <button class="action-btn secondary" onclick="viewContract(3)">
+                                    <span class="material-icons-outlined">visibility</span>
+                                </button>
+                                <button class="action-btn secondary" onclick="downloadContract(3)">
+                                    <span class="material-icons-outlined">download</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Contrato 4 - Nubank - CLT -->
+                    <tr class="contract-row" data-type="clt" data-company="nubank">
+                        <td class="col-status">
+                            <div class="status-badge pending">
+                                <span class="material-icons-outlined">pending</span>
+                                Pendente
+                            </div>
+                        </td>
+                        <td class="col-company">
+                            <div class="company-info">
+                                <div class="company-logo nubank-logo">Nu</div>
+                                <div class="company-details">
+                                    <span class="company-name">Nubank</span>
+                                    <span class="company-location">São Paulo, SP</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-position">
+                            <span class="position-title">Backend Engineer</span>
+                        </td>
+                        <td class="col-type">
+                            <div class="contract-type clt">
+                                <span class="type-icon">👔</span>
+                                CLT
+                            </div>
+                        </td>
+                        <td class="col-value">
+                            <div class="value-info">
+                                <span class="value-amount">R$ 16.800</span>
+                                <span class="value-period">/mês</span>
+                            </div>
+                        </td>
+                        <td class="col-deadline">
+                            <div class="deadline-info normal">
+                                <span class="deadline-date">28 Jul</span>
+                                <span class="deadline-time">11 dias</span>
+                            </div>
+                        </td>
+                        <td class="col-representative">
+                            <div class="representative-info">
+                                <div class="rep-avatar">MF</div>
+                                <div class="rep-details">
+                                    <span class="rep-name">Maria Fernanda</span>
+                                    <span class="rep-role">People Partner</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-actions">
+                            <div class="action-buttons">
+                                <button class="action-btn primary" onclick="signContract(4)">
+                                    <span class="material-icons-outlined">edit</span>
+                                    Assinar
+                                </button>
+                                <button class="action-btn secondary" onclick="viewContract(4)">
+                                    <span class="material-icons-outlined">visibility</span>
+                                </button>
+                                <button class="action-btn secondary" onclick="downloadContract(4)">
+                                    <span class="material-icons-outlined">download</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Contrato 5 - Stone - PJ Urgente -->
+                    <tr class="contract-row urgent" data-type="pj" data-company="stone">
+                        <td class="col-status">
+                            <div class="status-badge urgent">
+                                <span class="material-icons-outlined">schedule</span>
+                                Urgente
+                            </div>
+                        </td>
+                        <td class="col-company">
+                            <div class="company-info">
+                                <div class="company-logo stone-logo">Stone</div>
+                                <div class="company-details">
+                                    <span class="company-name">Stone Pagamentos</span>
+                                    <span class="company-location">Rio de Janeiro, RJ</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-position">
+                            <span class="position-title">Senior DevOps Engineer</span>
+                        </td>
+                        <td class="col-type">
+                            <div class="contract-type pj">
+                                <span class="type-icon">💼</span>
+                                PJ
+                            </div>
+                        </td>
+                        <td class="col-value">
+                            <div class="value-info">
+                                <span class="value-amount">R$ 19.500</span>
+                                <span class="value-period">/mês</span>
+                            </div>
+                        </td>
+                        <td class="col-deadline">
+                            <div class="deadline-info urgent">
+                                <span class="deadline-date">Amanhã</span>
+                                <span class="deadline-time">até 12:00</span>
+                            </div>
+                        </td>
+                        <td class="col-representative">
+                            <div class="representative-info">
+                                <div class="rep-avatar">LS</div>
+                                <div class="rep-details">
+                                    <span class="rep-name">Lucas Silva</span>
+                                    <span class="rep-role">Tech Lead</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-actions">
+                            <div class="action-buttons">
+                                <button class="action-btn primary" onclick="signContract(5)">
+                                    <span class="material-icons-outlined">edit</span>
+                                    Assinar
+                                </button>
+                                <button class="action-btn secondary" onclick="viewContract(5)">
+                                    <span class="material-icons-outlined">visibility</span>
+                                </button>
+                                <button class="action-btn secondary" onclick="downloadContract(5)">
+                                    <span class="material-icons-outlined">download</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Empty State (hidden by default) -->
+        <div class="empty-state" style="display: none;">
+            <div class="empty-icon">
+                <span class="material-icons-outlined">description</span>
+            </div>
+            <h3>Nenhum contrato encontrado</h3>
+            <p>Não há contratos correspondentes aos filtros selecionados.</p>
+        </div>
+    </div>
+
+    <!-- Contract Modal -->
+    <div id="contract-modal" class="contract-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Detalhes do Contrato</h3>
+                <button class="close-modal" onclick="closeContractModal()">
+                    <span class="material-icons-outlined">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="contract-preview">
+                    <iframe id="contract-iframe" src="" frameborder="0"></iframe>
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn secondary" onclick="downloadContract()">
+                        <span class="material-icons-outlined">download</span>
+                        Baixar PDF
+                    </button>
+                    <button class="modal-btn primary" onclick="signContract()">
+                        <span class="material-icons-outlined">edit</span>
+                        Assinar Contrato
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../js/pages/contratos-assinar.js"></script>
+</body>
+</html>

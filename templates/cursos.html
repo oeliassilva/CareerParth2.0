@@ -1,0 +1,36 @@
+<header class="page-header">
+    <span class="material-icons-outlined">school</span>
+    <span>Cursos</span>
+</header>
+
+<div class="cursos-filter-bar">
+    <select id="area-filter-select">
+        <option value="all">Todas as áreas</option>
+        <option value="Front-End">Front-End</option>
+        <option value="Back-End">Back-End</option>
+        <option value="Cloud">Cloud</option>
+        <option value="Dados">Dados</option>
+        <option value="DevOps">DevOps</option>
+    </select>
+    <input type="text" id="curso-search-input" placeholder="Buscar curso ou tecnologia...">
+</div>
+
+<div id="cursos-list-container"></div>
+
+<div id="curso-detail-view" style="display: none;">
+    <button id="back-to-cursos-btn">&larr; Voltar para a lista</button>
+    <div class="curso-detail-header">
+        <h2 id="curso-detail-title"></h2>
+        <p><span id="curso-detail-partner"></span> &bull; <span id="curso-detail-area"></span></p>
+    </div>
+    <div class="curso-detail-content">
+        <h3>Sobre o Curso</h3>
+        <p id="curso-detail-description"></p>
+        <h4>Habilidades abordadas</h4>
+        <ul id="curso-detail-skills"></ul>
+        <div class="curso-detail-actions">
+            <button id="perguntar-compass-btn">Perguntar à Compass IA</button>
+        </div>
+        <div id="compass-curso-response" style="margin-top: 18px;"></div>
+    </div>
+</div>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hard Skills - CareerPath</title>
+    <link rel="stylesheet" href="css/pages/hardskills-detalhe.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="breadcrumb">
+                    <a href="dashboard.html" class="breadcrumb-link">Dashboard</a>
+                    <span class="breadcrumb-separator">></span>
+                    <span class="breadcrumb-current">Hard Skills</span>
+                </div>
+                <h1 class="page-title">Minhas Habilidades Técnicas</h1>
+                <p class="page-subtitle">Evolução e progresso das suas competências técnicas</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Resumo Estatístico -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3>7</h3>
+                            <p>Tecnologias</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3>83%</h3>
+                            <p>Nível Médio</p>
+                        </div>
+                    </div>                   
+
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Frontend</h3>
+                            <p>Especialização</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filtros -->
+            <section class="filters-section">
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="category-filter">Categoria:</label>
+                        <select id="category-filter" class="filter-select">
+                            <option value="all">Todas</option>
+                            <option value="frontend">Frontend</option>
+                            <option value="backend">Backend</option>
+                            <option value="tools">Ferramentas</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="level-filter">Nível:</label>
+                        <select id="level-filter" class="filter-select">
+                            <option value="all">Todos</option>
+                            <option value="beginner">Iniciante (0-40%)</option>
+                            <option value="intermediate">Intermediário (41-70%)</option>
+                            <option value="advanced">Avançado (71-100%)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <rect width="6" height="6" x="1" y="1" rx="1"/>
+                                <rect width="6" height="6" x="9" y="1" rx="1"/>
+                                <rect width="6" height="6" x="1" y="9" rx="1"/>
+                                <rect width="6" height="6" x="9" y="9" rx="1"/>
+                            </svg>
+                        </button>
+                        <button class="view-btn" data-view="list">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <rect width="12" height="2" x="2" y="3" rx="1"/>
+                                <rect width="12" height="2" x="2" y="7" rx="1"/>
+                                <rect width="12" height="2" x="2" y="11" rx="1"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grid de Skills -->
+            <section class="skills-section">
+                <div class="skills-grid" id="skills-grid">
+                    <!-- JavaScript -->
+                    <div class="skill-card" data-category="frontend" data-level="advanced">
+                        <div class="skill-header">
+                            <div class="skill-icon javascript">
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="#F7DF1E">
+                                    <rect width="32" height="32" rx="4" fill="#323330"/>
+                                    <path d="M18.774 19.7a3.727 3.727 0 0 0 3.376 2.078c1.418 0 2.324-.7 2.324-1.667 0-1.155-.906-1.565-2.426-2.24l-.833-.357c-2.407-1.025-4.01-2.313-4.01-5.032 0-2.503 1.906-4.404 4.888-4.404 2.126 0 3.65.741 4.756 2.676l-2.607 1.67c-.573-1.026-1.194-1.43-2.15-1.43-.977 0-1.597.62-1.597 1.43 0 1.001.62 1.41 2.053 2.033l.833.357c2.836 1.215 4.439 2.456 4.439 5.24 0 3.006-2.367 4.647-5.544 4.647-3.11 0-5.127-1.48-6.11-3.42z" fill="#F7DF1E"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h3>JavaScript</h3>
+                                <span class="skill-category">Frontend</span>
+                            </div>
+                            <div class="skill-level">85%</div>
+                        </div>
+                        
+                        <div class="skill-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%; background: linear-gradient(90deg, #F7DF1E 0%, #F0DB4F 100%);"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-details">
+                            <div class="skill-topics">
+                                <span class="topic-tag completed">ES6+</span>
+                                <span class="topic-tag completed">DOM</span>
+                                <span class="topic-tag completed">Async/Await</span>
+                                <span class="topic-tag learning">TypeScript</span>
+                            </div>
+                            
+                            <div class="skill-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Projetos:</span>
+                                    <span class="stat-value">12</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Horas:</span>
+                                    <span class="stat-value">180h</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HTML -->
+                    <div class="skill-card" data-category="frontend" data-level="advanced">
+                        <div class="skill-header">
+                            <div class="skill-icon html">
+                                <svg width="32" height="32" viewBox="0 0 32 32">
+                                    <rect width="32" height="32" rx="4" fill="#E34F26"/>
+                                    <path d="M5.902 27.201L4.588 5.999h22.823l-1.316 21.202L15.989 29.5z" fill="#fff"/>
+                                    <path d="m16 27.858l8.17-2.265.963-15.364H16v17.629z" fill="#EBEBEB"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h3>HTML</h3>
+                                <span class="skill-category">Frontend</span>
+                            </div>
+                            <div class="skill-level">83%</div>
+                        </div>
+                        
+                        <div class="skill-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 83%; background: linear-gradient(90deg, #E34F26 0%, #F06529 100%);"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-details">
+                            <div class="skill-topics">
+                                <span class="topic-tag completed">HTML5</span>
+                                <span class="topic-tag completed">Semantic HTML</span>
+                                <span class="topic-tag completed">Forms</span>
+                                <span class="topic-tag learning">Web Components</span>
+                            </div>
+                            
+                            <div class="skill-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Projetos:</span>
+                                    <span class="stat-value">15</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Horas:</span>
+                                    <span class="stat-value">120h</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CSS -->
+                    <div class="skill-card" data-category="frontend" data-level="advanced">
+                        <div class="skill-header">
+                            <div class="skill-icon css">
+                                <svg width="32" height="32" viewBox="0 0 32 32">
+                                    <rect width="32" height="32" rx="4" fill="#1572B6"/>
+                                    <path d="M5.902 27.201L4.588 5.999h22.823l-1.316 21.202L15.989 29.5z" fill="#fff"/>
+                                    <path d="m16 27.858l8.17-2.265.963-15.364H16v17.629z" fill="#EBEBEB"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h3>CSS</h3>
+                                <span class="skill-category">Frontend</span>
+                            </div>
+                            <div class="skill-level">81%</div>
+                        </div>
+                        
+                        <div class="skill-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 81%; background: linear-gradient(90deg, #1572B6 0%, #33A9DC 100%);"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-details">
+                            <div class="skill-topics">
+                                <span class="topic-tag completed">Flexbox</span>
+                                <span class="topic-tag completed">Grid</span>
+                                <span class="topic-tag completed">Animations</span>
+                                <span class="topic-tag learning">Tailwind</span>
+                            </div>
+                            
+                            <div class="skill-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Projetos:</span>
+                                    <span class="stat-value">14</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Horas:</span>
+                                    <span class="stat-value">160h</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- React -->
+                    <div class="skill-card" data-category="frontend" data-level="intermediate">
+                        <div class="skill-header">
+                            <div class="skill-icon react">
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="#61DAFB">
+                                    <circle cx="16" cy="16" r="2" fill="#61DAFB"/>
+                                    <path stroke="#61DAFB" stroke-width="1" fill="none" d="M16 6.5c5.5 0 10.5 2.5 10.5 5.5s-5 5.5-10.5 5.5S5.5 15 5.5 12s5-5.5 10.5-5.5z"/>
+                                    <path stroke="#61DAFB" stroke-width="1" fill="none" d="M16 6.5c5.5 0 10.5 2.5 10.5 5.5s-5 5.5-10.5 5.5S5.5 15 5.5 12s5-5.5 10.5-5.5z" transform="rotate(60 16 16)"/>
+                                    <path stroke="#61DAFB" stroke-width="1" fill="none" d="M16 6.5c5.5 0 10.5 2.5 10.5 5.5s-5 5.5-10.5 5.5S5.5 15 5.5 12s5-5.5 10.5-5.5z" transform="rotate(120 16 16)"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h3>React</h3>
+                                <span class="skill-category">Frontend</span>
+                            </div>
+                            <div class="skill-level">68%</div>
+                        </div>
+                        
+                        <div class="skill-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 68%; background: linear-gradient(90deg, #61DAFB 0%, #21D4FD 100%);"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-details">
+                            <div class="skill-topics">
+                                <span class="topic-tag completed">Hooks</span>
+                                <span class="topic-tag completed">Components</span>
+                                <span class="topic-tag learning">Context API</span>
+                                <span class="topic-tag planned">Next.js</span>
+                            </div>
+                            
+                            <div class="skill-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Projetos:</span>
+                                    <span class="stat-value">6</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Horas:</span>
+                                    <span class="stat-value">95h</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Node.js -->
+                    <div class="skill-card" data-category="backend" data-level="intermediate">
+                        <div class="skill-header">
+                            <div class="skill-icon nodejs">
+                                <svg width="32" height="32" viewBox="0 0 32 32">
+                                    <rect width="32" height="32" rx="4" fill="#68A063"/>
+                                    <path d="M16 4c6.627 0 12 5.373 12 12s-5.373 12-12 12S4 22.627 4 16 9.373 4 16 4z" fill="#68A063"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h3>Node.js</h3>
+                                <span class="skill-category">Backend</span>
+                            </div>
+                            <div class="skill-level">62%</div>
+                        </div>
+                        
+                        <div class="skill-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 62%; background: linear-gradient(90deg, #68A063 0%, #8BC34A 100%);"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-details">
+                            <div class="skill-topics">
+                                <span class="topic-tag completed">Express</span>
+                                <span class="topic-tag completed">NPM</span>
+                                <span class="topic-tag learning">APIs REST</span>
+                                <span class="topic-tag planned">MongoDB</span>
+                            </div>
+                            
+                            <div class="skill-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Projetos:</span>
+                                    <span class="stat-value">4</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Horas:</span>
+                                    <span class="stat-value">75h</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Git -->
+                    <div class="skill-card" data-category="tools" data-level="advanced">
+                        <div class="skill-header">
+                            <div class="skill-icon git">
+                                <svg width="32" height="32" viewBox="0 0 32 32">
+                                    <rect width="32" height="32" rx="4" fill="#F03C2E"/>
+                                    <path d="M16 4c6.627 0 12 5.373 12 12s-5.373 12-12 12S4 22.627 4 16 9.373 4 16 4z" fill="#F03C2E"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h3>Git</h3>
+                                <span class="skill-category">Ferramentas</span>
+                            </div>
+                            <div class="skill-level">78%</div>
+                        </div>
+                        
+                        <div class="skill-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 78%; background: linear-gradient(90deg, #F03C2E 0%, #FF5722 100%);"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-details">
+                            <div class="skill-topics">
+                                <span class="topic-tag completed">Commits</span>
+                                <span class="topic-tag completed">Branches</span>
+                                <span class="topic-tag completed">Merge</span>
+                                <span class="topic-tag learning">Rebase</span>
+                            </div>
+                            
+                            <div class="skill-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Projetos:</span>
+                                    <span class="stat-value">18</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Horas:</span>
+                                    <span class="stat-value">140h</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GitHub -->
+                    <div class="skill-card" data-category="tools" data-level="advanced">
+                        <div class="skill-header">
+                            <div class="skill-icon github">
+                                <svg width="32" height="32" viewBox="0 0 32 32">
+                                    <rect width="32" height="32" rx="4" fill="#181717"/>
+                                    <path d="M16 4c6.627 0 12 5.373 12 12 0 5.303-3.438 9.8-8.207 11.387-.6.111-.793-.261-.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0116 9.805c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C24.566 25.797 28 21.3 28 16c0-6.627-5.373-12-12-12z" fill="#fff"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h3>GitHub</h3>
+                                <span class="skill-category">Ferramentas</span>
+                            </div>
+                            <div class="skill-level">75%</div>
+                        </div>
+                        
+                        <div class="skill-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%; background: linear-gradient(90deg, #181717 0%, #333 100%);"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-details">
+                            <div class="skill-topics">
+                                <span class="topic-tag completed">Repositories</span>
+                                <span class="topic-tag completed">Pull Requests</span>
+                                <span class="topic-tag learning">Actions</span>
+                                <span class="topic-tag planned">Pages</span>
+                            </div>
+                            
+                            <div class="skill-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Projetos:</span>
+                                    <span class="stat-value">16</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Horas:</span>
+                                    <span class="stat-value">110h</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/pages/hardskills-detalhe.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificações - CareerPath</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="css/pages/certificacoes-detalhe.css">
+</head>
+<body>
+    <!-- Header Principal -->
+    <header class="page-header">
+        <span class="material-icons-outlined">verified</span>
+        <span>Certificações</span>
+    </header>
+
+    <!-- Breadcrumb de navegação -->
+    <nav class="breadcrumb-nav">
+        <a href="#perfil" class="breadcrumb-link">
+            <span class="material-icons-outlined">arrow_back</span>
+            Voltar ao Perfil
+        </a>
+    </nav>
+
+    <div class="certifications-container">
+        <!-- Hero Section -->
+        <div class="certifications-hero">
+            <div class="hero-content">
+                <h1>Suas Certificações e Conquistas</h1>
+                <p>Acompanhe seu progresso profissional através de certificações oficiais e badges de evolução tecnológica</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="total-certifications">6</span>
+                        <span class="stat-label">Certificações</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="total-badges">1</span>
+                        <span class="stat-label">Badge CareerPath</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="completion-rate">100%</span>
+                        <span class="stat-label">Obtidas</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="achievement-visual">
+                    <span class="material-icons-outlined">emoji_events</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controles de Filtro e Busca -->
+        <div class="certifications-controls">
+            <div class="search-bar">
+                <span class="material-icons-outlined">search</span>
+                <input type="text" id="cert-search" placeholder="Buscar certificações ou tecnologias...">
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    <span class="material-icons-outlined">apps</span>
+                    Todas
+                </button>
+                <button class="filter-btn" data-filter="external">
+                    <span class="material-icons-outlined">public</span>
+                    Externas
+                </button>
+                <button class="filter-btn" data-filter="careerpath">
+                    <span class="material-icons-outlined">school</span>
+                    CareerPath
+                </button>
+            </div>
+            
+            <div class="sort-dropdown">
+                <select id="sort-select">
+                    <option value="date">Data de Obtenção</option>
+                    <option value="name">Nome A-Z</option>
+                    <option value="provider">Provedor</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Seção de Certificações -->
+        <div class="certifications-content">
+            <!-- Certificações Externas -->
+            <section class="certification-section" id="external-section">
+                <div class="section-header">
+                    <h2>
+                        <span class="material-icons-outlined">public</span>
+                        Certificações Oficiais
+                    </h2>
+                    <span class="section-count" id="external-count">5</span>
+                </div>
+                
+                <div class="certifications-grid" id="external-certifications">
+                    <!-- Cards serão inseridos pelo JavaScript -->
+                </div>
+            </section>
+
+            <!-- Badges CareerPath -->
+            <section class="certification-section" id="careerpath-section">
+                <div class="section-header">
+                    <h2>
+                        <span class="material-icons-outlined">school</span>
+                        Badge CareerPath
+                    </h2>
+                    <span class="section-count" id="badges-count">1</span>
+                </div>
+                
+                <div class="certifications-grid" id="careerpath-badges">
+                    <!-- Badge será inserida pelo JavaScript -->
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script type="module" src="js/pages/certificacoes-detalhe.js"></script>
+</body>
+</html>

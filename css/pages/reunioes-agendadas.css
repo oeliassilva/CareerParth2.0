@@ -1,0 +1,641 @@
+/* Reuniões Agendadas - CSS Final Corrigido */
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: #5f6368;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    background: #f1f3f4;
+    color: #FF6B47;
+}
+
+.calendar-header h2 {
+    color: #2C3E50;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.calendar-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn-today {
+    background: none;
+    border: 1px solid #dadce0;
+    color: #3c4043;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-today:hover {
+    background: #f8f9fa;
+    border-color: #FF6B47;
+    color: #FF6B47;
+}
+
+.date-navigation {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: #5f6368;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    background: #f1f3f4;
+    color: #FF6B47;
+}
+
+.current-date {
+    font-size: 16px;
+    font-weight: 500;
+    color: #2C3E50;
+    min-width: 120px;
+    text-align: center;
+}
+
+.view-toggle {
+    display: flex;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.view-btn {
+    background: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #5f6368;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.view-btn.active {
+    background: #FF6B47;
+    color: white;
+}
+
+.view-btn:not(.active):hover {
+    background: #f8f9fa;
+}
+
+/* CONTAINER PRINCIPAL - NOVO */
+.calendar-main-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* Calendar Grid - TOTALMENTE CORRIGIDO */
+.calendar-container {
+    display: flex;
+    background: white;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 700px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    max-width: calc(100% - 350px);
+}
+
+.time-column {
+    width: 80px;
+    background: #f8f9fa;
+    border-right: 1px solid #dadce0;
+    flex-shrink: 0;
+}
+
+.time-slot {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #5f6368;
+    border-bottom: 1px solid #e8eaed;
+    font-weight: 500;
+}
+
+.calendar-grid {
+    flex: 1;
+    position: relative;
+    background: white;
+}
+
+.calendar-day {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.day-header {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    border-bottom: 1px solid #dadce0;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.day-name {
+    font-size: 12px;
+    color: #5f6368;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.day-number {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2C3E50;
+}
+
+/* CONTAINER DOS EVENTOS - CORRIGIDO */
+.events-container {
+    position: relative;
+    height: 640px; /* 60px * 11 slots - 60px header */
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 59px,
+        #e8eaed 59px,
+        #e8eaed 60px
+    );
+    background-size: 100% 60px;
+}
+
+/* EVENT ITEMS - FUNCIONAIS */
+.event-item {
+    position: absolute !important;
+    left: 12px;
+    right: 12px;
+    border-radius: 8px;
+    padding: 8px;
+    color: white;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-left: 4px solid rgba(255, 255, 255, 0.4);
+    z-index: 3;
+    overflow: hidden;
+}
+
+.event-item:hover {
+    transform: translateX(3px) scale(1.02);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+}
+
+.aws-event {
+    background: linear-gradient(135deg, #ff9900, #ff7700);
+}
+
+.itau-event {
+    background: linear-gradient(135deg, #ec7000, #d45500);
+}
+
+.ifood-event {
+    background: linear-gradient(135deg, #ea1d2c, #c41e3a);
+}
+
+/* EVENT CONTENT - OTIMIZADO */
+.event-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.event-header h4 {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.event-time {
+    font-size: 10px;
+    opacity: 0.9;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 6px;
+    white-space: nowrap;
+}
+
+.event-details {
+    margin-bottom: 6px;
+    flex: 1;
+}
+
+.event-details > div {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 2px;
+    font-size: 10px;
+    opacity: 0.95;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.event-details .material-icons-outlined {
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.event-actions {
+    display: flex;
+    gap: 4px;
+    margin-top: auto;
+}
+
+.join-btn, .directions-btn, .details-btn {
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 9px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.join-btn:hover, .directions-btn:hover, .details-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+.details-btn {
+    padding: 3px 5px;
+}
+
+.details-btn .material-icons-outlined {
+    font-size: 10px;
+}
+
+/* Meeting Details Sidebar - CORRIGIDA */
+.meeting-details-sidebar {
+    width: 320px;
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    border: 1px solid #e0e0e0;
+    flex-shrink: 0;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
+
+.meeting-details-sidebar h3 {
+    color: #2C3E50;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+}
+
+.next-meeting {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.meeting-time-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 70px;
+    background: linear-gradient(135deg, #FF6B47, #FF8A6B);
+    color: white;
+    padding: 12px 8px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.meeting-time-info .time {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.meeting-time-info .duration {
+    font-size: 11px;
+    opacity: 0.9;
+}
+
+.meeting-info {
+    flex: 1;
+}
+
+.meeting-info h4 {
+    color: #2C3E50;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+}
+
+.meeting-meta p {
+    color: #5f6368;
+    font-size: 13px;
+    margin: 0 0 6px 0;
+    line-height: 1.4;
+}
+
+.meeting-meta strong {
+    color: #2C3E50;
+}
+
+.meeting-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.join-meeting-btn, .copy-link-btn {
+    background: #FF6B47;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.copy-link-btn {
+    background: #2C3E50;
+}
+
+.join-meeting-btn:hover {
+    background: #e55a3c;
+    transform: translateY(-1px);
+}
+
+.copy-link-btn:hover {
+    background: #1a252f;
+    transform: translateY(-1px);
+}
+
+/* Modal de detalhes */
+.meeting-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 24px 0 24px;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 24px;
+}
+
+.modal-header h3 {
+    color: #2C3E50;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    color: #5f6368;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.close-modal:hover {
+    background: #f1f3f4;
+    color: #FF6B47;
+}
+
+.modal-body {
+    padding: 0 24px 24px 24px;
+}
+
+.meeting-detail-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.meeting-detail-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #2C3E50;
+    font-size: 13px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.meeting-detail-item span:not(.detail-label) {
+    color: #5f6368;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.link-container, .address-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.link-container input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    font-size: 13px;
+    background: #f8f9fa;
+}
+
+.link-container button, .address-container button {
+    background: #FF6B47;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.link-container button:hover, .address-container button:hover {
+    background: #e55a3c;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .calendar-main-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .calendar-container {
+        max-width: 100%;
+    }
+
+    .meeting-details-sidebar {
+        width: 100%;
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .calendar-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+    .calendar-controls {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .time-column {
+        width: 60px;
+    }
+
+    .event-item {
+        font-size: 9px;
+        padding: 6px;
+        left: 8px;
+        right: 8px;
+    }
+
+    .event-header h4 {
+        font-size: 10px;
+    }
+
+    .event-details > div {
+        font-size: 8px;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .event-actions {
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .join-btn, .directions-btn {
+        font-size: 8px;
+        padding: 2px 4px;
+    }
+}

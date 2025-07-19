@@ -1,0 +1,500 @@
+/* Resumo do Dia - Paleta CareerPath - Versão Otimizada */
+
+/* RESET E BASE - FORÇADO */
+.content-area {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 2rem !important;
+    background: #F8F9FA !important;
+    min-height: 100vh !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.resumo-dia-header {
+    text-align: center !important;
+    margin-bottom: 3rem !important;
+}
+
+.resumo-dia-header h2 {
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    color: #2C3E50 !important;
+    margin-bottom: 0.5rem !important;
+    position: relative !important;
+}
+
+.resumo-dia-header h2::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -10px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 60px !important;
+    height: 4px !important;
+    background: linear-gradient(90deg, #FF6B47, #FF8A6B) !important;
+    border-radius: 2px !important;
+}
+
+.resumo-dia-header p {
+    color: #6C757D !important;
+    font-size: 1.1rem !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+}
+
+/* GRID FORÇADO PARA 3 COLUNAS EM UMA LINHA */
+.resumo-cards-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 2rem !important;
+    margin-top: 2rem !important;
+    width: 100% !important;
+}
+
+.resumo-card {
+    background: white !important;
+    border-radius: 16px !important;
+    padding: 2rem !important;
+    box-shadow: 0 4px 20px rgba(44, 62, 80, 0.08) !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(255, 107, 71, 0.1) !important;
+    cursor: pointer !important;
+    opacity: 0 !important;
+    transform: translateY(30px) !important;
+    width: 100% !important;
+    min-height: 300px !important;
+}
+
+/* Estado carregado */
+.resumo-card.loaded {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.resumo-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 8px 30px rgba(44, 62, 80, 0.15) !important;
+    border-color: rgba(255, 107, 71, 0.3) !important;
+}
+
+.card-status-indicator {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 4px !important;
+    background: linear-gradient(90deg, #FF6B47, #FF8A6B) !important;
+}
+
+.card-icon {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.8rem !important;
+    color: white !important;
+    background: linear-gradient(135deg, #FF6B47, #FF8A6B) !important;
+    margin-bottom: 1.5rem !important;
+    box-shadow: 0 4px 15px rgba(255, 107, 71, 0.3) !important;
+}
+
+.card-content h3 {
+    color: #2C3E50 !important;
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
+    margin: 0 0 0.5rem 0 !important;
+    line-height: 1.2 !important;
+}
+
+.card-description {
+    color: #6C757D !important;
+    font-size: 0.95rem !important;
+    margin: 0 0 1.5rem 0 !important;
+    line-height: 1.4 !important;
+}
+
+/* CORREÇÃO PRINCIPAL - usando as classes corretas do HTML */
+.card-stats {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    background: linear-gradient(135deg, rgba(255, 107, 71, 0.08), rgba(255, 107, 71, 0.04)) !important;
+    padding: 1.5rem !important;
+    border-radius: 12px !important;
+    border-left: 5px solid #FF6B47 !important;
+    margin-bottom: 1.5rem !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.card-stats::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 60px !important;
+    height: 60px !important;
+    background: radial-gradient(circle, rgba(255, 107, 71, 0.1), transparent) !important;
+    border-radius: 50% !important;
+}
+
+.stat-number {
+    font-size: 3.5rem !important;
+    font-weight: 900 !important;
+    color: #FF6B47 !important;
+    line-height: 1 !important;
+    margin-bottom: 0.25rem !important;
+    text-shadow: 0 2px 4px rgba(255, 107, 71, 0.2) !important;
+    display: block !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.stat-label {
+    color: #2C3E50 !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    opacity: 0.8 !important;
+}
+
+.card-action-btn {
+    position: absolute !important;
+    bottom: 1.5rem !important;
+    right: 1.5rem !important;
+    background: rgba(255, 107, 71, 0.1) !important;
+    border: 2px solid rgba(255, 107, 71, 0.2) !important;
+    color: #FF6B47 !important;
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-size: 1.3rem !important;
+}
+
+.card-action-btn:hover {
+    background: #FF6B47 !important;
+    color: white !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 4px 15px rgba(255, 107, 71, 0.4) !important;
+}
+
+/* Variações específicas para cada card */
+.meetings-card .card-icon {
+    background: linear-gradient(135deg, #FF6B47, #FF8A6B) !important;
+}
+
+.meetings-card .card-stats {
+    background: linear-gradient(135deg, rgba(255, 107, 71, 0.08), rgba(255, 107, 71, 0.04)) !important;
+    border-left-color: #FF6B47 !important;
+}
+
+.meetings-card .stat-number {
+    color: #FF6B47 !important;
+}
+
+.contracts-card .card-icon {
+    background: linear-gradient(135deg, #2C3E50, #34495E) !important;
+}
+
+.contracts-card .card-stats {
+    background: linear-gradient(135deg, rgba(44, 62, 80, 0.08), rgba(44, 62, 80, 0.04)) !important;
+    border-left-color: #2C3E50 !important;
+}
+
+.contracts-card .stat-number {
+    color: #2C3E50 !important;
+    text-shadow: 0 2px 4px rgba(44, 62, 80, 0.2) !important;
+}
+
+.contracts-card .card-action-btn {
+    background: rgba(44, 62, 80, 0.1) !important;
+    border-color: rgba(44, 62, 80, 0.2) !important;
+    color: #2C3E50 !important;
+}
+
+.contracts-card .card-action-btn:hover {
+    background: #2C3E50 !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.4) !important;
+}
+
+.visits-card .card-icon {
+    background: linear-gradient(135deg, #FF6B47, #2C3E50) !important;
+}
+
+.visits-card .card-stats {
+    background: linear-gradient(135deg, rgba(255, 107, 71, 0.06), rgba(44, 62, 80, 0.06)) !important;
+    border-left: 5px solid !important;
+    border-image: linear-gradient(135deg, #FF6B47, #2C3E50) 1 !important;
+}
+
+.visits-card .stat-number {
+    background: linear-gradient(135deg, #FF6B47, #2C3E50) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    text-shadow: none !important;
+    /* Fallback para navegadores que não suportam */
+    color: #FF6B47;
+}
+
+/* Estados de loading */
+.resumo-card.loading {
+    opacity: 0.7 !important;
+    pointer-events: none !important;
+}
+
+.resumo-card.loading::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: rgba(255, 255, 255, 0.8) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 10 !important;
+}
+
+/* Animações */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes numberPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Forçar animações */
+.resumo-card {
+    animation: fadeInUp 0.6s ease forwards !important;
+}
+
+.stat-number {
+    animation: numberPulse 2s ease-in-out infinite !important;
+}
+
+.resumo-card:nth-child(1) { animation-delay: 0.1s !important; }
+.resumo-card:nth-child(2) { animation-delay: 0.2s !important; }
+.resumo-card:nth-child(3) { animation-delay: 0.3s !important; }
+
+/* Hover effects melhorados */
+.resumo-card:hover .stat-number {
+    transform: scale(1.1) !important;
+    transition: transform 0.3s ease !important;
+}
+
+.resumo-card:hover .card-stats {
+    box-shadow: 0 4px 20px rgba(255, 107, 71, 0.15) !important;
+    transform: translateY(-2px) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Responsividade ADAPTADA para manter 3 cards em linha */
+@media (max-width: 1200px) {
+    .content-area {
+        padding: 1.5rem !important;
+    }
+    
+    .resumo-card {
+        padding: 1.5rem !important;
+    }
+    
+    .stat-number {
+        font-size: 3rem !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .content-area {
+        padding: 1rem !important;
+    }
+    
+    .resumo-cards-grid {
+        gap: 1.5rem !important;
+    }
+    
+    .resumo-card {
+        padding: 1.5rem !important;
+        min-height: 280px !important;
+    }
+    
+    .stat-number {
+        font-size: 2.8rem !important;
+    }
+    
+    .card-content h3 {
+        font-size: 1.2rem !important;
+    }
+    
+    .card-description {
+        font-size: 0.85rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .resumo-dia-header h2 {
+        font-size: 2rem !important;
+    }
+    
+    .resumo-cards-grid {
+        gap: 1rem !important;
+    }
+    
+    .resumo-card {
+        padding: 1.2rem !important;
+        min-height: 250px !important;
+    }
+    
+    .stat-number {
+        font-size: 2.5rem !important;
+    }
+    
+    .card-action-btn {
+        bottom: 1rem !important;
+        right: 1rem !important;
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .card-content h3 {
+        font-size: 1.1rem !important;
+    }
+}
+
+/* SOMENTE EM TELAS MUITO PEQUENAS (mobile) os cards ficam em coluna */
+@media (max-width: 480px) {
+    .content-area {
+        padding: 0.5rem !important;
+    }
+    
+    .resumo-cards-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    .resumo-card {
+        min-height: 200px !important;
+        padding: 1rem !important;
+    }
+    
+    .stat-number {
+        font-size: 2.2rem !important;
+    }
+    
+    .card-stats {
+        padding: 1rem !important;
+    }
+}
+
+/* Fix para problemas de cache */
+.resumo-card * {
+    box-sizing: border-box !important;
+}
+
+/* Forçar reflow */
+.content-area {
+    contain: layout style !important;
+}
+
+/* Garantir que as fontes sejam carregadas */
+.stat-number, .card-content h3 {
+    font-display: swap !important;
+}
+
+/* Fix para Material Icons */
+.material-icons-outlined {
+    font-family: 'Material Icons Outlined' !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    font-size: inherit !important;
+    line-height: 1 !important;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
+    word-wrap: normal !important;
+    direction: ltr !important;
+}
+
+/* Estados específicos para debugging */
+.resumo-card[data-debug="true"] {
+    border: 2px solid red !important;
+}
+
+.resumo-card[data-debug="true"] .stat-number {
+    background: yellow !important;
+    color: black !important;
+}
+
+/* Performance fixes */
+.resumo-card {
+    will-change: transform !important;
+    backface-visibility: hidden !important;
+}
+
+.stat-number {
+    will-change: transform !important;
+}
+
+/* Fallbacks para navegadores antigos */
+.resumo-cards-grid {
+    display: -ms-grid !important;
+    display: grid !important;
+}
+
+/* IE11 fallback */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .resumo-cards-grid {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+    }
+    
+    .resumo-card {
+        flex: 1 1 33.333% !important;
+        margin: 0 1rem !important;
+    }
+}
+
+/* Fix adicional para garantir que tudo funcione */
+.resumo-cards-grid > * {
+    flex-shrink: 0 !important;
+}
+
+/* Garantir que o layout seja sempre respeitado */
+.content-area::after {
+    content: "" !important;
+    display: table !important;
+    clear: both !important;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerPath | Calendário</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/pages/style-comum.css">
+    <link rel="stylesheet" href="css/pages/calendario.css">
+    <script src="js/comum.js"></script>
+</head>
+<body>
+
+    <main class="tracker-content-area">
+        <div id="calendar-view" class="view">
+            <header class="page-header"><span class="material-icons-outlined">calendar_today</span> Calendário de Estudos</header>
+            <div class="content-wrapper">
+                <div class="calendar-header">
+                    <div class="calendar-nav-group">
+                        <button class="calendar-nav" onclick="navigateCalendar(-1)">❮</button>
+                        <h2 id="calendarTitle" class="calendar-title"></h2>
+                        <button class="calendar-nav" onclick="navigateCalendar(1)">❯</button>
+                    </div>
+                    <div class="view-toggles">
+                        <button id="view-toggle-month" class="active" onclick="setCalendarView('month')">Mês</button>
+                        <button id="view-toggle-week" onclick="setCalendarView('week')">Semana</button>
+                    </div>
+                </div>
+                <div id="calendar-summary" class="calendar-summary"></div>
+                <div class="calendar-grid-header">
+                    <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
+                </div>
+                <div class="calendar-grid" id="calendarGrid"></div>
+                <div id="selectedDateInfo" class="study-history" style="display: none;"></div>
+            </div>
+        </div>
+    </main>
+    
+    <div id="confirmModal" class="modal-overlay"> <div class="modal-content"> <h3 id="confirmModalTitle">Confirmar Ação</h3> <p id="confirmModalMessage"></p> <div class="modal-buttons"> <button class="secondary" onclick="hideConfirmModal()">Cancelar</button> <button class="danger" onclick="handleConfirmAction()">Confirmar</button> </div> </div> </div>
+    <div id="alertModal" class="modal-overlay"> <div class="modal-content"> <h3 id="alertModalTitle">Atenção</h3> <p id="alertModalMessage"></p> <div class="modal-buttons"> <button onclick="hideAlertModal()">OK</button> </div> </div> </div>
+
+
+</body>
+</html>

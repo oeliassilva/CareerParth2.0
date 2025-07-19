@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reuniões Agendadas - CareerPath</title>
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/pages/reunioes-agendadas.css">
+</head>
+<body>
+    <div class="calendar-header">
+        <button class="back-btn" onclick="window.location.hash='#perfil/resumo-dia'">
+            <span class="material-icons-outlined">arrow_back</span>
+            Voltar
+        </button>
+        <h2>Reuniões Agendadas</h2>
+        <div class="calendar-controls">
+            <button class="btn-today">Hoje</button>
+            <div class="date-navigation">
+                <button class="nav-btn prev">
+                    <span class="material-icons-outlined">chevron_left</span>
+                </button>
+                <span class="current-date">Julho 2025</span>
+                <button class="nav-btn next">
+                    <span class="material-icons-outlined">chevron_right</span>
+                </button>
+            </div>
+            <div class="view-toggle">
+                <button class="view-btn active">Dia</button>
+                <button class="view-btn">Semana</button>
+                <button class="view-btn">Mês</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="calendar-main-container">
+        <div class="calendar-container">
+            <div class="time-column">
+                <div class="time-slot">08:00</div>
+                <div class="time-slot">09:00</div>
+                <div class="time-slot">10:00</div>
+                <div class="time-slot">11:00</div>
+                <div class="time-slot">12:00</div>
+                <div class="time-slot">13:00</div>
+                <div class="time-slot">14:00</div>
+                <div class="time-slot">15:00</div>
+                <div class="time-slot">16:00</div>
+                <div class="time-slot">17:00</div>
+                <div class="time-slot">18:00</div>
+            </div>
+
+            <div class="calendar-grid">
+                <div class="calendar-day">
+                    <div class="day-header">
+                        <span class="day-name">Quinta-feira</span>
+                        <span class="day-number">17</span>
+                    </div>
+
+                    <div class="events-container">
+                        <!-- Reunião 1 - AWS - 10:00 (120px do topo) -->
+                        <div class="event-item aws-event" style="top: 120px; height: 60px;" data-meeting-id="1">
+                            <div class="event-content">
+                                <div class="event-header">
+                                    <h4>Conversa Inicial</h4>
+                                    <span class="event-time">10:00</span>
+                                </div>
+                                <div class="event-details">
+                                    <div class="event-person">
+                                        <span class="material-icons-outlined">person</span>
+                                        <span>Roberto Silva - AWS</span>
+                                    </div>
+                                    <div class="event-location online">
+                                        <span class="material-icons-outlined">videocam</span>
+                                        <span>Online</span>
+                                    </div>
+                                </div>
+                                <div class="event-actions">
+                                    <button class="join-btn" onclick="openMeetingLink('https://meet.google.com/abc-defg-hij')">
+                                        <span class="material-icons-outlined">videocam</span>
+                                        Entrar
+                                    </button>
+                                    <button class="details-btn" onclick="showMeetingDetails(1)">
+                                        <span class="material-icons-outlined">info</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reunião 2 - Itaú - 14:00 (360px do topo) -->
+                        <div class="event-item itau-event" style="top: 360px; height: 60px;" data-meeting-id="2">
+                            <div class="event-content">
+                                <div class="event-header">
+                                    <h4>Entrevista Técnica</h4>
+                                    <span class="event-time">14:00</span>
+                                </div>
+                                <div class="event-details">
+                                    <div class="event-person">
+                                        <span class="material-icons-outlined">person</span>
+                                        <span>Ana Paula - Itaú</span>
+                                    </div>
+                                    <div class="event-location online">
+                                        <span class="material-icons-outlined">videocam</span>
+                                        <span>Teams</span>
+                                    </div>
+                                </div>
+                                <div class="event-actions">
+                                    <button class="join-btn" onclick="openMeetingLink('https://teams.microsoft.com/l/meetup-join/xyz')">
+                                        <span class="material-icons-outlined">videocam</span>
+                                        Entrar
+                                    </button>
+                                    <button class="details-btn" onclick="showMeetingDetails(2)">
+                                        <span class="material-icons-outlined">info</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reunião 3 - iFood - 16:30 (510px do topo) -->
+                        <div class="event-item ifood-event" style="top: 510px; height: 45px;" data-meeting-id="3">
+                            <div class="event-content">
+                                <div class="event-header">
+                                    <h4>Apresentação Empresa</h4>
+                                    <span class="event-time">16:30</span>
+                                </div>
+                                <div class="event-details">
+                                    <div class="event-person">
+                                        <span class="material-icons-outlined">person</span>
+                                        <span>Carlos - iFood</span>
+                                    </div>
+                                    <div class="event-location presencial">
+                                        <span class="material-icons-outlined">location_on</span>
+                                        <span>Presencial</span>
+                                    </div>
+                                </div>
+                                <div class="event-actions">
+                                    <button class="directions-btn" onclick="openDirections('Rua Fidêncio Ramos, 308 - Vila Olímpia, São Paulo - SP')">
+                                        <span class="material-icons-outlined">directions</span>
+                                        Maps
+                                    </button>
+                                    <button class="details-btn" onclick="showMeetingDetails(3)">
+                                        <span class="material-icons-outlined">info</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar com próxima reunião -->
+        <div class="meeting-details-sidebar">
+            <h3>Próxima Reunião</h3>
+            <div class="next-meeting">
+                <div class="meeting-time-info">
+                    <span class="time">10:00</span>
+                    <span class="duration">30 min</span>
+                </div>
+                <div class="meeting-info">
+                    <h4>Conversa Inicial</h4>
+                    <div class="meeting-meta">
+                        <p><strong>Com:</strong> Roberto Silva</p>
+                        <p><strong>Empresa:</strong> AWS</p>
+                        <p><strong>Local:</strong> Google Meet</p>
+                    </div>
+                    <div class="meeting-actions">
+                        <button class="join-meeting-btn" onclick="openMeetingLink('https://meet.google.com/abc-defg-hij')">
+                            <span class="material-icons-outlined">videocam</span>
+                            Entrar na Reunião
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de detalhes da reunião -->
+    <div id="meeting-modal" class="meeting-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Detalhes da Reunião</h3>
+                <button class="close-modal" onclick="closeMeetingModal()">
+                    <span class="material-icons-outlined">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="meeting-detail-item">
+                    <span class="detail-label">Data e Hora:</span>
+                    <span id="modal-datetime">-</span>
+                </div>
+                <div class="meeting-detail-item">
+                    <span class="detail-label">Duração:</span>
+                    <span id="modal-duration">-</span>
+                </div>
+                <div class="meeting-detail-item">
+                    <span class="detail-label">Com quem:</span>
+                    <span id="modal-person">-</span>
+                </div>
+                <div class="meeting-detail-item">
+                    <span class="detail-label">Empresa:</span>
+                    <span id="modal-company">-</span>
+                </div>
+                <div class="meeting-detail-item">
+                    <span class="detail-label">Sobre o que:</span>
+                    <span id="modal-subject">-</span>
+                </div>
+                <div class="meeting-detail-item">
+                    <span class="detail-label">Local:</span>
+                    <span id="modal-location">-</span>
+                </div>
+                <div class="meeting-detail-item" id="modal-link-section">
+                    <span class="detail-label">Link da reunião:</span>
+                    <div class="link-container">
+                        <input type="text" id="modal-link" readonly>
+                        <button onclick="copyMeetingLink(document.getElementById('modal-link').value)">
+                            <span class="material-icons-outlined">content_copy</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="meeting-detail-item" id="modal-address-section">
+                    <span class="detail-label">Endereço:</span>
+                    <div class="address-container">
+                        <span id="modal-address">-</span>
+                        <button onclick="openDirections(document.getElementById('modal-address').textContent)">
+                            <span class="material-icons-outlined">directions</span>
+                            Ver no Maps
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/pages/reunioes-agendadas.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerPath | Relatórios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css"/>
+    
+    <link rel="stylesheet" href="css/pages/style-comum.css">
+    <link rel="stylesheet" href="css/pages/relatorio.css">
+    <script src="js/comum.js"></script>
+</head>
+<body>
+
+    <main class="tracker-content-area">
+        <div id="reports-view" class="view">
+            <header class="page-header"><span class="material-icons-outlined">bar_chart</span> Relatórios</header>
+            <div class="content-wrapper">
+                <div class="reports-filter-bar">
+                    <div class="filter-group">
+                        <label for="report-date-input">Período</label>
+                        <input type="text" id="report-date-input" readonly>
+                    </div>
+                    <div class="filter-group">
+                        <label for="report-cycle-filter">Filtrar por Ciclo</label>
+                        <select id="report-cycle-filter" onchange="renderReportsView()"></select>
+                    </div>
+                </div>
+
+                <div class="reports-kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-label">Duração Total</div>
+                        <div class="kpi-value" id="report-total-hours">00:00:00</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">Média Diária</div>
+                        <div class="kpi-value" id="report-daily-average">00:00:00</div>
+                    </div>
+                </div>
+
+                <div class="reports-charts-grid">
+                    <div class="chart-wrapper">
+                        <h3>Duração por Dia</h3>
+                        <canvas id="durationBarChart"></canvas>
+                    </div>
+                    <div class="chart-wrapper">
+                        <h3>Distribuição por Ciclo</h3>
+                        <canvas id="distributionDonutChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="reports-breakdown">
+                    <div class="breakdown-header">
+                        <span>CICLO / DISCIPLINA</span>
+                        <span class="d-right">DURAÇÃO</span>
+                        <span class="d-right">%</span>
+                    </div>
+                    <div id="breakdown-table-body"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+</body>
+</html>

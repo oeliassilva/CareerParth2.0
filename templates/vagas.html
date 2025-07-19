@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vagas Recomendadas - CareerPath</title>
+    <link rel="stylesheet" href="css/pages/vagas.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- TELA DE LISTAGEM DE VAGAS -->
+        <div id="vagas-list-view">
+            <!-- Header azul fixo (ADICIONADO) -->
+            <header class="page-header">
+                <span class="material-icons-outlined">work</span>
+                <span>Vagas</span>
+            </header>
+
+            <!-- Header de conteúdo (mantido) -->
+            <div class="content-header">
+                <h1 class="content-title">Encontre sua Vaga</h1>
+                <p class="content-subtitle">Busque por cargo, empresa, tecnologia ou filtre por compatibilidade.</p>
+            </div>
+
+            <div class="filter-bar">
+                <input type="text" id="search-input" placeholder="Cargo, empresa ou tecnologia (ex: React)">
+                <select id="match-filter">
+                    <option value="0">Qualquer Match</option>
+                    <option value="75">Match > 75%</option>
+                    <option value="50">Match > 50%</option>
+                    <option value="25">Match > 25%</option>
+                </select>
+            </div>
+
+            <div id="vagas-list-container">
+                <!-- Cards de vagas serão inseridos aqui pelo JavaScript -->
+            </div>
+        </div>
+
+        <!-- TELA DE DETALHES DA VAGA -->
+        <div id="vaga-detail-view" style="display: none;">
+            <!-- Header azul fixo (ADICIONADO) -->
+            <header class="page-header">
+                <span class="material-icons-outlined">work</span>
+                <span>Vagas</span>
+            </header>
+
+            <!-- Header de conteúdo (mantido) -->
+            <div class="content-header">
+                <div class="breadcrumb">
+                    <a href="#" class="breadcrumb-link" id="back-to-list-btn">← Voltar para Vagas</a>
+                    <span class="breadcrumb-separator"> > </span>
+                    <span class="breadcrumb-current">Detalhe da Vaga</span>
+                </div>
+                <h1 class="content-title" id="detail-job-title">Desenvolvedor(a) Front-End Júnior</h1>
+                <p class="content-subtitle">Análise de compatibilidade e plano de desenvolvimento</p>
+            </div>
+
+            <main class="job-details-grid">
+                <div class="job-primary-info">
+                    <div class="card">
+                        <div class="company-info">
+                            <img src="" alt="Logo da Empresa" class="company-logo" id="detail-company-logo">
+                            <div>
+                                <h2 class="company-name" id="detail-company-name">Itaú Unibanco</h2>
+                                <p class="company-location" id="detail-location">São Paulo, SP (Híbrido)</p>
+                            </div>
+                        </div>
+                        <div class="match-score">
+                            <div class="progress-circle" id="detail-progress-circle" data-percentage="85">
+                                <svg viewBox="0 0 120 120">
+                                    <circle cx="60" cy="60" r="54" class="bg-circle"/>
+                                    <circle cx="60" cy="60" r="54" class="progress-circle-fill"/>
+                                </svg>
+                                <div class="percentage-text">
+                                    <strong id="detail-percentage-text">85%</strong>
+                                    <span>Compatível</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="job-meta">
+                            <div class="meta-item">
+                                <span>Tipo:</span>
+                                <strong id="detail-contract">CLT</strong>
+                            </div>
+                            <div class="meta-item">
+                                <span>Modelo:</span>
+                                <strong id="detail-model">Híbrido</strong>
+                            </div>
+                            <div class="meta-item">
+                                <span>Salário:</span>
+                                <strong id="detail-salary">R$ 5.500</strong>
+                            </div>
+                        </div>
+                        <a href="#" class="cta-button">Candidatar-se Agora</a>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">Descrição da Vaga</h3>
+                        <p class="job-description" id="detail-description">
+                            Faça parte do time de tecnologia do maior banco da América Latina! Buscamos uma pessoa desenvolvedora Front-End Júnior para criar interfaces intuitivas e acessíveis para nossos produtos digitais.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="job-skills-analysis">
+                    <div class="card">
+                        <h3 class="card-title">Análise de Perfil vs. Vaga</h3>
+                        <p class="card-subtitle">Veja os pontos de sinergia e as oportunidades de desenvolvimento para um match perfeito.</p>
+
+                        <div class="skills-section">
+                            <h4>Habilidades Compatíveis</h4>
+                            <div class="skills-list" id="detail-matching-skills">
+                                <!-- Skills compatíveis serão inseridas aqui -->
+                            </div>
+                        </div>
+
+                        <div class="skills-section">
+                            <h4>Habilidades a Desenvolver (Gaps)</h4>
+                            <div class="skills-list" id="detail-gap-skills">
+                                <!-- Skills em falta serão inseridas aqui -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">Plano de Desenvolvimento Sugerido</h3>
+                        <p class="card-subtitle">Invista nestas competências para se tornar um candidato ainda mais forte.</p>
+
+                        <div class="course-list" id="detail-course-list">
+                            <!-- Cursos recomendados serão inseridos aqui -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="js/pages/vagas.js"></script>
+</body>
+</html>

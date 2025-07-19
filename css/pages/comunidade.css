@@ -1,0 +1,149 @@
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.page-header .material-icons-outlined {
+    font-size: 2em;
+    color: #0d253f;
+}
+
+.comunidade-new-question {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+}
+
+.comunidade-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #0d253f;
+}
+
+#nova-pergunta-input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+}
+
+#postar-pergunta-btn {
+    background: #0d253f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#postar-pergunta-btn:hover {
+    background: #1a3860;
+}
+
+#comunidade-feed-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.comunidade-question-card {
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 8px;
+}
+
+.comunidade-question-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.comunidade-user-name {
+    color: #0d253f;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.comunidade-question-text {
+    font-size: 1.08em;
+    margin-bottom: 8px;
+    color: #222;
+}
+
+.comunidade-tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.comunidade-tag {
+    background: #f8f9fa;
+    color: #0d253f;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-size: 0.95em;
+    border: 1px solid #e9ecef;
+}
+
+.comunidade-respostas {
+    margin-bottom: 8px;
+}
+
+.comunidade-resposta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 0.98em;
+}
+
+.comunidade-resposta-text {
+    color: #222;
+}
+
+.comunidade-responder-bar {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.resposta-input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+}
+
+.responder-btn {
+    background: #0d253f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.responder-btn:hover {
+    background: #1a3860;
+}

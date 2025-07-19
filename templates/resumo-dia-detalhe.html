@@ -1,0 +1,62 @@
+<div class="content-area">
+    <div class="resumo-dia-header">
+        <h2>Resumo do Dia</h2>
+        <p>Acesse os detalhes de cada seção clicando nos cards abaixo para uma experiência completa.</p>
+    </div>
+
+    <div class="resumo-cards-grid">
+        <div class="resumo-card meetings-card" onclick="window.location.hash='#perfil/reunioes-agendadas'">
+            <div class="card-status-indicator"></div>
+            <div class="card-icon">
+                <span class="material-icons-outlined">event</span>
+            </div>
+            <div class="card-content">
+                <h3>Reuniões Agendadas</h3>
+                <p class="card-description">Visualize suas reuniões agendadas</p>
+                <div class="card-stats">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">reuniões hoje</span>
+                </div>
+            </div>
+            <button class="card-action-btn" onclick="event.stopPropagation(); window.location.hash='#perfil/reunioes-agendadas'">
+                <span class="material-icons-outlined">arrow_forward</span>
+            </button>
+        </div>
+
+        <div class="resumo-card contracts-card" onclick="window.location.hash='#perfil/contratos-assinar'">
+            <div class="card-status-indicator"></div>
+            <div class="card-icon">
+                <span class="material-icons-outlined">draw</span>
+            </div>
+            <div class="card-content">
+                <h3>Contratos a Assinar</h3>
+                <p class="card-description">Gerencie seus contratos pendentes</p>
+                <div class="card-stats">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">contrato pendente</span>
+                </div>
+            </div>
+            <button class="card-action-btn" onclick="event.stopPropagation(); window.location.hash='#perfil/contratos-assinar'">
+                <span class="material-icons-outlined">arrow_forward</span>
+            </button>
+        </div>
+
+        <div class="resumo-card visits-card" onclick="window.location.hash='#perfil/visitas-perfil'">
+            <div class="card-status-indicator"></div>
+            <div class="card-icon">
+                <span class="material-icons-outlined">visibility</span>
+            </div>
+            <div class="card-content">
+                <h3>Visitas ao Perfil</h3>
+                <p class="card-description">Veja quem visitou seu perfil</p>
+                <div class="card-stats">
+                    <span class="stat-number">19</span>
+                    <span class="stat-label">visitas hoje</span>
+                </div>
+            </div>
+            <button class="card-action-btn" onclick="event.stopPropagation(); window.location.hash='#perfil/visitas-perfil'">
+                <span class="material-icons-outlined">arrow_forward</span>
+            </button>
+        </div>
+    </div>
+</div>

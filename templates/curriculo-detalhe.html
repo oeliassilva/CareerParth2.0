@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo - Elias Silva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="css/pages/curriculo-detalhe.css">
+</head>
+<body>
+    <!-- Header Principal -->
+    <header class="page-header">
+        <span class="material-icons-outlined">description</span>
+        <span>Currículo</span>
+    </header>
+
+    <!-- Breadcrumb de navegação -->
+    <nav class="breadcrumb-nav">
+        <a href="#perfil" class="breadcrumb-link">
+            <span class="material-icons-outlined">arrow_back</span>
+            Voltar ao Perfil
+        </a>
+    </nav>
+
+    <div class="resume-container">
+        <!-- Ações do Currículo -->
+        <div class="resume-actions">
+            <button class="btn-primary" id="download-pdf">
+                <span class="material-icons-outlined">download</span>
+                Baixar PDF
+            </button>
+            <button class="btn-secondary" id="share-resume">
+                <span class="material-icons-outlined">share</span>
+                Compartilhar
+            </button>
+            <button class="btn-secondary" id="edit-resume">
+                <span class="material-icons-outlined">edit</span>
+                Editar
+            </button>
+        </div>
+
+        <!-- Currículo -->
+        <div class="resume-content" id="resume-content">
+            <!-- Header do Currículo -->
+            <div class="resume-header">
+                <div class="profile-section">
+                    <div class="profile-photo">
+                        <img src="/assets/images/perfil-elias-silva.png" alt="Elias Silva" id="profile-image">
+                    </div>
+                    <div class="profile-info">
+                        <h1 class="full-name">Elias Silva</h1>
+                        <p class="title">Desenvolvedor em Transição | Engenharia de Software</p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <span class="material-icons-outlined">email</span>
+                                <span>elias.silva@email.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="material-icons-outlined">phone</span>
+                                <span>(61) 99999-9999</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="material-icons-outlined">location_on</span>
+                                <span>Brasília, DF</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="material-icons-outlined">language</span>
+                                <span>linkedin.com/in/eliassilva</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-section">
+                    <h2>Resumo Profissional</h2>
+                    <p>Profissional em transição de carreira para a área de tecnologia, cursando Engenharia de Software e Ciência de Dados. Experiência em gestão de projetos e liderança de equipes, com forte aptidão para resolução de problemas complexos. Domínio em JavaScript, Python e tecnologias web modernas, com certificações AWS e Oracle. Busco oportunidades para aplicar conhecimentos técnicos em desenvolvimento de software e análise de dados.</p>
+                </div>
+            </div>
+
+            <!-- Conteúdo Principal -->
+            <div class="resume-body">
+                <!-- Educação -->
+                <section class="resume-section">
+                    <h2 class="section-title">
+                        <span class="material-icons-outlined">school</span>
+                        Formação Acadêmica
+                    </h2>
+                    <div class="education-list">
+                        <div class="education-item">
+                            <div class="institution-logo">
+                                <img src="/assets/images/logo-gran-faculdade.png" alt="Gran Faculdade">
+                            </div>
+                            <div class="education-details">
+                                <h3>Bacharelado em Engenharia de Software</h3>
+                                <p class="institution">Gran Faculdade</p>
+                                <p class="period">2023 - 2027 (Em andamento)</p>
+                                <p class="description">Formação focada em desenvolvimento de software, arquitetura de sistemas, metodologias ágeis e gestão de projetos tecnológicos.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="education-item">
+                            <div class="institution-logo">
+                                <img src="/assets/images/logo-gran-faculdade.png" alt="Gran Faculdade">
+                            </div>
+                            <div class="education-details">
+                                <h3>Bacharelado em Ciência de Dados</h3>
+                                <p class="institution">Gran Faculdade</p>
+                                <p class="period">2024 - 2028 (Em andamento)</p>
+                                <p class="description">Especialização em análise de dados, machine learning, estatística aplicada e visualização de dados para tomada de decisões estratégicas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Experiência Profissional -->
+                <section class="resume-section">
+                    <h2 class="section-title">
+                        <span class="material-icons-outlined">work</span>
+                        Experiência Profissional
+                    </h2>
+                    <div class="experience-list">
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div class="job-info">
+                                    <h3>Desenvolvedor Front-End Jr.</h3>
+                                    <p class="company">Freelancer / Projetos Pessoais</p>
+                                    <p class="period">Jan 2024 - Presente</p>
+                                </div>
+                                <div class="careerpath-badge">
+                                    <span class="material-icons-outlined">verified</span>
+                                    CareerPath
+                                </div>
+                            </div>
+                            <div class="job-description">
+                                <p>Desenvolvimento de aplicações web responsivas utilizando tecnologias modernas. Criação de interfaces intuitivas e otimização de performance.</p>
+                                <ul class="achievements">
+                                    <li>Desenvolveu landing page para Escola da Nuvem com 95% de performance no Lighthouse</li>
+                                    <li>Criou dashboard de investimentos em Python com visualizações interativas</li>
+                                    <li>Implementou calculadora financeira com interface responsiva</li>
+                                </ul>
+                                <div class="tech-stack">
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">HTML5</span>
+                                    <span class="tech-tag">CSS3</span>
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">Bootstrap</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div class="job-info">
+                                    <h3>Coordenador de Projetos</h3>
+                                    <p class="company">Empresa de Consultoria Estratégica</p>
+                                    <p class="period">Mar 2021 - Dez 2023</p>
+                                </div>
+                            </div>
+                            <div class="job-description">
+                                <p>Liderança de equipes multidisciplinares na execução de projetos estratégicos, com foco em otimização de processos e implementação de soluções tecnológicas.</p>
+                                <ul class="achievements">
+                                    <li>Gerenciou 15+ projetos simultâneos com budget total de R$ 2.5M</li>
+                                    <li>Reduziu tempo de entrega de projetos em 30% através de metodologias ágeis</li>
+                                    <li>Liderou equipe de 12 profissionais com taxa de retenção de 95%</li>
+                                    <li>Implementou ferramentas de automação que aumentaram produtividade em 40%</li>
+                                </ul>
+                                <div class="tech-stack">
+                                    <span class="tech-tag">Scrum</span>
+                                    <span class="tech-tag">Kanban</span>
+                                    <span class="tech-tag">Excel Avançado</span>
+                                    <span class="tech-tag">Power BI</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div class="job-info">
+                                    <h3>Analista de Negócios</h3>
+                                    <p class="company">StartUp de Tecnologia Financeira</p>
+                                    <p class="period">Jun 2019 - Feb 2021</p>
+                                </div>
+                            </div>
+                            <div class="job-description">
+                                <p>Análise de requisitos de negócio e tradução para especificações técnicas. Ponte entre áreas de negócio e desenvolvimento.</p>
+                                <ul class="achievements">
+                                    <li>Mapeou e otimizou 25+ processos de negócio críticos</li>
+                                    <li>Colaborou no desenvolvimento de 3 produtos fintech do zero</li>
+                                    <li>Criou documentação técnica que reduziu onboarding de novos devs em 50%</li>
+                                    <li>Participou do crescimento da empresa de 10 para 50+ funcionários</li>
+                                </ul>
+                                <div class="tech-stack">
+                                    <span class="tech-tag">SQL</span>
+                                    <span class="tech-tag">BPMN</span>
+                                    <span class="tech-tag">Jira</span>
+                                    <span class="tech-tag">Confluence</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Habilidades Técnicas -->
+                <section class="resume-section">
+                    <h2 class="section-title">
+                        <span class="material-icons-outlined">code</span>
+                        Habilidades Técnicas
+                    </h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Linguagens de Programação</h3>
+                            <div class="skills-list">
+                                <div class="skill-item">
+                                    <span class="skill-name">JavaScript</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-progress="85"></div>
+                                    </div>
+                                    <span class="skill-percentage">85%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Python</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-progress="78"></div>
+                                    </div>
+                                    <span class="skill-percentage">78%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">HTML5</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-progress="83"></div>
+                                    </div>
+                                    <span class="skill-percentage">83%</span>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">CSS3</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-progress" data-progress="81"></div>
+                                    </div>
+                                    <span class="skill-percentage">81%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3>Frameworks & Tecnologias</h3>
+                            <div class="tech-tags-grid">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">Bootstrap</span>
+                                <span class="tech-tag">Streamlit</span>
+                                <span class="tech-tag">Pandas</span>
+                                <span class="tech-tag">NumPy</span>
+                                <span class="tech-tag">Git</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3>Ferramentas & Plataformas</h3>
+                            <div class="tech-tags-grid">
+                                <span class="tech-tag">AWS</span>
+                                <span class="tech-tag">Oracle DB</span>
+                                <span class="tech-tag">Power BI</span>
+                                <span class="tech-tag">Figma</span>
+                                <span class="tech-tag">Jira</span>
+                                <span class="tech-tag">Terraform</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">VS Code</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Habilidades Comportamentais -->
+                <section class="resume-section">
+                    <h2 class="section-title">
+                        <span class="material-icons-outlined">psychology</span>
+                        Habilidades Comportamentais
+                    </h2>
+                    <div class="soft-skills-grid">
+                        <div class="soft-skill-item">
+                            <div class="soft-skill-circle" data-percent="96">
+                                <div class="circle-progress">
+                                    <span class="percent-value">96%</span>
+                                </div>
+                            </div>
+                            <span class="soft-skill-name">Liderança</span>
+                        </div>
+                        <div class="soft-skill-item">
+                            <div class="soft-skill-circle" data-percent="93">
+                                <div class="circle-progress">
+                                    <span class="percent-value">93%</span>
+                                </div>
+                            </div>
+                            <span class="soft-skill-name">Trabalho em Equipe</span>
+                        </div>
+                        <div class="soft-skill-item">
+                            <div class="soft-skill-circle" data-percent="91">
+                                <div class="circle-progress">
+                                    <span class="percent-value">91%</span>
+                                </div>
+                            </div>
+                            <span class="soft-skill-name">Pensamento Analítico</span>
+                        </div>
+                        <div class="soft-skill-item">
+                            <div class="soft-skill-circle" data-percent="90">
+                                <div class="circle-progress">
+                                    <span class="percent-value">90%</span>
+                                </div>
+                            </div>
+                            <span class="soft-skill-name">Pensamento Criativo</span>
+                        </div>
+                        <div class="soft-skill-item">
+                            <div class="soft-skill-circle" data-percent="90">
+                                <div class="circle-progress">
+                                    <span class="percent-value">90%</span>
+                                </div>
+                            </div>
+                            <span class="soft-skill-name">Resiliência</span>
+                        </div>
+                        <div class="soft-skill-item">
+                            <div class="soft-skill-circle" data-percent="89">
+                                <div class="circle-progress">
+                                    <span class="percent-value">89%</span>
+                                </div>
+                            </div>
+                            <span class="soft-skill-name">Empatia</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Certificações -->
+                <section class="resume-section">
+                    <h2 class="section-title">
+                        <span class="material-icons-outlined">verified</span>
+                        Certificações
+                    </h2>
+                    <div class="certifications-grid">
+                        <div class="cert-item">
+                            <div class="cert-icon">
+                                <img src="/assets/images/cert-aws-cloud-practitioner.png" alt="AWS">
+                            </div>
+                            <div class="cert-details">
+                                <h4>AWS Cloud Practitioner Foundational</h4>
+                                <p>Amazon Web Services • Nov 2024</p>
+                            </div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-icon">
+                                <img src="/assets/images/cert-oracle-professional.png" alt="Oracle">
+                            </div>
+                            <div class="cert-details">
+                                <h4>Oracle Certified Professional</h4>
+                                <p>Oracle Corporation • Set 2024</p>
+                            </div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-icon">
+                                <img src="/assets/images/cert-html-intro.png" alt="HTML">
+                            </div>
+                            <div class="cert-details">
+                                <h4>Intro to HTML</h4>
+                                <p>Colorado Skills Institute • Ago 2024</p>
+                            </div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-icon">
+                                <img src="/assets/images/cert-terraform.png" alt="Terraform">
+                            </div>
+                            <div class="cert-details">
+                                <h4>Terraform Course Completion</h4>
+                                <p>DevOps Artisan • Jul 2024</p>
+                            </div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-icon">
+                                <img src="/assets/images/cert-python-mthree.png" alt="Python">
+                            </div>
+                            <div class="cert-details">
+                                <h4>Python Certificate of Completion</h4>
+                                <p>mthree • Jun 2024</p>
+                            </div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-icon">
+                                <img src="/assets/images/badge-javascript.png" alt="JavaScript">
+                            </div>
+                            <div class="cert-details">
+                                <h4>JavaScript Fundamentals</h4>
+                                <p>CareerPath • Set 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Projetos Destacados -->
+                <section class="resume-section">
+                    <h2 class="section-title">
+                        <span class="material-icons-outlined">folder</span>
+                        Projetos Destacados
+                    </h2>
+                    <div class="projects-list">
+                        <div class="project-item">
+                            <h4>Landing Page - Escola da Nuvem</h4>
+                            <p class="project-description">Landing page responsiva com foco em conversão, desenvolvida com HTML5, CSS3 e JavaScript vanilla. Implementação de animações CSS e otimização para SEO.</p>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <span class="material-icons-outlined">open_in_new</span>
+                                    GitHub
+                                </a>
+                                <a href="#" class="project-link">
+                                    <span class="material-icons-outlined">visibility</span>
+                                    Demo
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="project-item">
+                            <h4>Dashboard de Investimentos</h4>
+                            <p class="project-description">Aplicação web para análise de investimentos com visualizações interativas. Desenvolvido em Python com Streamlit, Pandas e Plotly para análise de dados financeiros.</p>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <span class="material-icons-outlined">open_in_new</span>
+                                    GitHub
+                                </a>
+                                <a href="#" class="project-link">
+                                    <span class="material-icons-outlined">visibility</span>
+                                    Demo
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="project-item">
+                            <h4>Calculadora de Investimento</h4>
+                            <p class="project-description">Ferramenta para cálculos financeiros complexos com interface intuitiva. Implementação de algoritmos de juros compostos e simulações de cenários de investimento.</p>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <span class="material-icons-outlined">open_in_new</span>
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Idiomas -->
+                <section class="resume-section">
+                    <h2 class="section-title">
+                        <span class="material-icons-outlined">language</span>
+                        Idiomas
+                    </h2>
+                    <div class="languages-list">
+                        <div class="language-item">
+                            <h4>Português</h4>
+                            <span class="language-level">Nativo</span>
+                        </div>
+                        <div class="language-item">
+                            <h4>Inglês</h4>
+                            <span class="language-level">Intermediário</span>
+                        </div>
+                        <div class="language-item">
+                            <h4>Espanhol</h4>
+                            <span class="language-level">Básico</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Footer do Currículo -->
+            <div class="resume-footer">
+                <p>Currículo gerado pela plataforma CareerPath • Última atualização: <span id="last-update"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Edição -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Editar Seção do Currículo</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Funcionalidade de edição em desenvolvimento...</p>
+                <p>Em breve você poderá editar todas as seções do seu currículo diretamente pela plataforma.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeEditModal()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/pages/curriculo-detalhe.js"></script>
+</body>
+</html>

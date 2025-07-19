@@ -1,0 +1,22 @@
+/* --- ESTILOS ESPECÍFICOS PARA A PÁGINA DE CALENDÁRIO --- */
+.calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
+.calendar-nav-group { display: flex; align-items: center; gap: 10px; }
+.calendar-title { color: #0d253f; font-weight: 600; text-align: center; flex-grow: 1; }
+.view-toggles { display: flex; }
+.view-toggles button { font-size: 14px; padding: 6px 12px; border-radius: 6px; background-color: #e9ecef; color: #495057; border: 1px solid #dee2e6; }
+.view-toggles button.active { background-color: #0d253f; color: white; border-color: #0d253f; }
+.calendar-grid, .calendar-grid-header { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+.calendar-grid-header > div { text-align: center; font-weight: 600; color: #6c757d; font-size: 0.9em; padding-bottom: 10px; }
+.calendar-day { aspect-ratio: 1; border: 1px solid transparent; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; position: relative; font-size: 14px; }
+.calendar-day:hover { background-color: #f0f3f5; }
+.calendar-day.today { border-color: #ff6f61; font-weight: bold; }
+.calendar-day.selected { background-color: #0d253f; color: white; }
+.calendar-day.has-studies { font-weight: 600; }
+.calendar-day.has-studies::after { content: ''; position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%); width: 5px; height: 5px; background-color: #0d253f; border-radius: 50%; }
+.calendar-day.selected.has-studies::after { background-color: #ff6f61; }
+.calendar-nav { background-color: #0d253f; color: white; }
+.calendar-summary { text-align: center; font-size: 1.1em; font-weight: 500; color: #0d253f; background-color: #e9f0f5; padding: 10px; border-radius: 8px; margin-bottom: 20px; }
+.study-history { border-top: 1px solid #dee2e6; margin-top: 20px; padding-top: 20px; }
+.daily-total { font-size: 1.1em; font-weight: 600; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #e9ecef; }
+.study-history-item { padding: 8px; margin-top: 5px; background: #fdfdff; border-left: 3px solid #0d253f; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+.history-delete-btn { background: #e74c3c; color: white; border: none; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; font-size: 14px; line-height: 24px; text-align: center; padding: 0; }

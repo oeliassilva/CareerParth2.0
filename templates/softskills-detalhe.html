@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soft Skills - CareerPath</title>
+    <link rel="stylesheet" href="css/pages/softskills-detalhe.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="breadcrumb">
+                    <a href="dashboard.html" class="breadcrumb-link">Dashboard</a>
+                    <span class="breadcrumb-separator">></span>
+                    <span class="breadcrumb-current">Soft Skills</span>
+                </div>
+                <h1 class="page-title">Minhas Habilidades Comportamentais</h1>
+                <p class="page-subtitle">Desenvolvimento e evolução das suas competências interpessoais</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Resumo Estatístico -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M17 21V19C17 16.7909 15.2091 15 13 15H5C2.79086 15 1 16.7909 1 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                                <path d="M23 21V19C23 18.1645 22.7155 17.3694 22.2094 16.7204" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-softskills">6</h3>
+                            <p>Competências</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="average-level">91%</h3>
+                            <p>Nível Médio</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="top-skill">Liderança</h3>
+                            <p>Ponto Forte</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filtros -->
+            <section class="filters-section">
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="category-filter">Categoria:</label>
+                        <select id="category-filter" class="filter-select">
+                            <option value="all">Todas</option>
+                            <option value="leadership">Liderança</option>
+                            <option value="communication">Comunicação</option>
+                            <option value="thinking">Pensamento</option>
+                            <option value="emotional">Emocional</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="level-filter">Nível:</label>
+                        <select id="level-filter" class="filter-select">
+                            <option value="all">Todos</option>
+                            <option value="developing">Em Desenvolvimento (0-70%)</option>
+                            <option value="proficient">Proficiente (71-90%)</option>
+                            <option value="expert">Especialista (91-100%)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid" title="Visualização em Grade">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <rect width="6" height="6" x="1" y="1" rx="1"/>
+                                <rect width="6" height="6" x="9" y="1" rx="1"/>
+                                <rect width="6" height="6" x="1" y="9" rx="1"/>
+                                <rect width="6" height="6" x="9" y="9" rx="1"/>
+                            </svg>
+                        </button>
+                        <button class="view-btn" data-view="list" title="Visualização em Lista">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <rect width="12" height="2" x="2" y="3" rx="1"/>
+                                <rect width="12" height="2" x="2" y="7" rx="1"/>
+                                <rect width="12" height="2" x="2" y="11" rx="1"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grid de Skills -->
+            <section class="skills-section">
+                <div class="skills-grid" id="skills-grid">
+                    <!-- Liderança -->
+                    <div class="skill-card" data-category="leadership" data-level="expert">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M16 4C16 2.89543 15.1046 2 14 2H10C8.89543 2 8 2.89543 8 4V6H16V4Z"/>
+                                    <path d="M3 6V18C3 19.1046 3.89543 20 5 20H19C20.1046 20 21 19.1046 21 18V6H3ZM8 8H16V18H8V8Z"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h3>Liderança</h3>
+                                <span class="skill-category">Liderança</span>
+                            </div>
+                            <div class="skill-level">96%</div>
+                        </div>
+                        
+                        <div class="skill-progress">
+                            <div class="progress-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" class="bg-circle"/>
+                                    <circle cx="50" cy="50" r="40" class="progress-circle-fill" data-percentage="96"/>
+                                </svg>
+                                <div class="percentage">96%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-details">
+                            <div class="skill-description">
+                                Capacidade excepcional de inspirar, motivar e guiar equipes em direção aos objetivos organizacionais.
+                            </div>
+                            
+                            <div class="skill-topics">
+                                <span class="topic-tag strong">Gestão de Equipes</span>
+                                <span class="topic-tag strong">Tomada de Decisão</span>
+                                <span class="topic-tag strong">Motivação</span>
+                                <span class="topic-tag developing">Coaching</span>
+                            </div>
+                            
+                            <div class="skill-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Experiência:</span>
+                                    <span class="stat-value">5 anos</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Projetos:</span>
+                                    <span class="stat-value">25+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trabalho em Equipe -->
+                    <div class="skill-card" data-category="communication" data-level="expert">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17 21V19C17 16.7909 15.2091 15 13 15H5C2.79086 15 1 16.7909 1 19V21"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21V19C23 18.1645 22.7155 17.3694 22.2094 16.7204"/>
+                                    <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h3>Trabalho em Equipe</h3>
+                                <span class="skill-category">Comunicação</span>
+                            </div>
+                            <div class="skill-level">93%</div>
+                        </div>
+                        
+                        <div class="skill-progress">
+                            <div class="progress-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" class="bg-circle"/>
+                                    <circle cx="50" cy="50" r="40" class="progress-circle-fill" data-percentage="93"/>
+                                </svg>
+                                <div class="percentage">93%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-details">
+                            <div class="skill-description">
+                                Excelente colaboração e sinergia com colegas, contribuindo efetivamente para objetivos comuns.
+                            </div>
+                            
+                            <div class="skill-topics">
+                                <span class="topic-tag strong">Colaboração</span>
+                                <span class="topic-tag strong">Comunicação</span>
+                                <span class="topic-tag strong">Sinergia</span>
+                                <span class="topic-tag developing">Mediação</span>
+                            </div>
+                            
+                            <div class="skill-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Experiência:</span>
+                                    <span class="stat-value">6 anos</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Projetos:</span>
+                                    <span class="stat-value">40+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pensamento Analítico -->
+                    <div class="skill-card" data-category="thinking" data-level="expert">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 11H15V13H9V11Z"/>
+                                    <path d="M9 7H15V9H9V7Z"/>
+                                    <path d="M9 15H15V17H9V15Z"/>
+                                    <path d="M3 5C3 3.89543 3.89543 3 5 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V5Z"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h3>Pensamento Analítico</h3>
+                                <span class="skill-category">Pensamento</span>
+                            </div>
+                            <div class="skill-level">91%</div>
+                        </div>
+                        
+                        <div class="skill-progress">
+                            <div class="progress-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" class="bg-circle"/>
+                                    <circle cx="50" cy="50" r="40" class="progress-circle-fill" data-percentage="91"/>
+                                </svg>
+                                <div class="percentage">91%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-details">
+                            <div class="skill-description">
+                                Capacidade avançada de analisar dados, identificar padrões e tomar decisões baseadas em evidências.
+                            </div>
+                            
+                            <div class="skill-topics">
+                                <span class="topic-tag strong">Análise de Dados</span>
+                                <span class="topic-tag strong">Lógica</span>
+                                <span class="topic-tag strong">Padrões</span>
+                                <span class="topic-tag improving">Estatística</span>
+                            </div>
+                            
+                            <div class="skill-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Experiência:</span>
+                                    <span class="stat-value">4 anos</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Projetos:</span>
+                                    <span class="stat-value">30+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pensamento Crítico -->
+                    <div class="skill-card" data-category="thinking" data-level="proficient">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h3>Pensamento Crítico</h3>
+                                <span class="skill-category">Pensamento</span>
+                            </div>
+                            <div class="skill-level">90%</div>
+                        </div>
+                        
+                        <div class="skill-progress">
+                            <div class="progress-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" class="bg-circle"/>
+                                    <circle cx="50" cy="50" r="40" class="progress-circle-fill" data-percentage="90"/>
+                                </svg>
+                                <div class="percentage">90%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-details">
+                            <div class="skill-description">
+                                Habilidade de questionar, avaliar e formar julgamentos independentes sobre informações e situações.
+                            </div>
+                            
+                            <div class="skill-topics">
+                                <span class="topic-tag strong">Avaliação</span>
+                                <span class="topic-tag strong">Questionamento</span>
+                                <span class="topic-tag developing">Síntese</span>
+                                <span class="topic-tag improving">Ceticismo</span>
+                            </div>
+                            
+                            <div class="skill-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Experiência:</span>
+                                    <span class="stat-value">4 anos</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Projetos:</span>
+                                    <span class="stat-value">28+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resiliência -->
+                    <div class="skill-card" data-category="emotional" data-level="proficient">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2L13.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L10.91 8.26L12 2Z"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h3>Resiliência</h3>
+                                <span class="skill-category">Emocional</span>
+                            </div>
+                            <div class="skill-level">90%</div>
+                        </div>
+                        
+                        <div class="skill-progress">
+                            <div class="progress-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" class="bg-circle"/>
+                                    <circle cx="50" cy="50" r="40" class="progress-circle-fill" data-percentage="90"/>
+                                </svg>
+                                <div class="percentage">90%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-details">
+                            <div class="skill-description">
+                                Capacidade de se adaptar e se recuperar rapidamente de adversidades e desafios profissionais.
+                            </div>
+                            
+                            <div class="skill-topics">
+                                <span class="topic-tag strong">Adaptabilidade</span>
+                                <span class="topic-tag strong">Recuperação</span>
+                                <span class="topic-tag developing">Persistência</span>
+                                <span class="topic-tag improving">Auto-Controle</span>
+                            </div>
+                            
+                            <div class="skill-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Experiência:</span>
+                                    <span class="stat-value">5 anos</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Projetos:</span>
+                                    <span class="stat-value">35+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Empatia -->
+                    <div class="skill-card" data-category="emotional" data-level="proficient">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h3>Empatia</h3>
+                                <span class="skill-category">Emocional</span>
+                            </div>
+                            <div class="skill-level">89%</div>
+                        </div>
+                        
+                        <div class="skill-progress">
+                            <div class="progress-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" class="bg-circle"/>
+                                    <circle cx="50" cy="50" r="40" class="progress-circle-fill" data-percentage="89"/>
+                                </svg>
+                                <div class="percentage">89%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-details">
+                            <div class="skill-description">
+                                Habilidade de compreender e compartilhar sentimentos dos outros, criando conexões genuínas.
+                            </div>
+                            
+                            <div class="skill-topics">
+                                <span class="topic-tag strong">Compreensão</span>
+                                <span class="topic-tag strong">Conexão</span>
+                                <span class="topic-tag developing">Escuta Ativa</span>
+                                <span class="topic-tag improving">Suporte</span>
+                            </div>
+                            
+                            <div class="skill-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Experiência:</span>
+                                    <span class="stat-value">6 anos</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Projetos:</span>
+                                    <span class="stat-value">42+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/pages/softskills-detalhe.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerPath</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+</head>
+<body>
+    <div id="app-wrapper">
+        <aside class="sidebar-nav">
+            <div class="sidebar-header">
+                <svg class="logo-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S399.4 0 256 0zm0 464C141.1 464 48 370.9 48 256S141.1 48 256 48s208 93.1 208 208-93.1 208-208 208zm-62.5-133.3l105.3-43.9 43.9-105.3-105.3 43.9-43.9 105.3z"/></svg>
+                <h1 class="menu-text">CareerPath</h1>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#perfil"><span class="material-icons-outlined">person</span><span class="menu-text">Perfil</span></a></li>
+                <li><a href="#anotacoes"><span class="material-icons-outlined">description</span><span class="menu-text">Anotações</span></a></li>
+                <li><a href="#vagas"><span class="material-icons-outlined">work</span><span class="menu-text">Vagas</span></a></li>
+                <li><a href="#compass"><span class="material-icons-outlined">explore</span><span class="menu-text">Compass IA</span></a></li>
+                <li><a href="#cursos"><span class="material-icons-outlined">school</span><span class="menu-text">Cursos</span></a></li>
+                <li><a href="#comunidade"><span class="material-icons-outlined">people</span><span class="menu-text">Comunidade</span></a></li>
+                <li><a href="#roadmaps"><span class="material-icons-outlined">map</span><span class="menu-text">Roadmaps</span></a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <button class="logout-button">
+                    <span class="material-icons-outlined">exit_to_app</span>
+                    <span class="logout-text">Sair</span>
+                </button>
+            </div>
+        </aside>
+
+        <main id="app-content" class="main-content"></main>
+    </div>
+
+    <script type="module" src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+/* css/style.css - VERSÃO CORRIGIDA E COMPLETA */
+
+/* --- Reset Básico e Fontes --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #2c3e50;
+    min-height: 100vh;
+    /* Impede a rolagem horizontal caso algo saia do lugar */
+    overflow-x: hidden; 
+}
+
+/* --- Layout Principal --- */
+#app-wrapper {
+    display: flex;
+}
+
+.main-content {
+    /* ESTA É A REGRA CHAVE: Empurra o conteúdo para a direita */
+    margin-left: 260px; 
+    width: calc(100% - 260px);
+    padding: 30px;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+/* --- Estilo Padrão do Cabeçalho das Páginas --- */
+.page-header {
+    font-size: 2em;
+    color: #003366;
+    font-weight: 600;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.page-header .material-icons-outlined {
+    font-size: 1.2em;
+}
+
+/* --- Estilos Globais para Botões e Inputs --- */
+button {
+    background-color: #0d253f;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(13, 37, 63, 0.2);
+}
+
+/* css/style.css - Adicionar no final do arquivo */
+
+/* --- Estilos para a Tela de Login --- */
+#login-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #f8f9fa;
+}
+
+.login-card {
+    text-align: center;
+    padding: 50px;
+    background: white;
+    border-radius: 12px;
+    max-width: 550px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border: 1px solid #e9ecef; 
+}
+
+.login-card .logo-icon {
+    width: 60px;
+    height: 60px;
+    fill: #ff6f61;
+    margin-bottom: 20px;
+}
+
+.login-card h2 {
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    color: #003366;
+}
+
+.login-card p {
+    margin-bottom: 30px;
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+#login-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#login-button:hover {
+    background-color: #357ae8;
+}
+
+#login-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* CSS Global - Header Azul Fixo para Todas as Páginas da CareerPath */
+
+/* Header padrão com a cor exata da sidebar para TODAS as páginas */
+.page-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100 !important;
+    background-color: #0D253F !important; /* Cor exata da sidebar */
+    color: #ffffff !important;
+    margin-bottom: 0 !important;
+    padding: 16px 24px !important;
+    box-shadow: 0 2px 12px rgba(13, 37, 63, 0.3) !important;
+    border-bottom: none !important;
+    font-size: 2em !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+}
+
+/* Ícone e texto do header em branco para TODAS as páginas */
+.page-header .material-icons-outlined {
+    color: #ffffff !important;
+    font-size: 1.2em !important;
+}
+
+.page-header span {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+/* Efeito quando rola a página - fica ligeiramente mais escuro */
+.page-header.scrolled {
+    box-shadow: 0 4px 20px rgba(13, 37, 63, 0.4) !important;
+    background-color: #0A1B2F !important; /* Tom mais escuro do #0D253F */
+}
+
+/* Efeito de hover no header */
+.page-header:hover {
+    background-color: #0A1B2F !important;
+    transition: background-color 0.3s ease !important;
+}
+
+/* Remove qualquer barra separadora (se existir) */
+.profile-separator-bar,
+.separator-bar,
+.header-separator {
+    display: none !important;
+}
+
+/* Ajuste no conteúdo de TODAS as páginas */
+#app-content,
+#perfil-content,
+#anotacoes-content,
+#vagas-content,
+#compass-content,
+#cursos-content,
+#comunidade-content,
+#roadmaps-content {
+    padding-top: 24px;
+}
+
+/* Animação suave para todas as transições */
+.page-header {
+    transition: all 0.3s ease !important;
+}
+
+/* Para telas menores */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 12px 16px !important;
+        font-size: 1.5em !important;
+    }
+    
+    .page-header .material-icons-outlined {
+        font-size: 1em !important;
+    }
+}
+
+/* Versões opcionais (caso alguma página precise de variação) */
+
+/* Header com gradiente sutil */
+.page-header.gradient {
+    background: linear-gradient(135deg, #0D253F 0%, #1A3A5C 100%) !important;
+}
+
+/* Header com acento laranja da CareerPath */
+.page-header.accent {
+    background: linear-gradient(to right, #0D253F 0%, #0D253F 95%, #FF6B47 95%, #FF6B47 100%) !important;
+}
+
+/* Garantir que o header sempre tenha prioridade sobre outros estilos */
+body .page-header {
+    background-color: #0D253F !important;
+    color: #ffffff !important;
+}
+
+/* Para casos onde há conflito com CSS específico da página */
+.main-content .page-header,
+.app-content .page-header,
+.container .page-header {
+    background-color: #0D253F !important;
+    color: #ffffff !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100 !important;
+}

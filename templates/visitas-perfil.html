@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitas ao Perfil - CareerPath</title>
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/pages/visitas-perfil.css">
+</head>
+<body>
+    <div class="content-area">
+        <div class="visits-container">
+                <div class="visits-header">
+            <button class="back-btn" onclick="window.location.hash='#perfil/resumo-dia'">
+                <span class="material-icons-outlined">arrow_back</span>
+                Voltar
+            </button>
+                <h2>Visitas ao Perfil</h2>
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="todayVisits">19</span>
+                        <span class="stat-label">Hoje</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="weekVisits">127</span>
+                        <span class="stat-label">Esta Semana</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="monthVisits">486</span>
+                        <span class="stat-label">Este Mês</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="visits-content">
+                <div class="visits-main">
+                    <div class="visits-main-header">
+                        <h3>Quem visitou seu perfil</h3>
+                        <p>Veja quem demonstrou interesse no seu perfil profissional</p>
+                    </div>
+
+                    <div class="filters-section">
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" onclick="filterVisits('all', this)">Todos</button>
+                            <button class="filter-btn" onclick="filterVisits('recruiter', this)">Recrutadores</button>
+                            <button class="filter-btn" onclick="filterVisits('user', this)">Usuários</button>
+                            <button class="filter-btn" onclick="filterVisits('today', this)">Hoje</button>
+                            <button class="filter-btn" onclick="filterVisits('week', this)">Esta Semana</button>
+                        </div>
+                    </div>
+
+                    <div class="visits-list" id="visitsList">
+                        <!-- Visitas serão carregadas aqui pelo JavaScript -->
+                    </div>
+                </div>
+
+                <div class="insights-sidebar">
+                    <div class="insights-card">
+                        <h4>
+                            <span class="material-icons-outlined">trending_up</span>
+                            Tendências
+                        </h4>
+                        <div class="chart-container">
+                            <div class="fake-chart">
+                                <div class="chart-bars">
+                                    <div class="bar" style="height: 60%;" data-day="Seg"></div>
+                                    <div class="bar" style="height: 40%;" data-day="Ter"></div>
+                                    <div class="bar" style="height: 80%;" data-day="Qua"></div>
+                                    <div class="bar" style="height: 70%;" data-day="Qui"></div>
+                                    <div class="bar" style="height: 90%;" data-day="Sex"></div>
+                                    <div class="bar" style="height: 30%;" data-day="Sáb"></div>
+                                    <div class="bar" style="height: 20%;" data-day="Dom"></div>
+                                </div>
+                                <div class="chart-title">Visitas nos últimos 7 dias</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="insights-card">
+                        <h4>
+                            <span class="material-icons-outlined">business</span>
+                            Top Empresas
+                        </h4>
+                        <ul class="top-companies">
+                            <li class="company-item">
+                                <span class="company-name">Amazon</span>
+                                <span class="company-visits">5</span>
+                            </li>
+                            <li class="company-item">
+                                <span class="company-name">Google</span>
+                                <span class="company-visits">4</span>
+                            </li>
+                            <li class="company-item">
+                                <span class="company-name">Microsoft</span>
+                                <span class="company-visits">3</span>
+                            </li>
+                            <li class="company-item">
+                                <span class="company-name">Meta</span>
+                                <span class="company-visits">2</span>
+                            </li>
+                            <li class="company-item">
+                                <span class="company-name">Netflix</span>
+                                <span class="company-visits">2</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="insights-card">
+                        <h4>
+                            <span class="material-icons-outlined">flash_on</span>
+                            Ações Rápidas
+                        </h4>
+                        <div class="quick-actions">
+                            <button class="quick-action-btn" onclick="optimizeProfile()">
+                                <span class="material-icons-outlined">tune</span>
+                                Otimizar Perfil
+                            </button>
+                            <button class="quick-action-btn secondary" onclick="shareProfile()">
+                                <span class="material-icons-outlined">share</span>
+                                Compartilhar Perfil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/pages/visitas-perfil.js"></script>
+    
+    <!-- Script de teste para verificar se está funcionando -->
+    <script>
+        console.log('🧪 Script de teste carregado');
+        
+        // Teste se as funções estão disponíveis
+        setTimeout(() => {
+            console.log('🔍 Testando funções após 1 segundo...');
+            console.log('filterVisits disponível?', typeof filterVisits !== 'undefined');
+            console.log('goBack disponível?', typeof goBack !== 'undefined');
+            
+            // Teste se o elemento existe
+            const visitsList = document.getElementById('visitsList');
+            console.log('visitsList existe?', visitsList !== null);
+            
+            if (visitsList) {
+                console.log('✅ Elemento visitsList encontrado!');
+            } else {
+                console.error('❌ Elemento visitsList NÃO encontrado!');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

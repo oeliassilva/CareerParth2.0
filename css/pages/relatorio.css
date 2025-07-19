@@ -1,0 +1,32 @@
+/* --- ESTILOS ESPECÍFICOS PARA A PÁGINA DE RELATÓRIOS --- */
+.reports-filter-bar { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 20px; margin-bottom: 30px; }
+.filter-group { display: flex; flex-direction: column; gap: 5px; }
+.filter-group label { font-size: 0.9em; font-weight: 500; color: #495057; }
+#report-date-input { width: 260px; text-align: center; cursor: pointer; }
+#report-cycle-filter { width: 220px; }
+
+.reports-kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+.kpi-card { background: white; border: 1px solid #e9ecef; border-radius: 8px; padding: 20px; }
+.kpi-card .kpi-label { font-size: 1em; color: #6c757d; margin-bottom: 8px; }
+.kpi-card .kpi-value { font-size: 1.8em; font-weight: 600; color: #0d253f; }
+.reports-charts-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 30px; align-items: start; }
+.chart-wrapper { background: white; border: 1px solid #e9ecef; border-radius: 8px; padding: 20px; position: relative; height: 400px; }
+.chart-wrapper h3 { margin-bottom: 20px; font-weight: 500; color: #343a40; }
+.reports-breakdown { background: white; border: 1px solid #e9ecef; border-radius: 8px; padding: 20px; }
+.breakdown-header { display: grid; grid-template-columns: 1fr 100px 100px; padding: 0 15px 10px 15px; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #6c757d; font-size: 0.9em; }
+.breakdown-header .d-right, .breakdown-row .d-right { text-align: right; }
+.breakdown-row { display: grid; grid-template-columns: 1fr 100px 100px; align-items: center; padding: 12px 15px; border-bottom: 1px solid #f1f3f5; }
+.breakdown-row.cycle-row { font-weight: 500; cursor: pointer; }
+.breakdown-row.cycle-row:hover { background-color: #f8f9fa; }
+.cycle-name-cell { display: flex; align-items: center; gap: 8px; }
+.cycle-color-dot { width: 10px; height: 10px; border-radius: 50%; }
+.toggle-arrow { transition: transform 0.2s; }
+.cycle-row.expanded .toggle-arrow { transform: rotate(90deg); }
+.discipline-rows-wrapper { display: none; }
+.cycle-row.expanded + .discipline-rows-wrapper { display: block; }
+.discipline-row { padding-left: 40px; background-color: #fbfdff; }
+
+@media (max-width: 768px) {
+    .reports-charts-grid { grid-template-columns: 1fr; }
+    .breakdown-header, .breakdown-row { grid-template-columns: 1fr 80px 70px; font-size: 0.9em; }
+}

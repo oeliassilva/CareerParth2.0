@@ -1,0 +1,242 @@
+<!-- Editor Markdown Template -->
+<div class="markdown-editor-container">
+    <!-- Toolbar do Editor -->
+    <div class="editor-toolbar">
+        <div class="toolbar-section">
+            <button class="toolbar-btn" data-action="bold" title="Negrito (Ctrl+B)">
+                <span class="material-icons-outlined">format_bold</span>
+            </button>
+            <button class="toolbar-btn" data-action="italic" title="Itálico (Ctrl+I)">
+                <span class="material-icons-outlined">format_italic</span>
+            </button>
+            <button class="toolbar-btn" data-action="strikethrough" title="Riscado">
+                <span class="material-icons-outlined">strikethrough_s</span>
+            </button>
+        </div>
+        
+        <div class="toolbar-separator"></div>
+        
+        <div class="toolbar-section">
+            <button class="toolbar-btn" data-action="heading1" title="Título 1">H1</button>
+            <button class="toolbar-btn" data-action="heading2" title="Título 2">H2</button>
+            <button class="toolbar-btn" data-action="heading3" title="Título 3">H3</button>
+        </div>
+        
+        <div class="toolbar-separator"></div>
+        
+        <div class="toolbar-section">
+            <button class="toolbar-btn" data-action="link" title="Link (Ctrl+K)">
+                <span class="material-icons-outlined">link</span>
+            </button>
+            <button class="toolbar-btn" data-action="image" title="Imagem">
+                <span class="material-icons-outlined">image</span>
+            </button>
+            <button class="toolbar-btn" data-action="code" title="Código">
+                <span class="material-icons-outlined">code</span>
+            </button>
+        </div>
+        
+        <div class="toolbar-separator"></div>
+        
+        <div class="toolbar-section">
+            <button class="toolbar-btn" data-action="list" title="Lista">
+                <span class="material-icons-outlined">format_list_bulleted</span>
+            </button>
+            <button class="toolbar-btn" data-action="numberlist" title="Lista Numerada">
+                <span class="material-icons-outlined">format_list_numbered</span>
+            </button>
+            <button class="toolbar-btn" data-action="quote" title="Citação">
+                <span class="material-icons-outlined">format_quote</span>
+            </button>
+        </div>
+        
+        <div class="toolbar-separator"></div>
+        
+        <div class="toolbar-section">
+            <button class="toolbar-btn toggle-btn" data-action="preview" title="Visualizar (Ctrl+Shift+P)">
+                <span class="material-icons-outlined">visibility</span>
+            </button>
+            <button class="toolbar-btn toggle-btn active" data-action="split" title="Modo Divisão">
+                <span class="material-icons-outlined">view_column</span>
+            </button>
+        </div>
+        
+        <div class="toolbar-actions">
+            <button class="toolbar-btn save-btn" data-action="save" title="Salvar (Ctrl+S)">
+                <span class="material-icons-outlined">save</span>
+                <span>Salvar</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Header da Nota -->
+    <div class="note-header">
+        <input type="text" 
+               class="note-title" 
+               id="note-title"
+               placeholder="Título da nota..." 
+               value="">
+        <div class="note-meta">
+            <span class="note-path" id="note-path">📁 /Minhas Notas</span>
+            <span class="note-status" id="note-status">● Rascunho</span>
+        </div>
+    </div>
+
+    <!-- Área Principal do Editor -->
+    <div class="editor-main">
+        <!-- Painel do Editor -->
+        <div class="editor-panel">
+            <div class="editor-header">
+                <span class="panel-title">📝 Editor</span>
+                <div class="editor-stats">
+                    <span id="word-count">0 palavras</span>
+                    <span id="char-count">0 caracteres</span>
+                </div>
+            </div>
+            <textarea class="markdown-textarea" 
+                      id="markdown-input"
+                      placeholder="# Começe a escrever sua nota aqui...
+
+## Dicas de Markdown:
+- **Negrito** ou __negrito__
+- *Itálico* ou _itálico_
+- [Link](https://exemplo.com)
+- `código inline`
+
+### Lista:
+- Item 1
+- Item 2
+- Item 3
+
+### Lista Numerada:
+1. Primeiro
+2. Segundo
+3. Terceiro
+
+### Citação:
+> Esta é uma citação
+
+### Código:
+```javascript
+console.log('Olá, mundo!');
+```
+
+---
+
+**Atalhos úteis:**
+- Ctrl+B: Negrito
+- Ctrl+I: Itálico
+- Ctrl+K: Link
+- Ctrl+S: Salvar
+- Ctrl+Shift+P: Preview"></textarea>
+        </div>
+
+        <!-- Painel de Preview -->
+        <div class="preview-panel">
+            <div class="preview-header">
+                <span class="panel-title">👁️ Visualização</span>
+                <button class="refresh-preview-btn" title="Atualizar Preview">
+                    <span class="material-icons-outlined">refresh</span>
+                </button>
+            </div>
+            <div class="markdown-preview" id="markdown-preview">
+                <div class="preview-placeholder">
+                    <span class="material-icons-outlined">preview</span>
+                    <p>A visualização aparecerá aqui conforme você digita...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer do Editor -->
+    <div class="editor-footer">
+        <div class="editor-info">
+            <span>Markdown Editor</span>
+            <span class="separator">•</span>
+            <span id="cursor-position">Linha 1, Coluna 1</span>
+        </div>
+        <div class="editor-actions">
+            <button class="footer-btn" onclick="showMarkdownHelp()">
+                <span class="material-icons-outlined">help</span>
+                <span>Ajuda Markdown</span>
+            </button>
+            <button class="footer-btn" onclick="exportMarkdown()">
+                <span class="material-icons-outlined">download</span>
+                <span>Exportar</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Ajuda Markdown -->
+<div id="markdown-help-modal" class="modal">
+    <div class="modal-content markdown-help-content">
+        <div class="modal-header">
+            <h3>📚 Guia Rápido de Markdown</h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="help-sections">
+                <div class="help-section">
+                    <h4>Formatação de Texto</h4>
+                    <div class="help-examples">
+                        <div class="help-item">
+                            <code>**texto em negrito**</code>
+                            <span>→</span>
+                            <strong>texto em negrito</strong>
+                        </div>
+                        <div class="help-item">
+                            <code>*texto em itálico*</code>
+                            <span>→</span>
+                            <em>texto em itálico</em>
+                        </div>
+                        <div class="help-item">
+                            <code>`código inline`</code>
+                            <span>→</span>
+                            <code>código inline</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="help-section">
+                    <h4>Títulos</h4>
+                    <div class="help-examples">
+                        <div class="help-item">
+                            <code># Título 1</code>
+                        </div>
+                        <div class="help-item">
+                            <code>## Título 2</code>
+                        </div>
+                        <div class="help-item">
+                            <code>### Título 3</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="help-section">
+                    <h4>Listas</h4>
+                    <div class="help-examples">
+                        <div class="help-item">
+                            <code>- Item da lista<br>- Outro item</code>
+                        </div>
+                        <div class="help-item">
+                            <code>1. Primeiro<br>2. Segundo</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="help-section">
+                    <h4>Links e Imagens</h4>
+                    <div class="help-examples">
+                        <div class="help-item">
+                            <code>[Texto do link](URL)</code>
+                        </div>
+                        <div class="help-item">
+                            <code>![Alt text](URL da imagem)</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

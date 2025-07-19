@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos - CareerPath</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="css/pages/projetos-detalhe.css">
+</head>
+<body>
+    <!-- Header Principal -->
+    <header class="page-header">
+        <span class="material-icons-outlined">folder</span>
+        <span>Projetos</span>
+    </header>
+
+    <!-- Breadcrumb de navegação -->
+    <nav class="breadcrumb-nav">
+        <a href="#perfil" class="breadcrumb-link">
+            <span class="material-icons-outlined">arrow_back</span>
+            Voltar ao Perfil
+        </a>
+    </nav>
+
+    <div class="projects-container">
+        <!-- Hero Section -->
+        <div class="projects-hero">
+            <div class="hero-content">
+                <h1>Seus Projetos e Repositórios</h1>
+                <p>Acompanhe seus projetos com integração GitHub e análise de tecnologias pelo Compass-IA</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="total-projects">8</span>
+                        <span class="stat-label">Projetos</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="total-technologies">12</span>
+                        <span class="stat-label">Tecnologias</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="ai-score">94%</span>
+                        <span class="stat-label">Score Compass-IA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="github-visual">
+                    <span class="material-icons-outlined">integration_instructions</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- GitHub Integration Status -->
+        <div class="github-integration">
+            <div class="integration-status">
+                <span class="material-icons-outlined status-icon">check_circle</span>
+                <div class="status-info">
+                    <h3>GitHub Conectado</h3>
+                    <p>Última sincronização: há 2 horas</p>
+                </div>
+                <button class="btn-sync" id="sync-github">
+                    <span class="material-icons-outlined">sync</span>
+                    Sincronizar
+                </button>
+            </div>
+        </div>
+
+        <!-- Controles de Filtro e Busca -->
+        <div class="projects-controls">
+            <div class="search-bar">
+                <span class="material-icons-outlined">search</span>
+                <input type="text" id="project-search" placeholder="Buscar projetos ou tecnologias...">
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    <span class="material-icons-outlined">apps</span>
+                    Todos
+                </button>
+                <button class="filter-btn" data-filter="recent">
+                    <span class="material-icons-outlined">schedule</span>
+                    Recentes
+                </button>
+                <button class="filter-btn" data-filter="featured">
+                    <span class="material-icons-outlined">star</span>
+                    Destacados
+                </button>
+                <button class="filter-btn" data-filter="analyzed">
+                    <span class="material-icons-outlined">psychology</span>
+                    Analisados
+                </button>
+            </div>
+            
+            <div class="sort-dropdown">
+                <select id="sort-select">
+                    <option value="date">Data de Atualização</option>
+                    <option value="name">Nome A-Z</option>
+                    <option value="stars">Mais Estrelas</option>
+                    <option value="score">Score IA</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Seção de Projetos -->
+        <div class="projects-content">
+            <!-- Projetos Destacados -->
+            <section class="projects-section" id="featured-section">
+                <div class="section-header">
+                    <h2>
+                        <span class="material-icons-outlined">star</span>
+                        Projetos em Destaque
+                    </h2>
+                    <span class="section-count" id="featured-count">3</span>
+                </div>
+                
+                <div class="projects-grid featured-grid" id="featured-projects">
+                    <!-- Cards serão inseridos pelo JavaScript -->
+                </div>
+            </section>
+
+            <!-- Todos os Projetos -->
+            <section class="projects-section" id="all-projects-section">
+                <div class="section-header">
+                    <h2>
+                        <span class="material-icons-outlined">folder_open</span>
+                        Todos os Projetos
+                    </h2>
+                    <span class="section-count" id="all-count">8</span>
+                </div>
+                
+                <div class="projects-grid" id="all-projects">
+                    <!-- Cards serão inseridos pelo JavaScript -->
+                </div>
+            </section>
+
+            <!-- Análise Compass-IA -->
+            <section class="projects-section" id="ai-analysis-section">
+                <div class="section-header">
+                    <h2>
+                        <span class="material-icons-outlined">psychology</span>
+                        Análise Compass-IA
+                    </h2>
+                    <span class="ai-badge">Powered by IA</span>
+                </div>
+                
+                <div class="ai-analysis-content">
+                    <div class="technology-insights">
+                        <h3>Tecnologias Identificadas</h3>
+                        <div class="tech-grid" id="tech-analysis">
+                            <!-- Tecnologias serão inseridas pelo JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="skill-improvements">
+                        <h3>Melhorias Sugeridas</h3>
+                        <div class="improvements-list" id="ai-suggestions">
+                            <!-- Sugestões serão inseridas pelo JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modal de Detalhes do Projeto -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            
+            <div class="modal-header">
+                <div class="project-icon">
+                    <span class="material-icons-outlined">folder</span>
+                </div>
+                <div class="project-info">
+                    <h3 id="modal-project-title"></h3>
+                    <p id="modal-project-description"></p>
+                    <div class="project-metadata">
+                        <span id="modal-project-language"></span>
+                        <span id="modal-project-stars"></span>
+                        <span id="modal-project-date"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <div class="project-technologies">
+                    <h4>Tecnologias Utilizadas</h4>
+                    <div id="modal-project-techs"></div>
+                </div>
+                
+                <div class="compass-analysis">
+                    <h4>Análise Compass-IA</h4>
+                    <div class="ai-score-breakdown">
+                        <div class="score-item">
+                            <span class="score-label">Complexidade do Código:</span>
+                            <div class="score-bar">
+                                <div class="score-fill" id="complexity-score"></div>
+                            </div>
+                        </div>
+                        <div class="score-item">
+                            <span class="score-label">Boas Práticas:</span>
+                            <div class="score-bar">
+                                <div class="score-fill" id="practices-score"></div>
+                            </div>
+                        </div>
+                        <div class="score-item">
+                            <span class="score-label">Documentação:</span>
+                            <div class="score-bar">
+                                <div class="score-fill" id="documentation-score"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ai-insights" id="modal-ai-insights"></div>
+                </div>
+                
+                <div class="project-actions">
+                    <button class="btn-primary" id="view-github">
+                        <span class="material-icons-outlined">open_in_new</span>
+                        Ver no GitHub
+                    </button>
+                    <button class="btn-secondary" id="view-demo">
+                        <span class="material-icons-outlined">play_arrow</span>
+                        Ver Demo
+                    </button>
+                    <button class="btn-secondary" id="analyze-again">
+                        <span class="material-icons-outlined">psychology</span>
+                        Analisar Novamente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Compass-IA analisando projetos...</p>
+        </div>
+    </div>
+
+    <script type="module" src="js/projetos-detalhe.js"></script>
+</body>
+</html>
