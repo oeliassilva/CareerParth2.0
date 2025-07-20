@@ -1,313 +1,322 @@
-<!-- Header azul fixo -->
+<!-- Header azul moderno com gradiente - IGUAL AO DAS VAGAS -->
 <header class="page-header">
     <span class="material-icons-outlined">psychology</span>
     <span>Segundo Cérebro</span>
 </header>
 
 <!-- Container Principal do Sistema -->
-<div class="brain-system-container">
-    
-    <!-- Sidebar de Plugins -->
-    <aside class="plugins-sidebar">
-        <div class="plugins-header">
-            <h4>Meu Segundo Cérebro</h4>
-            <button class="plugin-manager-btn" id="plugin-manager-btn" title="Gerenciar Plugins">
-                <span class="material-icons-outlined">extension</span>
-            </button>
-        </div>
+<div class="container">
+    <!-- CONTENT HEADER MODERNIZADO - IGUAL AO DAS VAGAS -->
+    <div class="content-header">
+        <h1 class="content-title">Seu Segundo Cérebro</h1>
+        <p class="content-subtitle">Uma plataforma completa para maximizar sua produtividade nos estudos, com o poder da neurociência e inteligência artificial.</p>
+    </div>
 
-        <!-- Seção de Notas Organizadas -->
-        <div class="plugin-section">
-            <h5 class="section-title">Minhas Notas</h5>
-            <div class="notes-tree">
-                <!-- Pasta Cloud -->
-                <div class="folder-item">
-                    <div class="folder-header" data-folder="cloud">
-                        <span class="folder-icon material-icons-outlined">folder</span>
-                        <span class="folder-name">Cloud</span>
-                        <span class="folder-toggle material-icons-outlined">expand_more</span>
-                    </div>
-                    <ul class="notes-in-folder expanded">
-                        <li class="note-item">
-                            <a href="#anotacoes/editor/aws-fundamentos">
-                                <span class="note-icon material-icons-outlined">description</span>
-                                <span class="note-name">AWS - Fundamentos</span>
-                            </a>
-                        </li>
-                        <li class="note-item">
-                            <a href="#anotacoes/editor/azure-intro">
-                                <span class="note-icon material-icons-outlined">description</span>
-                                <span class="note-name">Azure - Introdução</span>
-                            </a>
-                        </li>
-                        <li class="note-item">
-                            <a href="#anotacoes/editor/serverless-concepts">
-                                <span class="note-icon material-icons-outlined">description</span>
-                                <span class="note-name">Conceitos de Serverless</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Pasta Back-End -->
-                <div class="folder-item">
-                    <div class="folder-header" data-folder="backend">
-                        <span class="folder-icon material-icons-outlined">folder</span>
-                        <span class="folder-name">Back-End</span>
-                        <span class="folder-toggle material-icons-outlined">expand_more</span>
-                    </div>
-                    <ul class="notes-in-folder expanded">
-                        <li class="note-item">
-                            <a href="#anotacoes/editor/nodejs-express">
-                                <span class="note-icon material-icons-outlined">description</span>
-                                <span class="note-name">Node.js + Express</span>
-                            </a>
-                        </li>
-                        <li class="note-item">
-                            <a href="#anotacoes/editor/api-rest-design">
-                                <span class="note-icon material-icons-outlined">description</span>
-                                <span class="note-name">Design de APIs REST</span>
-                            </a>
-                        </li>
-                        <li class="note-item">
-                            <a href="#anotacoes/editor/database-modeling">
-                                <span class="note-icon material-icons-outlined">description</span>
-                                <span class="note-name">Modelagem de Banco</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Pasta Dados e IA -->
-                <div class="folder-item">
-                    <div class="folder-header" data-folder="dados-ia">
-                        <span class="folder-icon material-icons-outlined">folder</span>
-                        <span class="folder-name">Dados e IA</span>
-                        <span class="folder-toggle material-icons-outlined">expand_more</span>
-                    </div>
-                    <ul class="notes-in-folder expanded">
-                        <li class="note-item">
-                            <a href="#anotacoes/editor/python-pandas">
-                                <span class="note-icon material-icons-outlined">description</span>
-                                <span class="note-name">Python - Pandas</span>
-                            </a>
-                        </li>
-                        <li class="note-item">
-                            <a href="#anotacoes/editor/machine-learning-intro">
-                                <span class="note-icon material-icons-outlined">description</span>
-                                <span class="note-name">ML - Introdução</span>
-                            </a>
-                        </li>
-                        <li class="note-item">
-                            <a href="#anotacoes/editor/data-visualization">
-                                <span class="note-icon material-icons-outlined">description</span>
-                                <span class="note-name">Visualização de Dados</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Botão para nova nota -->
-                <div class="new-note-section">
-                    <button class="new-note-btn" onclick="createNewNote()">
-                        <span class="material-icons-outlined">add</span>
-                        <span>Nova Nota</span>
-                    </button>
-                </div>
+    <!-- Container Principal do Sistema -->
+    <div class="brain-system-container">
+        
+        <!-- Sidebar de Plugins -->
+        <aside class="plugins-sidebar">
+            <div class="plugins-header">
+                <h4>Meu Segundo Cérebro</h4>
+                <button class="plugin-manager-btn" id="plugin-manager-btn" title="Gerenciar Plugins">
+                    <span class="material-icons-outlined">extension</span>
+                </button>
             </div>
-        </div>
 
-        <!-- Plugins Principais -->
-        <div class="plugin-section">
-            <h5 class="section-title">Editor & Notas</h5>
-            <ul class="plugins-list">
-                <li class="plugin-item active" data-plugin="markdown-editor">
-                    <a href="#anotacoes/editor">
-                        <span class="plugin-icon material-icons-outlined">edit_note</span>
-                        <span class="plugin-name">Editor Markdown</span>
-                        <span class="plugin-status active"></span>
-                    </a>
-                </li>
-                <li class="plugin-item" data-plugin="file-explorer">
-                    <a href="#anotacoes/explorer">
-                        <span class="plugin-icon material-icons-outlined">folder</span>
-                        <span class="plugin-name">Explorador</span>
-                        <span class="plugin-status active"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+            <!-- Seção de Notas Organizadas -->
+            <div class="plugin-section">
+                <h5 class="section-title">Minhas Notas</h5>
+                <div class="notes-tree">
+                    <!-- Pasta Cloud -->
+                    <div class="folder-item">
+                        <div class="folder-header" data-folder="cloud">
+                            <span class="folder-icon material-icons-outlined">folder</span>
+                            <span class="folder-name">Cloud</span>
+                            <span class="folder-toggle material-icons-outlined">expand_more</span>
+                        </div>
+                        <ul class="notes-in-folder expanded">
+                            <li class="note-item">
+                                <a href="#anotacoes/editor/aws-fundamentos">
+                                    <span class="note-icon material-icons-outlined">description</span>
+                                    <span class="note-name">AWS - Fundamentos</span>
+                                </a>
+                            </li>
+                            <li class="note-item">
+                                <a href="#anotacoes/editor/azure-intro">
+                                    <span class="note-icon material-icons-outlined">description</span>
+                                    <span class="note-name">Azure - Introdução</span>
+                                </a>
+                            </li>
+                            <li class="note-item">
+                                <a href="#anotacoes/editor/serverless-concepts">
+                                    <span class="note-icon material-icons-outlined">description</span>
+                                    <span class="note-name">Conceitos de Serverless</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
-        <!-- Plugins de Produtividade -->
-        <div class="plugin-section">
-            <h5 class="section-title">Produtividade</h5>
-            <ul class="plugins-list">
-                <li class="plugin-item" data-plugin="task-manager">
-                    <a href="#anotacoes/tarefas">
-                        <span class="plugin-icon material-icons-outlined">task_alt</span>
-                        <span class="plugin-name">Gerenciador de Tarefas</span>
-                        <span class="plugin-status active"></span>
-                    </a>
-                </li>
-                <li class="plugin-item" data-plugin="pomodoro-timer">
-                    <a href="#anotacoes/pomodoro">
-                        <span class="plugin-icon material-icons-outlined">timer</span>
-                        <span class="plugin-name">Timer Pomodoro</span>
-                        <span class="plugin-status inactive"></span>
-                    </a>
-                </li>
-                <li class="plugin-item" data-plugin="study-planner">
-                    <a href="#anotacoes/planejador">
-                        <span class="plugin-icon material-icons-outlined">schedule</span>
-                        <span class="plugin-name">Planejador Inteligente</span>
-                        <span class="plugin-status inactive"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+                    <!-- Pasta Back-End -->
+                    <div class="folder-item">
+                        <div class="folder-header" data-folder="backend">
+                            <span class="folder-icon material-icons-outlined">folder</span>
+                            <span class="folder-name">Back-End</span>
+                            <span class="folder-toggle material-icons-outlined">expand_more</span>
+                        </div>
+                        <ul class="notes-in-folder expanded">
+                            <li class="note-item">
+                                <a href="#anotacoes/editor/nodejs-express">
+                                    <span class="note-icon material-icons-outlined">description</span>
+                                    <span class="note-name">Node.js + Express</span>
+                                </a>
+                            </li>
+                            <li class="note-item">
+                                <a href="#anotacoes/editor/api-rest-design">
+                                    <span class="note-icon material-icons-outlined">description</span>
+                                    <span class="note-name">Design de APIs REST</span>
+                                </a>
+                            </li>
+                            <li class="note-item">
+                                <a href="#anotacoes/editor/database-modeling">
+                                    <span class="note-icon material-icons-outlined">description</span>
+                                    <span class="note-name">Modelagem de Banco</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
-        <!-- Plugins de Tracking -->
-        <div class="plugin-section">
-            <h5 class="section-title">Análise & Tracking</h5>
-            <ul class="plugins-list">
-                <li class="plugin-item" data-plugin="study-cycle">
-                    <a href="#anotacoes/tracker-ciclo">
-                        <span class="plugin-icon material-icons-outlined">track_changes</span>
-                        <span class="plugin-name">Ciclo de Estudos</span>
-                        <span class="plugin-status active"></span>
-                    </a>
-                </li>
-                <li class="plugin-item" data-plugin="reports">
-                    <a href="#anotacoes/tracker-relatorio">
-                        <span class="plugin-icon material-icons-outlined">analytics</span>
-                        <span class="plugin-name">Relatórios</span>
-                        <span class="plugin-status active"></span>
-                    </a>
-                </li>
-                <li class="plugin-item" data-plugin="calendar">
-                    <a href="#anotacoes/tracker-calendario">
-                        <span class="plugin-icon material-icons-outlined">calendar_today</span>
-                        <span class="plugin-name">Calendário</span>
-                        <span class="plugin-status active"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+                    <!-- Pasta Dados e IA -->
+                    <div class="folder-item">
+                        <div class="folder-header" data-folder="dados-ia">
+                            <span class="folder-icon material-icons-outlined">folder</span>
+                            <span class="folder-name">Dados e IA</span>
+                            <span class="folder-toggle material-icons-outlined">expand_more</span>
+                        </div>
+                        <ul class="notes-in-folder expanded">
+                            <li class="note-item">
+                                <a href="#anotacoes/editor/python-pandas">
+                                    <span class="note-icon material-icons-outlined">description</span>
+                                    <span class="note-name">Python - Pandas</span>
+                                </a>
+                            </li>
+                            <li class="note-item">
+                                <a href="#anotacoes/editor/machine-learning-intro">
+                                    <span class="note-icon material-icons-outlined">description</span>
+                                    <span class="note-name">ML - Introdução</span>
+                                </a>
+                            </li>
+                            <li class="note-item">
+                                <a href="#anotacoes/editor/data-visualization">
+                                    <span class="note-icon material-icons-outlined">description</span>
+                                    <span class="note-name">Visualização de Dados</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
-        <!-- Plugins de IA -->
-        <div class="plugin-section">
-            <h5 class="section-title">Compass-IA</h5>
-            <ul class="plugins-list">
-                <li class="plugin-item" data-plugin="ai-assistant">
-                    <a href="#anotacoes/compass-ia">
-                        <span class="plugin-icon material-icons-outlined">smart_toy</span>
-                        <span class="plugin-name">Assistente IA</span>
-                        <span class="plugin-status inactive"></span>
-                    </a>
-                </li>
-                <li class="plugin-item" data-plugin="flashcards">
-                    <a href="#anotacoes/flashcards">
-                        <span class="plugin-icon material-icons-outlined">quiz</span>
-                        <span class="plugin-name">Flashcards IA</span>
-                        <span class="plugin-status inactive"></span>
-                    </a>
-                </li>
-                <li class="plugin-item" data-plugin="youtube-summary">
-                    <a href="#anotacoes/youtube-summary">
-                        <span class="plugin-icon material-icons-outlined">video_library</span>
-                        <span class="plugin-name">Resumo YouTube</span>
-                        <span class="plugin-status inactive"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Seção de Arquivos Recentes -->
-        <div class="plugin-section">
-            <h5 class="section-title">Arquivos Recentes</h5>
-            <ul class="recent-files-list">
-                <li class="recent-file-item">
-                    <a href="#anotacoes/editor/conceitos-javascript">
-                        <span class="file-icon material-icons-outlined">description</span>
-                        <span class="file-name">Conceitos de JavaScript</span>
-                        <span class="file-date">Hoje</span>
-                    </a>
-                </li>
-                <li class="recent-file-item">
-                    <a href="#anotacoes/editor/resumo-aws">
-                        <span class="file-icon material-icons-outlined">description</span>
-                        <span class="file-name">Resumo da Aula de AWS</span>
-                        <span class="file-date">Ontem</span>
-                    </a>
-                </li>
-                <li class="recent-file-item">
-                    <a href="#anotacoes/editor/projeto-react">
-                        <span class="file-icon material-icons-outlined">description</span>
-                        <span class="file-name">Projeto React - Anotações</span>
-                        <span class="file-date">2 dias</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </aside>
-
-    <!-- Área de Conteúdo Principal -->
-    <main class="brain-content-area">
-        <!-- Aqui será carregado dinamicamente o conteúdo dos plugins -->
-        <div class="welcome-screen" id="welcome-screen">
-            <div class="welcome-content">
-                <div class="brain-logo">
-                    <span class="material-icons-outlined">psychology</span>
-                </div>
-                <h2>Bem-vindo ao Seu Segundo Cérebro</h2>
-                <p>Uma plataforma completa para maximizar sua produtividade nos estudos, com o poder da neurociência e inteligência artificial.</p>
-                
-                <div class="quick-actions">
-                    <h3>Ações Rápidas</h3>
-                    <div class="actions-grid">
-                        <button class="quick-action-btn" onclick="createNewNote()">
-                            <span class="material-icons-outlined">add_circle</span>
+                    <!-- Botão para nova nota -->
+                    <div class="new-note-section">
+                        <button class="new-note-btn" onclick="createNewNote()">
+                            <span class="material-icons-outlined">add</span>
                             <span>Nova Nota</span>
                         </button>
-                        <button class="quick-action-btn" onclick="openTaskManager()">
-                            <span class="material-icons-outlined">task_alt</span>
-                            <span>Ver Tarefas</span>
-                        </button>
-                        <button class="quick-action-btn" onclick="startStudySession()">
-                            <span class="material-icons-outlined">play_circle</span>
-                            <span>Iniciar Estudo</span>
-                        </button>
-                        <button class="quick-action-btn" onclick="askCompassIA()">
-                            <span class="material-icons-outlined">smart_toy</span>
-                            <span>Perguntar à IA</span>
-                        </button>
                     </div>
                 </div>
+            </div>
 
-                <div class="stats-preview">
-                    <h3>Estatísticas de Hoje</h3>
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <span class="stat-number">2h 45m</span>
-                            <span class="stat-label">Tempo de Estudo</span>
+            <!-- Plugins Principais -->
+            <div class="plugin-section">
+                <h5 class="section-title">Editor & Notas</h5>
+                <ul class="plugins-list">
+                    <li class="plugin-item active" data-plugin="markdown-editor">
+                        <a href="#anotacoes/editor">
+                            <span class="plugin-icon material-icons-outlined">edit_note</span>
+                            <span class="plugin-name">Editor Markdown</span>
+                            <span class="plugin-status active"></span>
+                        </a>
+                    </li>
+                    <li class="plugin-item" data-plugin="file-explorer">
+                        <a href="#anotacoes/explorer">
+                            <span class="plugin-icon material-icons-outlined">folder</span>
+                            <span class="plugin-name">Explorador</span>
+                            <span class="plugin-status active"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Plugins de Produtividade -->
+            <div class="plugin-section">
+                <h5 class="section-title">Produtividade</h5>
+                <ul class="plugins-list">
+                    <li class="plugin-item" data-plugin="task-manager">
+                        <a href="#anotacoes/tarefas">
+                            <span class="plugin-icon material-icons-outlined">task_alt</span>
+                            <span class="plugin-name">Gerenciador de Tarefas</span>
+                            <span class="plugin-status active"></span>
+                        </a>
+                    </li>
+                    <li class="plugin-item" data-plugin="pomodoro-timer">
+                        <a href="#anotacoes/pomodoro">
+                            <span class="plugin-icon material-icons-outlined">timer</span>
+                            <span class="plugin-name">Timer Pomodoro</span>
+                            <span class="plugin-status inactive"></span>
+                        </a>
+                    </li>
+                    <li class="plugin-item" data-plugin="study-planner">
+                        <a href="#anotacoes/planejador">
+                            <span class="plugin-icon material-icons-outlined">schedule</span>
+                            <span class="plugin-name">Planejador Inteligente</span>
+                            <span class="plugin-status inactive"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Plugins de Tracking -->
+            <div class="plugin-section">
+                <h5 class="section-title">Análise & Tracking</h5>
+                <ul class="plugins-list">
+                    <li class="plugin-item" data-plugin="study-cycle">
+                        <a href="#anotacoes/tracker-ciclo">
+                            <span class="plugin-icon material-icons-outlined">track_changes</span>
+                            <span class="plugin-name">Ciclo de Estudos</span>
+                            <span class="plugin-status active"></span>
+                        </a>
+                    </li>
+                    <li class="plugin-item" data-plugin="reports">
+                        <a href="#anotacoes/tracker-relatorio">
+                            <span class="plugin-icon material-icons-outlined">analytics</span>
+                            <span class="plugin-name">Relatórios</span>
+                            <span class="plugin-status active"></span>
+                        </a>
+                    </li>
+                    <li class="plugin-item" data-plugin="calendar">
+                        <a href="#anotacoes/tracker-calendario">
+                            <span class="plugin-icon material-icons-outlined">calendar_today</span>
+                            <span class="plugin-name">Calendário</span>
+                            <span class="plugin-status active"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Plugins de IA -->
+            <div class="plugin-section">
+                <h5 class="section-title">Compass-IA</h5>
+                <ul class="plugins-list">
+                    <li class="plugin-item" data-plugin="ai-assistant">
+                        <a href="#anotacoes/compass-ia">
+                            <span class="plugin-icon material-icons-outlined">smart_toy</span>
+                            <span class="plugin-name">Assistente IA</span>
+                            <span class="plugin-status inactive"></span>
+                        </a>
+                    </li>
+                    <li class="plugin-item" data-plugin="flashcards">
+                        <a href="#anotacoes/flashcards">
+                            <span class="plugin-icon material-icons-outlined">quiz</span>
+                            <span class="plugin-name">Flashcards IA</span>
+                            <span class="plugin-status inactive"></span>
+                        </a>
+                    </li>
+                    <li class="plugin-item" data-plugin="youtube-summary">
+                        <a href="#anotacoes/youtube-summary">
+                            <span class="plugin-icon material-icons-outlined">video_library</span>
+                            <span class="plugin-name">Resumo YouTube</span>
+                            <span class="plugin-status inactive"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Seção de Arquivos Recentes -->
+            <div class="plugin-section">
+                <h5 class="section-title">Arquivos Recentes</h5>
+                <ul class="recent-files-list">
+                    <li class="recent-file-item">
+                        <a href="#anotacoes/editor/conceitos-javascript">
+                            <span class="file-icon material-icons-outlined">description</span>
+                            <span class="file-name">Conceitos de JavaScript</span>
+                            <span class="file-date">Hoje</span>
+                        </a>
+                    </li>
+                    <li class="recent-file-item">
+                        <a href="#anotacoes/editor/resumo-aws">
+                            <span class="file-icon material-icons-outlined">description</span>
+                            <span class="file-name">Resumo da Aula de AWS</span>
+                            <span class="file-date">Ontem</span>
+                        </a>
+                    </li>
+                    <li class="recent-file-item">
+                        <a href="#anotacoes/editor/projeto-react">
+                            <span class="file-icon material-icons-outlined">description</span>
+                            <span class="file-name">Projeto React - Anotações</span>
+                            <span class="file-date">2 dias</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Área de Conteúdo Principal -->
+        <main class="brain-content-area">
+            <!-- Aqui será carregado dinamicamente o conteúdo dos plugins -->
+            <div class="welcome-screen" id="welcome-screen">
+                <div class="welcome-content">
+                    <div class="brain-logo">
+                        <span class="material-icons-outlined">psychology</span>
+                    </div>
+                    <h2>Bem-vindo ao Seu Segundo Cérebro</h2>
+                    <p>Uma plataforma completa para maximizar sua produtividade nos estudos, com o poder da neurociência e inteligência artificial.</p>
+                    
+                    <div class="quick-actions">
+                        <h3>Ações Rápidas</h3>
+                        <div class="actions-grid">
+                            <button class="quick-action-btn" onclick="createNewNote()">
+                                <span class="material-icons-outlined">add_circle</span>
+                                <span>Nova Nota</span>
+                            </button>
+                            <button class="quick-action-btn" onclick="openTaskManager()">
+                                <span class="material-icons-outlined">task_alt</span>
+                                <span>Ver Tarefas</span>
+                            </button>
+                            <button class="quick-action-btn" onclick="startStudySession()">
+                                <span class="material-icons-outlined">play_circle</span>
+                                <span>Iniciar Estudo</span>
+                            </button>
+                            <button class="quick-action-btn" onclick="askCompassIA()">
+                                <span class="material-icons-outlined">smart_toy</span>
+                                <span>Perguntar à IA</span>
+                            </button>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-number">5</span>
-                            <span class="stat-label">Tarefas Concluídas</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">3</span>
-                            <span class="stat-label">Notas Criadas</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">87%</span>
-                            <span class="stat-label">Produtividade</span>
+                    </div>
+
+                    <div class="stats-preview">
+                        <h3>Estatísticas de Hoje</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-number">2h 45m</span>
+                                <span class="stat-label">Tempo de Estudo</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">5</span>
+                                <span class="stat-label">Tarefas Concluídas</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">3</span>
+                                <span class="stat-label">Notas Criadas</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">87%</span>
+                                <span class="stat-label">Produtividade</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
+    </div>
 </div>
 
 <!-- Modal de Gerenciamento de Plugins -->

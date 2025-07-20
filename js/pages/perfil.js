@@ -31,7 +31,7 @@ const subRoutes = {
     },
     'vagas': {
         template: '/templates/vagas.html',
-        script: '/js/pages/vagas.js'
+        script: '/js/pages/vagas-detalhe.js'
     },
     'projetos': {
         template: '/templates/projetos-detalhe.html',
@@ -127,40 +127,6 @@ const setupExploreButtons = () => {
     }, 100);
 };
 
-// Função para o efeito do header fixo
-const setupStickyHeaderEffect = () => {
-    const header = document.querySelector('.page-header');
-    const headerBlock = document.querySelector('.profile-header-block');
-    
-    if (!header && !headerBlock) return;
-    
-    let lastScrollY = window.scrollY;
-    
-    window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-        
-        // Se rolou para baixo mais de 10px
-        if (currentScrollY > 10) {
-            if (headerBlock) {
-                headerBlock.classList.add('scrolled');
-            } else if (header) {
-                header.classList.add('scrolled');
-            }
-        } else {
-            // Se voltou para o topo
-            if (headerBlock) {
-                headerBlock.classList.remove('scrolled');
-            } else if (header) {
-                header.classList.remove('scrolled');
-            }
-        }
-        
-        lastScrollY = currentScrollY;
-    });
-    
-    console.log('✅ Efeito do header fixo configurado!');
-};
-
 // Função para voltar ao painel principal
 window.voltarAoPainel = () => {
     window.location.hash = '#perfil';
@@ -178,12 +144,8 @@ export function init() {
     // Carrega a página inicial
     loadSubPage();
     
-    // Configura o efeito do header fixo (uma vez só)
-    setupStickyHeaderEffect();
-    
     // Escuta mudanças na URL
     window.addEventListener('hashchange', handleHashChange);
     
     console.log('✅ Sistema de navegação do perfil inicializado!');
-    console.log('✅ Header fixo ativado!');
 }
