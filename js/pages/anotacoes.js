@@ -1,4 +1,4 @@
-// anotacoes.js - Sistema Segundo Cérebro Moderno MANTENDO FUNCIONALIDADE
+// anotacoes.js - Sistema Segundo Cérebro Moderno MANTENDO FUNCIONALIDADE + COMPASS IA
 
 import { initCiclo } from './ciclo.js';
 import { initCalendario } from './calendario.js';
@@ -24,6 +24,11 @@ class BrainSystem {
         this.registerDefaultPlugins();
         this.loadDefaultPlugin();
         this.setupModernAnimations();
+        
+        // Inicializar Compass IA após tudo estar pronto
+        setTimeout(() => {
+            this.initCompassIA();
+        }, 1000);
         
         console.log('✅ Sistema Segundo Cérebro Modernizado inicializado!');
     }
@@ -143,7 +148,7 @@ class BrainSystem {
             if (e.target.matches('.modal-close')) {
                 this.closeModal();
             }
-            if (e.target.matches('.modal')) {
+            if (e.target.matches('.modal') || e.target.matches('.modal-overlay')) {
                 this.closeModal();
             }
         });
@@ -176,6 +181,198 @@ class BrainSystem {
         });
     }
 
+    // NOVA FUNÇÃO: Inicializar Compass IA
+    initCompassIA() {
+        console.log('🤖 Inicializando Compass IA...');
+        
+        // Event listeners do Compass IA
+        this.setupCompassEventListeners();
+        
+        // Popular insights se a seção existir
+        setTimeout(() => {
+            this.populateInitialInsights();
+        }, 500);
+    }
+
+    // NOVA FUNÇÃO: Event listeners do Compass IA
+    setupCompassEventListeners() {
+        document.addEventListener('click', (e) => {
+            // Botão de análise do cérebro
+            if (e.target.closest('#compass-brain-analyze')) {
+                this.startBrainAnalysis();
+            }
+            
+            // Botão de chat do cérebro
+            if (e.target.closest('#compass-brain-chat')) {
+                this.openAIChat();
+            }
+            
+            // Tabs de análise
+            if (e.target.closest('.analysis-tab')) {
+                const tab = e.target.closest('.analysis-tab');
+                this.switchAnalysisTab(tab.dataset.tab);
+            }
+            
+            // Botão de nota com IA
+            if (e.target.closest('.ai-note-btn')) {
+                this.createAINote();
+            }
+            
+            // Sugestões do chat
+            if (e.target.closest('.suggestion-btn')) {
+                const suggestion = e.target.textContent.trim();
+                this.sendQuickMessage(suggestion);
+            }
+        });
+    }
+
+    // NOVA FUNÇÃO: Popular insights iniciais
+    populateInitialInsights() {
+        const compassContent = document.getElementById('compass-brain-content');
+        if (compassContent && compassContent.style.display !== 'none') {
+            this.populateBrainInsights();
+        }
+    }
+
+    // NOVA FUNÇÃO: Análise do segundo cérebro
+    startBrainAnalysis() {
+        console.log('🧠 Iniciando análise do segundo cérebro...');
+        
+        // Mostrar insights na seção principal
+        const compassContent = document.getElementById('compass-brain-content');
+        if (compassContent) {
+            compassContent.style.display = 'block';
+            setTimeout(() => {
+                this.populateBrainInsights();
+            }, 500);
+        }
+        
+        // Mostrar modal detalhado
+        const modal = document.getElementById('compass-brain-modal');
+        if (modal) {
+            this.showModal(modal);
+            this.simulateBrainAnalysis();
+        }
+        
+        this.showNotification('🧠 Análise do segundo cérebro iniciada!', 'success');
+    }
+
+    // NOVA FUNÇÃO: Simular análise
+    simulateBrainAnalysis() {
+        const loading = document.getElementById('compass-brain-loading');
+        const result = document.getElementById('compass-brain-result');
+        
+        if (loading) loading.style.display = 'block';
+        if (result) result.style.display = 'none';
+        
+        setTimeout(() => {
+            this.generateBrainResults();
+            if (loading) loading.style.display = 'none';
+            if (result) result.style.display = 'block';
+        }, 3000);
+    }
+
+    // NOVA FUNÇÃO: Gerar resultados
+    generateBrainResults() {
+        // Overview
+        const knowledgeStatus = document.getElementById('compass-knowledge-status');
+        if (knowledgeStatus) {
+            knowledgeStatus.innerHTML = `
+                <div class="analysis-item">
+                    <strong>📊 Score Geral:</strong> 82/100 - Perfil intermediário avançado
+                </div>
+                <div class="analysis-item">
+                    <strong>🎯 Área Principal:</strong> Cloud Computing (92% de domínio)
+                </div>
+            `;
+        }
+
+        const focusAreas = document.getElementById('compass-focus-areas');
+        if (focusAreas) {
+            focusAreas.innerHTML = `
+                <div class="analysis-item">
+                    <strong>🔥 Urgente:</strong> Machine Learning fundamentals
+                </div>
+                <div class="analysis-item">
+                    <strong>⚡ Impacto Alto:</strong> DevOps e CI/CD
+                </div>
+            `;
+        }
+    }
+
+    // NOVA FUNÇÃO: Popular insights do cérebro
+    populateBrainInsights() {
+        const knowledgeMap = document.getElementById('knowledge-map-analysis');
+        if (knowledgeMap) {
+            knowledgeMap.innerHTML = `
+                <div class="analysis-item">
+                    <strong>Domínios:</strong> 3 áreas principais com 47 notas
+                </div>
+                <div class="analysis-item">
+                    <strong>Cloud:</strong> 92% de domínio (área forte)
+                </div>
+            `;
+        }
+
+        const learningPatterns = document.getElementById('learning-patterns-analysis');
+        if (learningPatterns) {
+            learningPatterns.innerHTML = `
+                <div class="analysis-item">
+                    <strong>Horário ótimo:</strong> 14h-18h
+                </div>
+                <div class="analysis-item">
+                    <strong>Duração ideal:</strong> 45min
+                </div>
+            `;
+        }
+    }
+
+    // NOVA FUNÇÃO: Alternar tabs
+    switchAnalysisTab(tabName) {
+        document.querySelectorAll('.analysis-tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        document.querySelectorAll('.tab-panel').forEach(panel => {
+            panel.classList.remove('active');
+        });
+        
+        const activeTab = document.querySelector(`[data-tab="${tabName}"]`);
+        const activePanel = document.getElementById(`${tabName}-panel`);
+        
+        if (activeTab) activeTab.classList.add('active');
+        if (activePanel) activePanel.classList.add('active');
+    }
+
+    // NOVA FUNÇÃO: Criar nota com IA
+    createAINote() {
+        console.log('✨ Criando nota com IA...');
+        this.showNotification('🤖 Criando nota com IA...', 'info');
+        
+        setTimeout(() => {
+            window.location.hash = '#anotacoes/editor/nota-ia';
+            this.showNotification('📝 Nota com IA criada!', 'success');
+        }, 1500);
+    }
+
+    // NOVA FUNÇÃO: Enviar mensagem rápida
+    sendQuickMessage(message) {
+        const input = document.getElementById('ai-input');
+        if (input) {
+            input.value = message;
+            this.sendAIMessage();
+        }
+    }
+
+    // NOVA FUNÇÃO: Mostrar modal
+    showModal(modal) {
+        if (modal) {
+            modal.classList.add('show');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
     toggleFolderModern(folderHeader) {
         const folder = folderHeader.parentElement;
         const notesList = folder.querySelector('.notes-in-folder');
@@ -200,11 +397,14 @@ class BrainSystem {
     setupQuickActions() {
         // Definir funções globais para os botões de ação rápida
         window.createNewNote = () => this.createNewNote();
+        window.createAINote = () => this.createAINote();
+        window.analyzeKnowledge = () => this.startBrainAnalysis();
         window.openTaskManager = () => this.openTaskManager();
         window.startStudySession = () => this.startStudySession();
         window.askCompassIA = () => this.askCompassIA();
         window.showMarkdownHelp = () => this.showMarkdownHelp();
         window.exportMarkdown = () => this.exportMarkdown();
+        window.sendQuickMessage = (message) => this.sendQuickMessage(message);
     }
 
     registerDefaultPlugins() {
@@ -584,10 +784,6 @@ class BrainSystem {
         `;
     }
 
-    // MANTÉM TODAS AS OUTRAS FUNÇÕES EXATAMENTE IGUAIS
-    // (initMarkdownEditor, setupNoteFromURL, getNoteTitle, etc.)
-    // Para economizar espaço, vou incluir apenas as principais
-
     initMarkdownEditor() {
         console.log('🖊️ Inicializando Editor Markdown Modernizado...');
         
@@ -686,7 +882,6 @@ class BrainSystem {
         return icons[type] || 'info';
     }
 
-    // MANTÉM TODAS AS OUTRAS FUNÇÕES DO MARKDOWN EDITOR IGUAIS
     setupNoteFromURL() {
         const hash = window.location.hash;
         const pathParts = hash.substring(1).split('/');
@@ -717,7 +912,8 @@ class BrainSystem {
             'database-modeling': 'Modelagem de Banco',
             'python-pandas': 'Python - Pandas',
             'machine-learning-intro': 'ML - Introdução',
-            'data-visualization': 'Visualização de Dados'
+            'data-visualization': 'Visualização de Dados',
+            'nota-ia': 'Nota Criada com Compass IA'
         };
         return titles[noteName] || 'Nova Nota';
     }
@@ -786,7 +982,46 @@ df = pd.DataFrame({
 \`\`\`python
 # Ler CSV
 df = pd.read_csv('arquivo.csv')
-\`\`\``
+\`\`\``,
+
+            'nota-ia': `# Machine Learning - Sugestão da IA
+*Nota criada com assistência do Compass IA*
+
+## 🎯 Por que esta nota?
+Com base na análise do seu perfil, identifiquei que você tem conhecimento sólido em Python e AWS, mas uma lacuna em Machine Learning.
+
+## 📚 Conceitos Fundamentais
+
+### O que é Machine Learning?
+- Subcampo da IA que permite sistemas aprenderem automaticamente
+- Usa algoritmos para encontrar padrões em dados
+- Aplicações: reconhecimento de imagem, recomendações, predições
+
+### Tipos Principais
+1. **Supervisionado**: Aprende com exemplos rotulados
+2. **Não-supervisionado**: Encontra padrões ocultos
+3. **Por reforço**: Aprende através de recompensas
+
+## 🔗 Conexão com seus conhecimentos
+
+### Python + ML
+- **pandas**: Preparação e limpeza de dados
+- **scikit-learn**: Biblioteca principal para ML
+- **matplotlib/seaborn**: Visualização de resultados
+
+### AWS + ML
+- **SageMaker**: Platform completa para ML
+- **Lambda**: Deploy de modelos simples
+- **S3**: Armazenamento de datasets
+
+## ✅ Próximos passos sugeridos
+- [ ] Instalar scikit-learn: \`pip install scikit-learn\`
+- [ ] Fazer tutorial com dataset Iris
+- [ ] Implementar primeiro classificador
+- [ ] Explorar SageMaker para deploy
+
+---
+*💡 Dica da IA: Comece com problemas simples e evolua gradualmente!*`
         };
         
         return contents[noteName] || `# ${this.getNoteTitle(noteName)}
@@ -807,7 +1042,8 @@ Conteúdo da seção...`;
             'database-modeling': '/Minhas Notas/Back-End',
             'python-pandas': '/Minhas Notas/Dados e IA',
             'machine-learning-intro': '/Minhas Notas/Dados e IA',
-            'data-visualization': '/Minhas Notas/Dados e IA'
+            'data-visualization': '/Minhas Notas/Dados e IA',
+            'nota-ia': '/Minhas Notas/Geradas por IA'
         };
         return paths[noteName] || '/Minhas Notas';
     }
@@ -1090,18 +1326,13 @@ Conteúdo da seção...`;
         
         if (!input || !input.value.trim()) return;
 
+        const message = input.value.trim();
+
         // Adicionar mensagem do usuário
         const userMessage = document.createElement('div');
         userMessage.className = 'user-message';
         userMessage.innerHTML = `
-            <div style="display: flex; gap: 8px; justify-content: flex-end; margin: 8px 0;">
-                <div style="background: var(--primary-color); color: white; padding: 10px 14px; border-radius: 16px; max-width: 80%; font-size: 0.9rem; line-height: 1.4;">
-                    ${input.value}
-                </div>
-                <div style="width: 32px; height: 32px; background: var(--primary-color); border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; flex-shrink: 0;">
-                    EU
-                </div>
-            </div>
+            <div class="message-content">${message}</div>
         `;
         
         messages.appendChild(userMessage);
@@ -1111,9 +1342,11 @@ Conteúdo da seção...`;
             const aiResponse = document.createElement('div');
             aiResponse.className = 'ai-message';
             aiResponse.innerHTML = `
-                <span class="ai-avatar">🤖</span>
+                <div class="message-avatar">
+                    <span class="material-icons-outlined">smart_toy</span>
+                </div>
                 <div class="message-content">
-                    Entendi sua pergunta! Esta funcionalidade ainda está em desenvolvimento. Em breve poderei ajudar você com resumos, flashcards e muito mais!
+                    <div class="message-text">Entendi! Com base no seu perfil, posso ajudar com sugestões personalizadas. Em breve terei funcionalidades completas!</div>
                 </div>
             `;
             messages.appendChild(aiResponse);
@@ -1141,6 +1374,7 @@ Conteúdo da seção...`;
     }
 
     closeModal() {
+        // Fechar modais tradicionais
         const modals = document.querySelectorAll('.modal');
         modals.forEach(modal => {
             modal.style.opacity = '0';
@@ -1148,6 +1382,19 @@ Conteúdo da seção...`;
                 modal.style.display = 'none';
             }, 300);
         });
+
+        // Fechar modais do Compass IA
+        const overlayModals = document.querySelectorAll('.modal-overlay');
+        overlayModals.forEach(modal => {
+            modal.style.opacity = '0';
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        });
+
+        // Restaurar scroll
+        document.body.style.overflow = '';
     }
 
     populatePluginManager() {

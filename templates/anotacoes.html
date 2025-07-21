@@ -12,6 +12,50 @@
         <p class="content-subtitle">Uma plataforma completa para maximizar sua produtividade nos estudos, com o poder da neurociência e inteligência artificial.</p>
     </div>
 
+    <!-- COMPASS IA INSIGHTS GLOBAL - NOVA SEÇÃO -->
+    <div class="compass-brain-section">
+        <div class="compass-header">
+            <div class="compass-icon">
+                <span class="material-icons-outlined">auto_awesome</span>
+            </div>
+            <div class="compass-info">
+                <h3>Compass IA - Insights do Segundo Cérebro</h3>
+                <p>Análise inteligente dos seus padrões de estudo e conhecimento</p>
+            </div>
+            <div class="compass-actions">
+                <button class="compass-analyze-btn" id="compass-brain-analyze">
+                    <span class="material-icons-outlined">psychology</span>
+                    Analisar Conhecimento
+                </button>
+                <button class="compass-chat-btn" id="compass-brain-chat">
+                    <span class="material-icons-outlined">chat</span>
+                    Chat IA
+                </button>
+            </div>
+        </div>
+        
+        <div class="compass-content" id="compass-brain-content" style="display: none;">
+            <div class="brain-insights-grid">
+                <div class="insight-card knowledge-map">
+                    <h4>🧠 Mapa de Conhecimento</h4>
+                    <div id="knowledge-map-analysis"></div>
+                </div>
+                <div class="insight-card learning-patterns">
+                    <h4>📊 Padrões de Aprendizado</h4>
+                    <div id="learning-patterns-analysis"></div>
+                </div>
+                <div class="insight-card study-optimization">
+                    <h4>⚡ Otimização de Estudos</h4>
+                    <div id="study-optimization-analysis"></div>
+                </div>
+                <div class="insight-card next-topics">
+                    <h4>🎯 Próximos Tópicos</h4>
+                    <div id="next-topics-analysis"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Container Principal do Sistema -->
     <div class="brain-system-container">
         
@@ -115,11 +159,15 @@
                         </ul>
                     </div>
 
-                    <!-- Botão para nova nota -->
+                    <!-- Botão para nova nota com IA -->
                     <div class="new-note-section">
                         <button class="new-note-btn" onclick="createNewNote()">
                             <span class="material-icons-outlined">add</span>
                             <span>Nova Nota</span>
+                        </button>
+                        <button class="ai-note-btn" onclick="createAINote()">
+                            <span class="material-icons-outlined">auto_awesome</span>
+                            <span>Nota com IA</span>
                         </button>
                     </div>
                 </div>
@@ -202,7 +250,7 @@
                 </ul>
             </div>
 
-            <!-- Plugins de IA -->
+            <!-- Plugins de IA - EXPANDIDOS -->
             <div class="plugin-section">
                 <h5 class="section-title">Compass-IA</h5>
                 <ul class="plugins-list">
@@ -210,21 +258,28 @@
                         <a href="#anotacoes/compass-ia">
                             <span class="plugin-icon material-icons-outlined">smart_toy</span>
                             <span class="plugin-name">Assistente IA</span>
-                            <span class="plugin-status inactive"></span>
+                            <span class="plugin-status active"></span>
                         </a>
                     </li>
                     <li class="plugin-item" data-plugin="flashcards">
                         <a href="#anotacoes/flashcards">
                             <span class="plugin-icon material-icons-outlined">quiz</span>
                             <span class="plugin-name">Flashcards IA</span>
-                            <span class="plugin-status inactive"></span>
+                            <span class="plugin-status active"></span>
+                        </a>
+                    </li>
+                    <li class="plugin-item" data-plugin="note-analyzer">
+                        <a href="#anotacoes/analisar-notas">
+                            <span class="plugin-icon material-icons-outlined">analytics</span>
+                            <span class="plugin-name">Análise de Notas</span>
+                            <span class="plugin-status active"></span>
                         </a>
                     </li>
                     <li class="plugin-item" data-plugin="youtube-summary">
                         <a href="#anotacoes/youtube-summary">
                             <span class="plugin-icon material-icons-outlined">video_library</span>
                             <span class="plugin-name">Resumo YouTube</span>
-                            <span class="plugin-status inactive"></span>
+                            <span class="plugin-status active"></span>
                         </a>
                     </li>
                 </ul>
@@ -277,6 +332,10 @@
                                 <span class="material-icons-outlined">add_circle</span>
                                 <span>Nova Nota</span>
                             </button>
+                            <button class="quick-action-btn" onclick="createAINote()">
+                                <span class="material-icons-outlined">auto_awesome</span>
+                                <span>Nota com IA</span>
+                            </button>
                             <button class="quick-action-btn" onclick="openTaskManager()">
                                 <span class="material-icons-outlined">task_alt</span>
                                 <span>Ver Tarefas</span>
@@ -288,6 +347,10 @@
                             <button class="quick-action-btn" onclick="askCompassIA()">
                                 <span class="material-icons-outlined">smart_toy</span>
                                 <span>Perguntar à IA</span>
+                            </button>
+                            <button class="quick-action-btn" onclick="analyzeKnowledge()">
+                                <span class="material-icons-outlined">psychology</span>
+                                <span>Analisar Conhecimento</span>
                             </button>
                         </div>
                     </div>
@@ -316,6 +379,84 @@
                 </div>
             </div>
         </main>
+    </div>
+</div>
+
+<!-- Modal Compass IA - Análise Global -->
+<div id="compass-brain-modal" class="modal-overlay">
+    <div class="modal-content compass-modal large-modal">
+        <div class="modal-header">
+            <h3>
+                <span class="material-icons-outlined">psychology</span>
+                Compass IA - Análise Completa do Segundo Cérebro
+            </h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="compass-avatar">
+                <span class="material-icons-outlined">smart_toy</span>
+            </div>
+            <div class="compass-loading" id="compass-brain-loading">
+                <div class="typing-animation">
+                    <span></span><span></span><span></span>
+                </div>
+                <p>Analisando seu segundo cérebro e padrões de conhecimento...</p>
+            </div>
+            <div id="compass-brain-result" style="display: none;">
+                <div class="analysis-tabs">
+                    <button class="analysis-tab active" data-tab="overview">Visão Geral</button>
+                    <button class="analysis-tab" data-tab="knowledge">Mapa de Conhecimento</button>
+                    <button class="analysis-tab" data-tab="patterns">Padrões</button>
+                    <button class="analysis-tab" data-tab="recommendations">Recomendações</button>
+                </div>
+                
+                <div class="tab-content-area">
+                    <div class="tab-panel active" id="overview-panel">
+                        <div class="compass-response-card">
+                            <h4>📊 Status Geral do Conhecimento</h4>
+                            <div id="compass-knowledge-status"></div>
+                        </div>
+                        <div class="compass-response-card">
+                            <h4>🎯 Áreas de Foco</h4>
+                            <div id="compass-focus-areas"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-panel" id="knowledge-panel">
+                        <div class="compass-response-card">
+                            <h4>🗺️ Mapa de Conhecimento</h4>
+                            <div id="compass-knowledge-map"></div>
+                        </div>
+                        <div class="compass-response-card">
+                            <h4>🔗 Conexões de Tópicos</h4>
+                            <div id="compass-topic-connections"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-panel" id="patterns-panel">
+                        <div class="compass-response-card">
+                            <h4>📈 Padrões de Estudo</h4>
+                            <div id="compass-study-patterns"></div>
+                        </div>
+                        <div class="compass-response-card">
+                            <h4>⏰ Horários Otimais</h4>
+                            <div id="compass-optimal-times"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-panel" id="recommendations-panel">
+                        <div class="compass-response-card">
+                            <h4>🎓 Próximos Tópicos</h4>
+                            <div id="compass-next-topics"></div>
+                        </div>
+                        <div class="compass-response-card">
+                            <h4>⚡ Otimizações</h4>
+                            <div id="compass-optimizations"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -372,24 +513,61 @@
 <!-- Notification System -->
 <div id="notification-container" class="notification-container"></div>
 
-<!-- AI Chat Overlay -->
-<div id="ai-chat-overlay" class="ai-chat-overlay" style="display: none;">
+<!-- AI Chat Overlay MODERNIZADO -->
+<div id="ai-chat-overlay" class="ai-chat-overlay modern-chat" style="display: none;">
     <div class="ai-chat-header">
-        <span class="material-icons-outlined">smart_toy</span>
-        <span>Compass-IA</span>
-        <button class="close-ai-chat">&times;</button>
+        <div class="chat-header-info">
+            <span class="material-icons-outlined">smart_toy</span>
+            <div class="chat-title-area">
+                <span class="chat-title">Compass IA</span>
+                <span class="chat-subtitle">Assistente Inteligente</span>
+            </div>
+        </div>
+        <div class="chat-header-actions">
+            <button class="chat-action-btn" id="clear-chat-btn" title="Limpar conversa">
+                <span class="material-icons-outlined">clear_all</span>
+            </button>
+            <button class="close-ai-chat" title="Fechar">
+                <span class="material-icons-outlined">close</span>
+            </button>
+        </div>
     </div>
+    
     <div class="ai-chat-messages" id="ai-chat-messages">
         <div class="ai-message">
-            <span class="ai-avatar">🤖</span>
+            <div class="message-avatar">
+                <span class="material-icons-outlined">smart_toy</span>
+            </div>
             <div class="message-content">
-                Olá! Sou o Compass-IA, seu assistente inteligente para estudos. Como posso ajudar você hoje?
+                <div class="message-text">
+                    Olá! Sou o Compass IA, seu assistente inteligente para estudos. Como posso ajudar você hoje?
+                </div>
+                <div class="message-suggestions">
+                    <button class="suggestion-btn" onclick="sendQuickMessage('Analise minhas notas')">
+                        📊 Analisar minhas notas
+                    </button>
+                    <button class="suggestion-btn" onclick="sendQuickMessage('Crie flashcards')">
+                        🎯 Criar flashcards
+                    </button>
+                    <button class="suggestion-btn" onclick="sendQuickMessage('Resuma um tópico')">
+                        📝 Resumir tópico
+                    </button>
+                </div>
             </div>
         </div>
     </div>
+    
     <div class="ai-chat-input">
-        <input type="text" placeholder="Digite sua pergunta..." id="ai-input">
-        <button id="send-ai-message">
+        <div class="input-actions">
+            <button class="input-action-btn" id="voice-input-btn" title="Entrada por voz">
+                <span class="material-icons-outlined">mic</span>
+            </button>
+            <button class="input-action-btn" id="attach-note-btn" title="Anexar nota">
+                <span class="material-icons-outlined">attach_file</span>
+            </button>
+        </div>
+        <input type="text" placeholder="Digite sua pergunta ou comando..." id="ai-input">
+        <button id="send-ai-message" class="send-btn">
             <span class="material-icons-outlined">send</span>
         </button>
     </div>
