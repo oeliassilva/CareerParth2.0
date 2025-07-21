@@ -35,6 +35,40 @@
         </div>
     </div>
 
+    <!-- COMPASS IA INSIGHTS - NOVA SEÇÃO -->
+    <div class="compass-insights-section">
+        <div class="compass-header">
+            <div class="compass-icon">
+                <span class="material-icons-outlined">psychology</span>
+            </div>
+            <div class="compass-info">
+                <h3>Compass IA - Insights Personalizados</h3>
+                <p>Análises inteligentes baseadas no seu perfil e tendências do mercado</p>
+            </div>
+            <button class="compass-analyze-btn" id="compass-perfil-btn">
+                <span class="material-icons-outlined">auto_awesome</span>
+                Analisar Perfil
+            </button>
+        </div>
+        
+        <div class="compass-content" id="compass-insights-content" style="display: none;">
+            <div class="insights-grid">
+                <div class="insight-card career-position">
+                    <h4>📊 Posição de Carreira</h4>
+                    <div id="career-position-analysis"></div>
+                </div>
+                <div class="insight-card market-trends">
+                    <h4>📈 Tendências do Mercado</h4>
+                    <div id="market-trends-analysis"></div>
+                </div>
+                <div class="insight-card next-steps">
+                    <h4>🎯 Próximos Passos</h4>
+                    <div id="next-steps-analysis"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- DASHBOARD GRID MODERNIZADO -->
     <div class="dashboard-grid modern-grid">
         <!-- Card Resumo do Dia -->
@@ -261,7 +295,7 @@
             </div>
         </div>
 
-        <!-- Card Vagas Recomendadas -->
+        <!-- Card Vagas Recomendadas - ATUALIZADO COM AS VAGAS DO PAINEL -->
         <div class="dashboard-card modern-card card-large" data-card="vagas">
             <div class="card-glow large-glow"></div>
             <div class="card-header">
@@ -279,11 +313,11 @@
                 <ul class="job-list modern-job-list">
                     <li class="job-item modern-job-item">
                         <div class="job-company">
-                            <img src="/assets/images/logo-itau.png" alt="Logo da empresa Itaú">
+                            <img src="https://logospng.org/download/itaú/logo-itau-4096.png" alt="Logo da empresa Itaú">
                         </div>
                         <div class="job-info">
                             <h4 class="job-title">Dev. Front-End Jr.</h4>
-                            <span class="job-company-name">Itaú</span>
+                            <span class="job-company-name">Itaú Unibanco</span>
                         </div>
                         <div class="job-match modern-match high-match">
                             <div class="match-ring">
@@ -295,15 +329,15 @@
                     </li>
                     <li class="job-item modern-job-item">
                         <div class="job-company">
-                            <img src="/assets/images/logo-ifood.png" alt="Logo da empresa iFood">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Stone_pagamentos_logo.svg/2560px-Stone_pagamentos_logo.svg.png" alt="Logo da empresa Stone">
                         </div>
                         <div class="job-info">
-                            <h4 class="job-title">Dev. Back-End Jr.</h4>
-                            <span class="job-company-name">iFood</span>
+                            <h4 class="job-title">Frontend Developer React</h4>
+                            <span class="job-company-name">Stone</span>
                         </div>
-                        <div class="job-match modern-match low-match">
+                        <div class="job-match modern-match high-match">
                             <div class="match-ring">
-                                <span class="match-percentage">20%</span>
+                                <span class="match-percentage">78%</span>
                             </div>
                             <small class="match-label">Match</small>
                         </div>
@@ -311,15 +345,15 @@
                     </li>
                     <li class="job-item modern-job-item">
                         <div class="job-company">
-                            <img src="/assets/images/logo-aws.png" alt="Logo da empresa AWS">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Logo da empresa Spotify">
                         </div>
                         <div class="job-info">
-                            <h4 class="job-title">Arquiteto de Cloud</h4>
-                            <span class="job-company-name">AWS</span>
+                            <h4 class="job-title">UI/UX Developer</h4>
+                            <span class="job-company-name">Spotify</span>
                         </div>
-                        <div class="job-match modern-match very-low-match">
+                        <div class="job-match modern-match high-match">
                             <div class="match-ring">
-                                <span class="match-percentage">14%</span>
+                                <span class="match-percentage">72%</span>
                             </div>
                             <small class="match-label">Match</small>
                         </div>
@@ -409,6 +443,48 @@
                     Acessar
                     <div class="btn-ripple"></div>
                 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Compass IA Perfil -->
+<div id="compass-perfil-modal" class="modal-overlay">
+    <div class="modal-content compass-modal">
+        <div class="modal-header">
+            <h3>
+                <span class="material-icons-outlined">psychology</span>
+                Compass IA - Análise Completa do Perfil
+            </h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="compass-avatar">
+                <span class="material-icons-outlined">smart_toy</span>
+            </div>
+            <div class="compass-loading" id="compass-perfil-loading">
+                <div class="typing-animation">
+                    <span></span><span></span><span></span>
+                </div>
+                <p>Analisando seu perfil profissional e tendências do mercado...</p>
+            </div>
+            <div id="compass-perfil-result" style="display: none;">
+                <div class="compass-response-card">
+                    <h4>🎯 Posicionamento Atual</h4>
+                    <div id="compass-current-position"></div>
+                </div>
+                <div class="compass-response-card">
+                    <h4>💡 Oportunidades Identificadas</h4>
+                    <div id="compass-opportunities"></div>
+                </div>
+                <div class="compass-response-card">
+                    <h4>📈 Roadmap de Crescimento</h4>
+                    <div id="compass-growth-roadmap"></div>
+                </div>
+                <div class="compass-response-card">
+                    <h4>🎓 Recomendações de Aprendizado</h4>
+                    <div id="compass-learning-recommendations"></div>
+                </div>
             </div>
         </div>
     </div>
