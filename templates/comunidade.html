@@ -1,12 +1,225 @@
+<!-- Header -->
 <header class="page-header">
     <span class="material-icons-outlined">groups</span>
-    <span>Comunidade</span>
+    <span>Comunidade CareerPath</span>
 </header>
 
-<div class="comunidade-new-question">
-    <img src="/assets/images/perfil-elias-silva.png" alt="Seu avatar" class="comunidade-avatar">
-    <input type="text" id="nova-pergunta-input" placeholder="Compartilhe uma dúvida ou peça uma dica para a comunidade...">
-    <button id="postar-pergunta-btn">Postar</button>
-</div>
+<!-- Layout Principal -->
+<div class="comunidade-layout">
+    <!-- Área Principal -->
+    <main class="comunidade-main">
+        <!-- Nova Postagem -->
+        <section class="nova-postagem">
+            <div class="nova-postagem-header">
+                <img src="/assets/images/perfil-elias-silva.png" alt="Seu avatar" class="user-avatar">
+                <div class="user-info">
+                    <h4>Elias Silva</h4>
+                    <span>Desenvolvedor Front-End Júnior</span>
+                </div>
+            </div>
 
-<div id="comunidade-feed-container"></div>
+            <form class="nova-postagem-form" id="novaPostagemForm">
+                <div class="form-group">
+                    <label class="form-label">Título da sua dúvida ou discussão</label>
+                    <input type="text" class="form-input" id="tituloPost" placeholder="Ex: Como implementar autenticação JWT em React?">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Categoria</label>
+                        <select class="form-select" id="categoriaPost">
+                            <option value="">Selecione uma categoria</option>
+                            <option value="Front-End">Front-End</option>
+                            <option value="Back-End">Back-End</option>
+                            <option value="Full-Stack">Full-Stack</option>
+                            <option value="DevOps">DevOps</option>
+                            <option value="Mobile">Mobile</option>
+                            <option value="IA">Inteligência Artificial</option>
+                            <option value="Carreira">Carreira</option>
+                            <option value="Freelance">Freelance</option>
+                            <option value="Certificações">Certificações</option>
+                            <option value="Geral">Discussão Geral</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nível</label>
+                        <select class="form-select" id="nivelPost">
+                            <option value="">Selecione o nível</option>
+                            <option value="Iniciante">Iniciante</option>
+                            <option value="Intermediário">Intermediário</option>
+                            <option value="Avançado">Avançado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Descreva sua dúvida ou compartilhe sua experiência</label>
+                    <textarea class="form-textarea" id="conteudoPost" placeholder="Seja específico e forneça contexto. Quanto mais detalhes, melhor a ajuda que você receberá da comunidade!"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <div class="tags-input">
+                        <input type="text" class="form-input" id="tagsInput" placeholder="Adicione tags (pressione Enter)">
+                        <div class="tag-preview" id="tagPreview"></div>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-secondary" id="pedirAjudaCompass">
+                            <span class="material-icons-outlined">auto_awesome</span>
+                            Pedir Ajuda à Compass
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="material-icons-outlined">send</span>
+                            Publicar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- Filtros -->
+        <section class="filtros-comunidade">
+            <div class="filtros-header">
+                <h3>Filtros</h3>
+            </div>
+            <div class="filtros-row">
+                <div class="filter-chip active" data-filter="todas">Todas</div>
+                <div class="filter-chip" data-filter="Front-End">Front-End</div>
+                <div class="filter-chip" data-filter="Back-End">Back-End</div>
+                <div class="filter-chip" data-filter="DevOps">DevOps</div>
+                <div class="filter-chip" data-filter="Carreira">Carreira</div>
+                <div class="filter-chip" data-filter="sem-resposta">Sem Resposta</div>
+                <div class="filter-chip" data-filter="compass">Com Compass IA</div>
+            </div>
+        </section>
+
+        <!-- Feed de Posts -->
+        <section id="feedContainer">
+            <!-- Posts serão inseridos aqui dinamicamente -->
+        </section>
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="comunidade-sidebar">
+        <!-- Compass IA -->
+        <div class="sidebar-card compass-card">
+            <h3>
+                <span class="material-icons-outlined">auto_awesome</span>
+                Compass IA
+            </h3>
+            <p>Precisa de ajuda? A Compass IA pode analisar suas dúvidas e sugerir soluções personalizadas baseadas no seu perfil!</p>
+            <button class="compass-btn" id="compassGlobalBtn">
+                <span class="material-icons-outlined">psychology</span>
+                Fazer Pergunta à Compass
+            </button>
+        </div>
+
+        <!-- Trending Topics -->
+        <div class="sidebar-card">
+            <h3>
+                <span class="material-icons-outlined">trending_up</span>
+                Tópicos em Alta
+            </h3>
+            <div class="trending-list">
+                <div class="trending-item">
+                    <div class="trending-number">1</div>
+                    <div class="trending-content">
+                        <h5>React vs Vue.js 2024</h5>
+                        <span>142 discussões</span>
+                    </div>
+                </div>
+                <div class="trending-item">
+                    <div class="trending-number">2</div>
+                    <div class="trending-content">
+                        <h5>Certificação AWS</h5>
+                        <span>89 discussões</span>
+                    </div>
+                </div>
+                <div class="trending-item">
+                    <div class="trending-number">3</div>
+                    <div class="trending-content">
+                        <h5>Salários Tech 2024</h5>
+                        <span>76 discussões</span>
+                    </div>
+                </div>
+                <div class="trending-item">
+                    <div class="trending-number">4</div>
+                    <div class="trending-content">
+                        <h5>TypeScript vs JavaScript</h5>
+                        <span>65 discussões</span>
+                    </div>
+                </div>
+                <div class="trending-item">
+                    <div class="trending-number">5</div>
+                    <div class="trending-content">
+                        <h5>Carreira em IA</h5>
+                        <span>58 discussões</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Atividade Recente -->
+        <div class="sidebar-card">
+            <h3>
+                <span class="material-icons-outlined">schedule</span>
+                Atividade Recente
+            </h3>
+            <div class="atividade-list">
+                <div class="atividade-item">
+                    <img src="/assets/images/avatar-ana.png" alt="Avatar" class="atividade-avatar">
+                    <div class="atividade-content">
+                        <span><strong>Ana Silva</strong> respondeu em "Como estudar para AWS?"</span>
+                        <div class="atividade-time">há 5 min</div>
+                    </div>
+                </div>
+                <div class="atividade-item">
+                    <img src="/assets/images/avatar-carlos.png" alt="Avatar" class="atividade-avatar">
+                    <div class="atividade-content">
+                        <span><strong>Carlos Lima</strong> criou "Dúvida sobre Docker"</span>
+                        <div class="atividade-time">há 12 min</div>
+                    </div>
+                </div>
+                <div class="atividade-item">
+                    <img src="/assets/images/avatar-maria.png" alt="Avatar" class="atividade-avatar">
+                    <div class="atividade-content">
+                        <span><strong>Maria Paula</strong> curtiu "Transição de carreira"</span>
+                        <div class="atividade-time">há 18 min</div>
+                    </div>
+                </div>
+                <div class="atividade-item">
+                    <img src="/assets/images/avatar-joao.png" alt="Avatar" class="atividade-avatar">
+                    <div class="atividade-content">
+                        <span><strong>João Santos</strong> comentou em "React Hooks"</span>
+                        <div class="atividade-time">há 25 min</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estatísticas da Comunidade -->
+        <div class="sidebar-card">
+            <h3>
+                <span class="material-icons-outlined">insights</span>
+                Estatísticas
+            </h3>
+            <div class="stats-container">
+                <div class="stat-row">
+                    <span class="stat-label">Membros ativos</span>
+                    <strong class="stat-value primary">2.847</strong>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Posts hoje</span>
+                    <strong class="stat-value success">156</strong>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Respostas hoje</span>
+                    <strong class="stat-value info">834</strong>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Taxa de resposta</span>
+                    <strong class="stat-value warning">94%</strong>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>

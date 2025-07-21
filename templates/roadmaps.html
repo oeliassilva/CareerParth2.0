@@ -1,18 +1,205 @@
+<!-- Header -->
 <header class="page-header">
     <span class="material-icons-outlined">map</span>
-    <span>RoadMaps</span>
+    <span>Roadmaps CareerPath</span>
 </header>
 
-<div class="roadmaps-list-container" id="roadmaps-list-container"></div>
+<!-- Content Header -->
+<div class="content-header">
+    <h1 class="content-title">Trilhas de Carreira Personalizadas</h1>
+    <p class="content-subtitle">
+        Descubra os caminhos mais eficientes para dominar as tecnologias que o mercado procura. 
+        Nossos roadmaps são atualizados constantemente e a Compass IA monitora seu progresso para sugerir os próximos passos.
+    </p>
+</div>
 
-<div id="roadmap-detail-view" style="display: none;">
-    <button id="back-to-roadmaps-btn">&larr; Voltar para a lista</button>
-    <div class="roadmap-detail-header">
-        <h2 id="roadmap-detail-title"></h2>
-        <span id="roadmap-detail-area"></span>
+<!-- Filtros e Busca -->
+<div class="roadmaps-filter-bar">
+    <div class="filter-group">
+        <label class="filter-label" for="area-filter-roadmap">Área de Carreira</label>
+        <select id="area-filter-roadmap">
+            <option value="all">Todas as áreas</option>
+            <option value="Front-End">Front-End</option>
+            <option value="Back-End">Back-End</option>
+            <option value="Full-Stack">Full-Stack</option>
+            <option value="DevOps">DevOps</option>
+            <option value="Mobile">Mobile</option>
+            <option value="Data Science">Data Science</option>
+            <option value="Cloud">Cloud</option>
+            <option value="IA/ML">IA/ML</option>
+        </select>
     </div>
-    <div class="roadmap-detail-content">
-        <h3>Trilha de Estudo</h3>
-        <ul id="roadmap-detail-steps"></ul>
+    
+    <div class="filter-group" style="flex: 1;">
+        <label class="filter-label" for="roadmap-search-input">Buscar Roadmap</label>
+        <input 
+            type="text" 
+            id="roadmap-search-input" 
+            placeholder="Digite uma tecnologia ou carreira..."
+            autocomplete="off"
+        >
+    </div>
+
+    <div class="filter-group">
+        <label class="filter-label" for="nivel-filter-roadmap">Nível</label>
+        <select id="nivel-filter-roadmap">
+            <option value="all">Todos os níveis</option>
+            <option value="Iniciante">Iniciante</option>
+            <option value="Intermediário">Intermediário</option>
+            <option value="Avançado">Avançado</option>
+        </select>
+    </div>
+
+    <div class="filter-group">
+        <label class="filter-label">&nbsp;</label>
+        <button id="compass-personalizar-btn" class="compass-recommend-btn">
+            <span class="material-icons-outlined">auto_awesome</span>
+            Personalizar com Compass IA
+        </button>
+    </div>
+</div>
+
+<!-- Seção de Recomendações da Compass -->
+<div id="compass-roadmaps-section" class="roadmaps-section" style="display: none;">
+    <div class="section-header">
+        <h3>🤖 Roadmaps Personalizados para Você</h3>
+        <span class="section-badge">Baseado no seu perfil</span>
+    </div>
+    <div id="compass-roadmaps-container"></div>
+    <div class="compass-explanation">
+        <p><strong>💡 Por que estes roadmaps?</strong> <span id="compass-roadmap-reasoning"></span></p>
+    </div>
+</div>
+
+<!-- Seção de Progresso Atual -->
+<div id="meu-progresso-section" class="roadmaps-section">
+    <div class="section-header">
+        <h3>📊 Meu Progresso</h3>
+        <span class="section-badge">Roadmaps em andamento</span>
+    </div>
+    <div id="meu-progresso-container"></div>
+</div>
+
+<!-- Seção de Todos os Roadmaps -->
+<div class="roadmaps-section">
+    <div class="section-header">
+        <h3>🗺️ Todos os Roadmaps</h3>
+        <span class="section-badge" id="roadmaps-count">12 trilhas disponíveis</span>
+    </div>
+    <div id="roadmaps-list-container"></div>
+</div>
+
+<!-- Estado Vazio -->
+<div id="empty-state" class="empty-state" style="display: none;">
+    <span class="material-icons-outlined">explore_off</span>
+    <h3>Nenhum roadmap encontrado</h3>
+    <p>Tente ajustar os filtros ou buscar por outras tecnologias</p>
+</div>
+
+<!-- Modal de Detalhes do Roadmap -->
+<div id="roadmap-detail-modal" class="modal-overlay">
+    <div class="modal-content roadmap-modal">
+        <div class="modal-header">
+            <h3 id="roadmap-detail-title">Título do Roadmap</h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        
+        <div class="roadmap-detail-header">
+            <div class="roadmap-detail-meta">
+                <div class="detail-meta-item">
+                    <span class="material-icons-outlined">category</span>
+                    <span id="roadmap-detail-area">Área</span>
+                </div>
+                <div class="detail-meta-item">
+                    <span class="material-icons-outlined">trending_up</span>
+                    <span id="roadmap-detail-nivel">Nível</span>
+                </div>
+                <div class="detail-meta-item">
+                    <span class="material-icons-outlined">schedule</span>
+                    <span id="roadmap-detail-duracao">Duração</span>
+                </div>
+                <div class="detail-meta-item">
+                    <span class="material-icons-outlined">star</span>
+                    <span id="roadmap-detail-rating">Avaliação</span>
+                </div>
+            </div>
+            
+            <div class="roadmap-progress-section">
+                <div class="progress-header">
+                    <span>Seu Progresso</span>
+                    <span id="roadmap-progress-percent">0%</span>
+                </div>
+                <div class="roadmap-progress-bar">
+                    <div class="roadmap-progress" id="roadmap-progress-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="roadmap-detail-content">
+            <div class="roadmap-description">
+                <h4>📖 Sobre este Roadmap</h4>
+                <p id="roadmap-detail-description"></p>
+            </div>
+
+            <div class="roadmap-steps-section">
+                <h4>🎯 Trilha de Estudos</h4>
+                <div id="roadmap-detail-steps"></div>
+            </div>
+
+            <div class="roadmap-actions">
+                <button id="iniciar-roadmap-btn" class="btn btn-primary">
+                    <span class="material-icons-outlined">play_arrow</span>
+                    Iniciar Roadmap
+                </button>
+                <button id="perguntar-compass-roadmap-btn" class="btn btn-secondary">
+                    <span class="material-icons-outlined">auto_awesome</span>
+                    Perguntar à Compass
+                </button>
+                <button id="favoritar-roadmap-btn" class="btn btn-secondary">
+                    <span class="material-icons-outlined">bookmark_border</span>
+                    Favoritar
+                </button>
+            </div>
+
+            <div id="compass-roadmap-response"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal da Compass IA -->
+<div id="compass-roadmap-modal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>
+                <span class="material-icons-outlined">psychology</span>
+                Compass IA - Análise Personalizada
+            </h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="compass-avatar">
+                <span class="material-icons-outlined">smart_toy</span>
+            </div>
+            <div class="compass-loading" id="compass-loading">
+                <div class="typing-animation">
+                    <span></span><span></span><span></span>
+                </div>
+                <p>Analisando seu perfil e objetivos de carreira...</p>
+            </div>
+            <div id="compass-result" style="display: none;">
+                <div class="compass-response-card">
+                    <h4>📊 Análise do Seu Perfil</h4>
+                    <div id="compass-profile-analysis"></div>
+                </div>
+                <div class="compass-response-card">
+                    <h4>🎯 Roadmaps Recomendados</h4>
+                    <div id="compass-recommended-roadmaps"></div>
+                </div>
+                <div class="compass-response-card">
+                    <h4>📈 Próximos Passos</h4>
+                    <div id="compass-next-steps"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

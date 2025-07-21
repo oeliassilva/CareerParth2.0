@@ -31,7 +31,7 @@ const subRoutes = {
     },
     'vagas': {
         template: '/templates/vagas.html',
-        script: '/js/pages/vagas-detalhe.js'
+        script: '/js/pages/vagas.js'
     },
     'projetos': {
         template: '/templates/projetos-detalhe.html',

@@ -1,29 +1,297 @@
-<!-- COMPASS.HTML CORRIGIDO - Adicionar ANTES do conteúdo existente -->
-
+<!-- Header azul moderno com gradiente - IGUAL AO DAS VAGAS -->
 <header class="page-header">
     <span class="material-icons-outlined">psychology</span>
     <span>Compass IA</span>
 </header>
 
-<!-- Mantém todo o conteúdo original do Compass -->
-<div class="compass-header">
-    <img src="/assets/images/compass-mascote.png" alt="Mascote Compass IA" class="compass-mascot">
-    <div>
-        <h2>Compass IA</h2>
-        <p>Sua IA de carreira, disponível 24/7 para te guiar rumo ao sucesso!</p>
+<!-- Container Principal -->
+<div class="container">
+    <!-- CONTENT HEADER MODERNIZADO - IGUAL AO DAS VAGAS -->
+    <div class="content-header">
+        <h1 class="content-title">Compass IA</h1>
+        <p class="content-subtitle">Sua IA de carreira, disponível 24/7 para te guiar rumo ao sucesso! O cérebro da CareerPath.</p>
+    </div>
+
+    <!-- Grid Principal do Compass -->
+    <div class="compass-main-grid">
+        
+        <!-- Seção Principal de Chat -->
+        <div class="compass-chat-section">
+            <div class="compass-header-card">
+                <div class="compass-mascot-container">
+                    <img src="/assets/images/compass-mascote.png" alt="Mascote Compass IA" class="compass-mascot">
+                    <div class="mascot-status online"></div>
+                </div>
+                <div class="compass-intro">
+                    <h2>Compass IA</h2>
+                    <p>Sua assistente inteligente de carreira</p>
+                    <div class="status-indicator">
+                        <span class="status-dot"></span>
+                        <span>Online e pronta para ajudar</span>
+                    </div>
+                </div>
+                <div class="compass-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Disponível</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Conhecimento</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Container Modernizado -->
+            <div class="compass-chat-container">
+                <div class="chat-header">
+                    <div class="chat-title">
+                        <span class="material-icons-outlined">chat</span>
+                        <span>Conversação</span>
+                    </div>
+                    <div class="chat-actions">
+                        <button class="chat-action-btn" id="clear-chat" title="Limpar conversa">
+                            <span class="material-icons-outlined">delete_sweep</span>
+                        </button>
+                        <button class="chat-action-btn" id="export-chat" title="Exportar conversa">
+                            <span class="material-icons-outlined">download</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="compass-chat-history" class="compass-chat-history">
+                    <!-- Mensagens aparecerão aqui -->
+                </div>
+                
+                <div class="chat-input-container">
+                    <form id="compass-chat-form" autocomplete="off">
+                        <div class="input-wrapper">
+                            <input type="text" id="compass-chat-input" placeholder="Pergunte qualquer coisa para a Compass IA..." autocomplete="off" required>
+                            <button type="button" id="voice-input" class="voice-btn" title="Comando de voz">
+                                <span class="material-icons-outlined">mic</span>
+                            </button>
+                        </div>
+                        <button type="submit" class="send-btn">
+                            <span class="material-icons-outlined">send</span>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Ações Rápidas Modernizadas -->
+                <div class="compass-quick-actions">
+                    <h4>Ações Rápidas</h4>
+                    <div class="quick-actions-grid">
+                        <button class="quick-action-btn" data-question="Quais vagas combinam com meu perfil atual?">
+                            <span class="material-icons-outlined">work</span>
+                            <span>Vagas Compatíveis</span>
+                        </button>
+                        <button class="quick-action-btn" data-question="Me dê uma dica personalizada de carreira">
+                            <span class="material-icons-outlined">trending_up</span>
+                            <span>Dicas de Carreira</span>
+                        </button>
+                        <button class="quick-action-btn" data-question="Quais cursos eu deveria fazer para evoluir?">
+                            <span class="material-icons-outlined">school</span>
+                            <span>Cursos Recomendados</span>
+                        </button>
+                        <button class="quick-action-btn" data-question="Analise meu perfil completo e me dê um feedback">
+                            <span class="material-icons-outlined">analytics</span>
+                            <span>Análise de Perfil</span>
+                        </button>
+                        <button class="quick-action-btn" data-question="Compass, o que eu sei sobre Python?">
+                            <span class="material-icons-outlined">code</span>
+                            <span>Conhecimento Python</span>
+                        </button>
+                        <button class="quick-action-btn" data-question="Como posso melhorar meu match com vagas?">
+                            <span class="material-icons-outlined">tune</span>
+                            <span>Melhorar Match</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar de Recursos -->
+        <div class="compass-sidebar">
+            <!-- Card de Funcionalidades -->
+            <div class="sidebar-card">
+                <h3>🧠 Funcionalidades da Compass IA</h3>
+                <ul class="features-list">
+                    <li>
+                        <span class="material-icons-outlined">work_outline</span>
+                        <div>
+                            <strong>Match de Vagas</strong>
+                            <small>Analisa compatibilidade com vagas</small>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="material-icons-outlined">trending_up</span>
+                        <div>
+                            <strong>Dicas de Carreira</strong>
+                            <small>Orientações personalizadas</small>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="material-icons-outlined">school</span>
+                        <div>
+                            <strong>Recomendação de Cursos</strong>
+                            <small>Baseado no seu perfil</small>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="material-icons-outlined">support_agent</span>
+                        <div>
+                            <strong>Professor 24/7</strong>
+                            <small>Tire dúvidas a qualquer hora</small>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="material-icons-outlined">psychology</span>
+                        <div>
+                            <strong>Segundo Cérebro</strong>
+                            <small>Acesso ao seu conhecimento</small>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Card de Estatísticas -->
+            <div class="sidebar-card">
+                <h3>📊 Suas Estatísticas</h3>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-value">85%</span>
+                        <span class="stat-label">Match Médio</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-value">12</span>
+                        <span class="stat-label">Skills Ativas</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-value">5</span>
+                        <span class="stat-label">Certificações</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-value">47</span>
+                        <span class="stat-label">Conversas IA</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card de Sugestões Inteligentes -->
+            <div class="sidebar-card">
+                <h3>💡 Sugestões Inteligentes</h3>
+                <div class="suggestions-list">
+                    <div class="suggestion-item">
+                        <span class="material-icons-outlined">lightbulb</span>
+                        <div>
+                            <strong>Aprenda React</strong>
+                            <small>85% das vagas pedem esta skill</small>
+                        </div>
+                    </div>
+                    <div class="suggestion-item">
+                        <span class="material-icons-outlined">certificate</span>
+                        <div>
+                            <strong>AWS Certification</strong>
+                            <small>Aumentaria seu match em 15%</small>
+                        </div>
+                    </div>
+                    <div class="suggestion-item">
+                        <span class="material-icons-outlined">code</span>
+                        <div>
+                            <strong>Projetos GitHub</strong>
+                            <small>Mostre suas habilidades</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card de Progresso -->
+            <div class="sidebar-card">
+                <h3>🎯 Sua Evolução</h3>
+                <div class="progress-items">
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>JavaScript</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>React</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>Python</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção de Exemplos de Perguntas -->
+    <div class="compass-examples-section">
+        <h3>💬 Exemplos de perguntas que você pode fazer:</h3>
+        <div class="examples-grid">
+            <div class="example-card" data-question="Analise a vaga de Desenvolvedor Front-End Jr. do Itaú e me diga como melhorar meu match">
+                <span class="material-icons-outlined">work</span>
+                <h4>Análise de Vaga</h4>
+                <p>"Analise a vaga de Dev Front-End Jr. do Itaú e me diga como melhorar meu match"</p>
+            </div>
+            <div class="example-card" data-question="Compass, me explique conceitos avançados de JavaScript que eu preciso saber">
+                <span class="material-icons-outlined">school</span>
+                <h4>Professor 24/7</h4>
+                <p>"Me explique conceitos avançados de JavaScript que eu preciso saber"</p>
+            </div>
+            <div class="example-card" data-question="Com base no meu perfil, qual seria a progressão ideal de carreira para os próximos 2 anos?">
+                <span class="material-icons-outlined">timeline</span>
+                <h4>Planejamento</h4>
+                <p>"Qual seria minha progressão ideal de carreira para os próximos 2 anos?"</p>
+            </div>
+            <div class="example-card" data-question="Compass, o que eu sei sobre Python? Mostre meu progresso e próximos passos">
+                <span class="material-icons-outlined">psychology</span>
+                <h4>Segundo Cérebro</h4>
+                <p>"O que eu sei sobre Python? Mostre meu progresso e próximos passos"</p>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="compass-chat-container">
-    <div id="compass-chat-history" class="compass-chat-history"></div>
-    <form id="compass-chat-form" autocomplete="off">
-        <input type="text" id="compass-chat-input" placeholder="Pergunte algo para a Compass IA..." autocomplete="off" required>
-        <button type="submit">Enviar</button>
-    </form>
-    <div class="compass-quick-actions">
-        <button data-question="Quais vagas combinam comigo?">Vagas com meu perfil</button>
-        <button data-question="Me dê uma dica de carreira">Dica de carreira</button>
-        <button data-question="Quais cursos eu deveria fazer?">Cursos recomendados</button>
-        <button data-question="Compass, o que eu sei sobre Python?">O que sei sobre Python?</button>
+<!-- Modal de Exportação -->
+<div id="export-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Exportar Conversa</h3>
+            <button class="modal-close" id="close-export-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>Escolha o formato para exportar sua conversa:</p>
+            <div class="export-options">
+                <button class="export-btn" data-format="txt">
+                    <span class="material-icons-outlined">description</span>
+                    <span>Texto (.txt)</span>
+                </button>
+                <button class="export-btn" data-format="pdf">
+                    <span class="material-icons-outlined">picture_as_pdf</span>
+                    <span>PDF (.pdf)</span>
+                </button>
+                <button class="export-btn" data-format="md">
+                    <span class="material-icons-outlined">code</span>
+                    <span>Markdown (.md)</span>
+                </button>
+            </div>
+        </div>
     </div>
 </div>

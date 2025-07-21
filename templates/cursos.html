@@ -1,36 +1,157 @@
-<header class="page-header">
-    <span class="material-icons-outlined">school</span>
-    <span>Cursos</span>
-</header>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos - CareerPath</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <!-- Incluir o CSS modernizado aqui -->
+</head>
+<body>
+    <!-- Header Modernizado -->
+    <header class="page-header">
+        <span class="material-icons-outlined">school</span>
+        <span>Cursos</span>
+    </header>
 
-<div class="cursos-filter-bar">
-    <select id="area-filter-select">
-        <option value="all">Todas as áreas</option>
-        <option value="Front-End">Front-End</option>
-        <option value="Back-End">Back-End</option>
-        <option value="Cloud">Cloud</option>
-        <option value="Dados">Dados</option>
-        <option value="DevOps">DevOps</option>
-    </select>
-    <input type="text" id="curso-search-input" placeholder="Buscar curso ou tecnologia...">
-</div>
-
-<div id="cursos-list-container"></div>
-
-<div id="curso-detail-view" style="display: none;">
-    <button id="back-to-cursos-btn">&larr; Voltar para a lista</button>
-    <div class="curso-detail-header">
-        <h2 id="curso-detail-title"></h2>
-        <p><span id="curso-detail-partner"></span> &bull; <span id="curso-detail-area"></span></p>
+    <!-- Content Header -->
+    <div class="content-header">
+        <h1 class="content-title">Explore Novos Conhecimentos</h1>
+        <p class="content-subtitle">
+            Aqui você encontra os melhores cursos dos nossos parceiros, organizados por área de atuação. 
+            Use a Compass IA para descobrir quais cursos se alinham perfeitamente ao seu perfil e objetivos de carreira.
+        </p>
     </div>
-    <div class="curso-detail-content">
-        <h3>Sobre o Curso</h3>
-        <p id="curso-detail-description"></p>
-        <h4>Habilidades abordadas</h4>
-        <ul id="curso-detail-skills"></ul>
-        <div class="curso-detail-actions">
-            <button id="perguntar-compass-btn">Perguntar à Compass IA</button>
+
+    <!-- Barra de Filtros Modernizada -->
+    <div class="cursos-filter-bar">
+        <div class="filter-group">
+            <label class="filter-label" for="area-filter-select">Área de Atuação</label>
+            <select id="area-filter-select">
+                <option value="all">Todas as áreas</option>
+                <option value="Front-End">Front-End</option>
+                <option value="Back-End">Back-End</option>
+                <option value="Full-Stack">Full-Stack</option>
+                <option value="Cloud">Cloud Computing</option>
+                <option value="Dados">Ciência de Dados</option>
+                <option value="DevOps">DevOps</option>
+                <option value="Mobile">Desenvolvimento Mobile</option>
+                <option value="IA">Inteligência Artificial</option>
+            </select>
         </div>
-        <div id="compass-curso-response" style="margin-top: 18px;"></div>
+        
+        <div class="filter-group" style="flex: 1;">
+            <label class="filter-label" for="curso-search-input">Buscar Curso</label>
+            <input 
+                type="text" 
+                id="curso-search-input" 
+                placeholder="Digite o nome do curso ou tecnologia..."
+                autocomplete="off"
+            >
+        </div>
+
+        <div class="filter-group">
+            <label class="filter-label">&nbsp;</label>
+            <button id="perguntar-recomendacoes-btn" class="compass-recommend-btn">
+                <span class="material-icons-outlined">auto_awesome</span>
+                Pedir Recomendações à Compass IA
+            </button>
+        </div>
     </div>
-</div>
+
+    <!-- Seção de Recomendações da Compass (aparece sob demanda) -->
+    <div id="compass-recomendacoes-section" class="cursos-section" style="display: none;">
+        <div class="section-header">
+            <h3>🤖 Recomendações da Compass IA</h3>
+            <span class="section-badge">Personalizado para você</span>
+        </div>
+        <div id="compass-recomendacoes-container"></div>
+        <div class="compass-explanation">
+            <p><strong>💡 Por que estes cursos?</strong> <span id="compass-reasoning"></span></p>
+        </div>
+    </div>
+
+    <!-- Seção de Todos os Cursos -->
+    <div class="cursos-section">
+        <div class="section-header">
+            <h3>📚 Todos os Cursos</h3>
+        </div>
+        <div id="cursos-list-container"></div>
+    </div>
+
+    <!-- Estado Vazio -->
+    <div id="empty-state" class="empty-state" style="display: none;">
+        <span class="material-icons-outlined">search_off</span>
+        <h3>Nenhum curso encontrado</h3>
+        <p>Tente ajustar os filtros ou buscar por outras tecnologias</p>
+    </div>
+
+    <!-- Detalhes do Curso -->
+    <div id="curso-detail-view" style="display: none;">
+        <button id="back-to-cursos-btn">
+            <span class="material-icons-outlined">arrow_back</span>
+            Voltar para a lista
+        </button>
+        
+        <div class="curso-detail-header">
+            <h2 id="curso-detail-title"></h2>
+            <div class="curso-detail-meta">
+                <div class="detail-meta-item">
+                    <span class="material-icons-outlined">business</span>
+                    <span id="curso-detail-partner"></span>
+                </div>
+                <div class="detail-meta-item">
+                    <span class="material-icons-outlined">category</span>
+                    <span id="curso-detail-area"></span>
+                </div>
+                <div class="detail-meta-item">
+                    <span class="material-icons-outlined">schedule</span>
+                    <span id="curso-detail-duration">40 horas</span>
+                </div>
+                <div class="detail-meta-item">
+                    <span class="material-icons-outlined">star</span>
+                    <span id="curso-detail-rating">4.8 (1.2k avaliações)</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="curso-detail-content">
+            <h3>📖 Sobre o Curso</h3>
+            <p id="curso-detail-description"></p>
+            
+            <h4>🎯 Habilidades que você vai desenvolver</h4>
+            <ul id="curso-detail-skills"></ul>
+            
+            <h4>📋 O que você vai aprender</h4>
+            <div id="curso-detail-modules">
+                <p>• Fundamentos e conceitos essenciais</p>
+                <p>• Projetos práticos hands-on</p>
+                <p>• Boas práticas da indústria</p>
+                <p>• Preparação para certificações</p>
+            </div>
+            
+            <div class="curso-detail-actions">
+                <button id="perguntar-compass-btn">
+                    Perguntar à Compass IA
+                </button>
+                <button class="curso-action-secondary" id="acessar-curso-btn">
+                    <span class="material-icons-outlined">open_in_new</span>
+                    Acessar Curso
+                </button>
+                <button class="curso-action-secondary" id="favoritar-curso-btn">
+                    <span class="material-icons-outlined">favorite_border</span>
+                    Favoritar
+                </button>
+            </div>
+            
+            <div id="compass-curso-response"></div>
+        </div>
+    </div>
+
+    <!-- Script do JavaScript modernizado -->
+    <script>
+        // Incluir aqui o JavaScript modernizado
+        console.log('Página de cursos carregada!');
+    </script>
+</body>
+</html>
