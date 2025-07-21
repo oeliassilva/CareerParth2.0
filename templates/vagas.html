@@ -1,144 +1,306 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vagas Recomendadas - CareerPath</title>
-    <link rel="stylesheet" href="css/pages/vagas.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <!-- TELA DE LISTAGEM DE VAGAS -->
-        <div id="vagas-list-view">
-            <!-- Header azul fixo (ADICIONADO) -->
-            <header class="page-header">
-                <span class="material-icons-outlined">work</span>
-                <span>Vagas</span>
-            </header>
+<!-- Header -->
+<header class="page-header">
+    <span class="material-icons-outlined">work</span>
+    <span>Vagas CareerPath</span>
+</header>
 
-            <!-- Header de conteúdo (mantido) -->
-            <div class="content-header">
-                <h1 class="content-title">Encontre sua Vaga</h1>
-                <p class="content-subtitle">Busque por cargo, empresa, tecnologia ou filtre por compatibilidade.</p>
-            </div>
+<!-- Content Header -->
+<div class="content-header">
+    <h1 class="content-title">Encontre sua Vaga Ideal</h1>
+    <p class="content-subtitle">
+        Vagas personalizadas com análise de compatibilidade da Compass IA. 
+        Descubra oportunidades que se alinham perfeitamente ao seu perfil e objetivos de carreira.
+    </p>
+</div>
 
-            <div class="filter-bar">
-                <input type="text" id="search-input" placeholder="Cargo, empresa ou tecnologia (ex: React)">
-                <select id="match-filter">
-                    <option value="0">Qualquer Match</option>
-                    <option value="75">Match > 75%</option>
-                    <option value="50">Match > 50%</option>
-                    <option value="25">Match > 25%</option>
-                </select>
-            </div>
+<!-- Filtros e Busca -->
+<div class="filter-bar">
+    <input type="text" id="search-input" placeholder="Cargo, empresa ou tecnologia (ex: React, JavaScript, Front-End)">
+    <select id="match-filter">
+        <option value="0">Qualquer Match</option>
+        <option value="75">Match > 75%</option>
+        <option value="50">Match > 50%</option>
+        <option value="25">Match > 25%</option>
+    </select>
+    <select id="area-filter">
+        <option value="all">Todas as áreas</option>
+        <option value="Front-End">Front-End</option>
+        <option value="Back-End">Back-End</option>
+        <option value="Full-Stack">Full-Stack</option>
+        <option value="Mobile">Mobile</option>
+        <option value="DevOps">DevOps</option>
+        <option value="Data">Data Science</option>
+    </select>
+    <button id="compass-analise-btn" class="compass-recommend-btn">
+        <span class="material-icons-outlined">auto_awesome</span>
+        Análise da Compass IA
+    </button>
+</div>
 
-            <div id="vagas-list-container">
-                <!-- Cards de vagas serão inseridos aqui pelo JavaScript -->
-            </div>
+<!-- Seção de Análise da Compass IA -->
+<div id="compass-vagas-section" class="vagas-section" style="display: none;">
+    <div class="section-header">
+        <h3>🤖 Análise Personalizada da Compass IA</h3>
+        <span class="section-badge">Baseado no seu perfil</span>
+    </div>
+    <div class="compass-analysis-grid">
+        <div class="compass-card profile-analysis">
+            <h4>📊 Análise do Seu Perfil</h4>
+            <div id="compass-profile-summary"></div>
         </div>
-
-        <!-- TELA DE DETALHES DA VAGA -->
-        <div id="vaga-detail-view" style="display: none;">
-            <!-- Header azul fixo (ADICIONADO) -->
-            <header class="page-header">
-                <span class="material-icons-outlined">work</span>
-                <span>Vagas</span>
-            </header>
-
-            <!-- Header de conteúdo (mantido) -->
-            <div class="content-header">
-                <div class="breadcrumb">
-                    <a href="#" class="breadcrumb-link" id="back-to-list-btn">← Voltar para Vagas</a>
-                    <span class="breadcrumb-separator"> > </span>
-                    <span class="breadcrumb-current">Detalhe da Vaga</span>
-                </div>
-                <h1 class="content-title" id="detail-job-title">Desenvolvedor(a) Front-End Júnior</h1>
-                <p class="content-subtitle">Análise de compatibilidade e plano de desenvolvimento</p>
-            </div>
-
-            <main class="job-details-grid">
-                <div class="job-primary-info">
-                    <div class="card">
-                        <div class="company-info">
-                            <img src="" alt="Logo da Empresa" class="company-logo" id="detail-company-logo">
-                            <div>
-                                <h2 class="company-name" id="detail-company-name">Itaú Unibanco</h2>
-                                <p class="company-location" id="detail-location">São Paulo, SP (Híbrido)</p>
-                            </div>
-                        </div>
-                        <div class="match-score">
-                            <div class="progress-circle" id="detail-progress-circle" data-percentage="85">
-                                <svg viewBox="0 0 120 120">
-                                    <circle cx="60" cy="60" r="54" class="bg-circle"/>
-                                    <circle cx="60" cy="60" r="54" class="progress-circle-fill"/>
-                                </svg>
-                                <div class="percentage-text">
-                                    <strong id="detail-percentage-text">85%</strong>
-                                    <span>Compatível</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="job-meta">
-                            <div class="meta-item">
-                                <span>Tipo:</span>
-                                <strong id="detail-contract">CLT</strong>
-                            </div>
-                            <div class="meta-item">
-                                <span>Modelo:</span>
-                                <strong id="detail-model">Híbrido</strong>
-                            </div>
-                            <div class="meta-item">
-                                <span>Salário:</span>
-                                <strong id="detail-salary">R$ 5.500</strong>
-                            </div>
-                        </div>
-                        <a href="#" class="cta-button">Candidatar-se Agora</a>
-                    </div>
-
-                    <div class="card">
-                        <h3 class="card-title">Descrição da Vaga</h3>
-                        <p class="job-description" id="detail-description">
-                            Faça parte do time de tecnologia do maior banco da América Latina! Buscamos uma pessoa desenvolvedora Front-End Júnior para criar interfaces intuitivas e acessíveis para nossos produtos digitais.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="job-skills-analysis">
-                    <div class="card">
-                        <h3 class="card-title">Análise de Perfil vs. Vaga</h3>
-                        <p class="card-subtitle">Veja os pontos de sinergia e as oportunidades de desenvolvimento para um match perfeito.</p>
-
-                        <div class="skills-section">
-                            <h4>Habilidades Compatíveis</h4>
-                            <div class="skills-list" id="detail-matching-skills">
-                                <!-- Skills compatíveis serão inseridas aqui -->
-                            </div>
-                        </div>
-
-                        <div class="skills-section">
-                            <h4>Habilidades a Desenvolver (Gaps)</h4>
-                            <div class="skills-list" id="detail-gap-skills">
-                                <!-- Skills em falta serão inseridas aqui -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h3 class="card-title">Plano de Desenvolvimento Sugerido</h3>
-                        <p class="card-subtitle">Invista nestas competências para se tornar um candidato ainda mais forte.</p>
-
-                        <div class="course-list" id="detail-course-list">
-                            <!-- Cursos recomendados serão inseridos aqui -->
-                        </div>
-                    </div>
-                </div>
-            </main>
+        <div class="compass-card market-insights">
+            <h4>📈 Insights do Mercado</h4>
+            <div id="compass-market-analysis"></div>
         </div>
     </div>
+    <div class="compass-recommendations">
+        <h4>🎯 Vagas Recomendadas para Você</h4>
+        <div id="compass-vagas-container"></div>
+    </div>
+    <div class="compass-explanation">
+        <p><strong>💡 Por que estas vagas?</strong> <span id="compass-vagas-reasoning"></span></p>
+    </div>
+</div>
 
-    <script src="js/pages/vagas.js"></script>
-</body>
-</html>
+<!-- Estatísticas Rápidas -->
+<div class="quick-stats">
+    <div class="stat-card">
+        <div class="stat-icon">💼</div>
+        <div class="stat-content">
+            <div class="stat-number" id="total-vagas">--</div>
+            <div class="stat-label">Vagas Disponíveis</div>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon">🎯</div>
+        <div class="stat-content">
+            <div class="stat-number" id="high-match-count">--</div>
+            <div class="stat-label">Alto Match (75%+)</div>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon">🚀</div>
+        <div class="stat-content">
+            <div class="stat-number" id="recommended-count">--</div>
+            <div class="stat-label">Recomendadas</div>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon">💰</div>
+        <div class="stat-content">
+            <div class="stat-number" id="avg-salary">--</div>
+            <div class="stat-label">Salário Médio</div>
+        </div>
+    </div>
+</div>
+
+<!-- Feed de Vagas -->
+<div id="vagas-list-container">
+    <!-- Cards de vagas serão inseridos aqui pelo JavaScript -->
+</div>
+
+<!-- Estado Vazio -->
+<div id="empty-state" class="empty-state" style="display: none;">
+    <span class="material-icons-outlined">search_off</span>
+    <h3>Nenhuma vaga encontrada</h3>
+    <p>Tente ajustar os filtros ou buscar por outros termos. Novas vagas são adicionadas diariamente!</p>
+</div>
+
+<!-- Modal de Detalhes da Vaga -->
+<div id="vaga-detail-modal" class="modal-overlay">
+    <div class="modal-content vaga-modal">
+        <div class="modal-header">
+            <h3 id="detail-job-title">Título da Vaga</h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        
+        <div class="job-details-grid">
+            <div class="job-primary-info">
+                <div class="card">
+                    <div class="company-info">
+                        <img src="" alt="Logo da Empresa" class="company-logo" id="detail-company-logo">
+                        <div>
+                            <h2 class="company-name" id="detail-company-name">Nome da Empresa</h2>
+                            <p class="company-location" id="detail-location">Localização</p>
+                        </div>
+                    </div>
+                    
+                    <div class="match-score">
+                        <div class="progress-circle" id="detail-progress-circle" data-percentage="0">
+                            <svg viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="54" class="bg-circle"/>
+                                <circle cx="60" cy="60" r="54" class="progress-circle-fill"/>
+                            </svg>
+                            <div class="percentage-text">
+                                <strong id="detail-percentage-text">0%</strong>
+                                <span>Compatível</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="job-meta">
+                        <div class="meta-item">
+                            <span>Tipo:</span>
+                            <strong id="detail-contract">--</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span>Modelo:</span>
+                            <strong id="detail-model">--</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span>Salário:</span>
+                            <strong id="detail-salary">--</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="job-actions">
+                        <button class="cta-button primary">
+                            <span class="material-icons-outlined">send</span>
+                            Candidatar-se Agora
+                        </button>
+                        <button class="cta-button secondary" id="perguntar-compass-vaga-btn">
+                            <span class="material-icons-outlined">auto_awesome</span>
+                            Perguntar à Compass
+                        </button>
+                        <button class="cta-button secondary" id="favoritar-vaga-btn">
+                            <span class="material-icons-outlined">bookmark_border</span>
+                            Favoritar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">📝 Descrição da Vaga</h3>
+                    <p class="job-description" id="detail-description">
+                        Descrição da vaga aparecerá aqui...
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">🔧 Tecnologias Necessárias</h3>
+                    <div class="tech-list" id="detail-tech-list">
+                        <!-- Tecnologias serão inseridas aqui -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="job-skills-analysis">
+                <div class="card">
+                    <h3 class="card-title">📊 Análise de Compatibilidade</h3>
+                    <p class="card-subtitle">Veja os pontos de sinergia e as oportunidades de desenvolvimento</p>
+
+                    <div class="compatibility-overview">
+                        <div class="compatibility-item">
+                            <div class="compatibility-icon match">✅</div>
+                            <div class="compatibility-content">
+                                <h5>Habilidades Compatíveis</h5>
+                                <span id="matching-skills-count">0 skills</span>
+                            </div>
+                        </div>
+                        <div class="compatibility-item">
+                            <div class="compatibility-icon gap">⚠️</div>
+                            <div class="compatibility-content">
+                                <h5>Gaps a Desenvolver</h5>
+                                <span id="gap-skills-count">0 skills</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-section">
+                        <h4>✅ Habilidades Compatíveis</h4>
+                        <div class="skills-list" id="detail-matching-skills">
+                            <!-- Skills compatíveis serão inseridas aqui -->
+                        </div>
+                    </div>
+
+                    <div class="skills-section">
+                        <h4>⚠️ Habilidades a Desenvolver</h4>
+                        <div class="skills-list" id="detail-gap-skills">
+                            <!-- Skills em falta serão inseridas aqui -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">📚 Plano de Desenvolvimento</h3>
+                    <p class="card-subtitle">Roadmap personalizado para esta vaga</p>
+
+                    <div class="development-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">🎯</div>
+                            <div class="timeline-content">
+                                <h5>Foco Imediato (1-2 semanas)</h5>
+                                <div id="immediate-focus"></div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">📈</div>
+                            <div class="timeline-content">
+                                <h5>Desenvolvimento (1-2 meses)</h5>
+                                <div id="medium-term-dev"></div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">🚀</div>
+                            <div class="timeline-content">
+                                <h5>Aperfeiçoamento (3+ meses)</h5>
+                                <div id="long-term-goals"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">🎓 Cursos Recomendados</h3>
+                    <div class="course-list" id="detail-course-list">
+                        <!-- Cursos recomendados serão inseridos aqui -->
+                    </div>
+                </div>
+
+                <div id="compass-vaga-response"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal da Compass IA para Análise Global -->
+<div id="compass-global-modal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>
+                <span class="material-icons-outlined">psychology</span>
+                Compass IA - Análise de Carreira
+            </h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="compass-avatar">
+                <span class="material-icons-outlined">smart_toy</span>
+            </div>
+            <div class="compass-loading" id="compass-loading">
+                <div class="typing-animation">
+                    <span></span><span></span><span></span>
+                </div>
+                <p>Analisando o mercado de trabalho e seu perfil...</p>
+            </div>
+            <div id="compass-global-result" style="display: none;">
+                <div class="compass-response-card">
+                    <h4>🎯 Posicionamento no Mercado</h4>
+                    <div id="compass-market-position"></div>
+                </div>
+                <div class="compass-response-card">
+                    <h4>💼 Vagas Ideais para Você</h4>
+                    <div id="compass-ideal-jobs"></div>
+                </div>
+                <div class="compass-response-card">
+                    <h4>📈 Estratégia de Carreira</h4>
+                    <div id="compass-career-strategy"></div>
+                </div>
+                <div class="compass-response-card">
+                    <h4>🎓 Investimentos em Aprendizado</h4>
+                    <div id="compass-learning-investments"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
