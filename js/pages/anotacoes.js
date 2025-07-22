@@ -201,6 +201,11 @@ class BrainSystem {
             if (e.target.closest('#compass-brain-analyze')) {
                 this.startBrainAnalysis();
             }
+
+              // Compass IA - Fechar Análise
+            if (e.target.closest('#close-compass-analysis')) {
+                this.closeCompassAnalysis();
+            }
             
             // Botão de chat do cérebro
             if (e.target.closest('#compass-brain-chat')) {
@@ -213,17 +218,101 @@ class BrainSystem {
                 this.switchAnalysisTab(tab.dataset.tab);
             }
             
-            // Botão de nota com IA
-            if (e.target.closest('.ai-note-btn')) {
-                this.createAINote();
+     // AI Note Modal - Chips de sugestão
+            if (e.target.closest('.chip-btn')) {
+                const topic = e.target.closest('.chip-btn').dataset.topic;
+                const input = document.getElementById('ai-note-topic');
+                if (input) input.value = topic;
             }
             
+                // Fechar Modais
+            if (e.target.matches('.modal-close') || (e.target.matches('.modal') && !e.target.closest('.modal-content'))) {
+                this.closeModal();
+            }
+
+
             // Sugestões do chat
             if (e.target.closest('.suggestion-btn')) {
                 const suggestion = e.target.textContent.trim();
                 this.sendQuickMessage(suggestion);
             }
         });
+    }
+
+        setupGlobalFunctions() {
+        window.createNewNote = () => this.createNewNote();
+        window.createAINote = () => this.openAINoteModal();
+        window.analyzeKnowledge = () => this.startBrainAnalysis();
+        window.openTaskManager = () => this.navigateToPlugin('#anotacoes/tarefas');
+        window.startStudySession = () => this.navigateToPlugin('#anotacoes/tracker-ciclo');
+        window.askCompassIA = () => this.openAIChat();
+        window.closeAINoteModal = () => this.closeModal();
+        window.brainSystem = this;
+    }
+
+    setupInitialState() {
+        // Pastas começam recolhidas
+        document.querySelectorAll('.folder-header').forEach(header => {
+            header.classList.add('collapsed');
+            const notesList = header.parentElement.querySelector('.notes-in-folder');
+            if (notesList) notesList.classList.add('collapsed');
+            const toggle = header.querySelector('.folder-toggle');
+            if (toggle) toggle.style.transform = 'rotate(-90deg)';
+        });
+
+        // Sidebar começa expandida
+        const sidebar = document.getElementById('plugins-sidebar');
+        if (sidebar) sidebar.classList.remove('collapsed');
+    }
+
+    loadDefaultScreen() {
+        const hash = window.location.hash;
+        if (hash && hash.includes('/editor')) {
+            this.loadMarkdownEditor();
+        } else {
+            this.showWelcomeScreen();
+        }
+    }
+
+    // === SIDEBAR ===
+    toggleSidebar() {
+        const sidebar = document.getElementById('plugins-sidebar');
+        const toggleBtn = document.getElementById('sidebar-toggle-btn');
+        const floatingBtn = document.getElementById('sidebar-toggle-floating');
+        
+        if (sidebar) {
+            sidebar.classList.toggle('collapsed');
+            const isCollapsed = sidebar.classList.contains('collapsed');
+            
+            // Mostrar/ocultar botão flutuante
+            if (floatingBtn) {
+                floatingBtn.style.display = isCollapsed ? 'flex' : 'none';
+            }
+            
+            // Mudar ícone do botão principal
+            if (toggleBtn) {
+                const icon = toggleBtn.querySelector('.material-icons-outlined');
+                if (icon) {
+                    icon.textContent = isCollapsed ? 'chevron_right' : 'chevron_left';
+                }
+            }
+            
+            localStorage.setItem('sidebar_collapsed', isCollapsed);
+            this.showNotification(isCollapsed ? '📱 Menu oculto' : '📋 Menu visível', 'info');
+        }
+    }
+
+    toggleFolder(folderHeader) {
+        const notesList = folderHeader.parentElement.querySelector('.notes-in-folder');
+        const toggleIcon = folderHeader.querySelector('.folder-toggle');
+        
+        folderHeader.classList.toggle('collapsed');
+        if (notesList) notesList.classList.toggle('collapsed');
+        
+        if (toggleIcon) {
+            const isCollapsed = folderHeader.classList.contains('collapsed');
+            toggleIcon.style.transform = isCollapsed ? 'rotate(-90deg)' : 'rotate(0deg)';
+        }
     }
 
     // NOVA FUNÇÃO: Popular insights iniciais
@@ -255,6 +344,25 @@ class BrainSystem {
         }
         
         this.showNotification('🧠 Análise do segundo cérebro iniciada!', 'success');
+    }
+
+        closeCompassAnalysis() {
+        console.log('📊 Fechando análise...');
+        
+        const compassContent = document.getElementById('compass-brain-content');
+        if (compassContent) {
+            compassContent.style.transition = 'all 0.3s ease';
+            compassContent.style.opacity = '0';
+            compassContent.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                compassContent.style.display = 'none';
+                compassContent.style.opacity = '1';
+                compassContent.style.transform = 'translateY(0)';
+            }, 300);
+        }
+        
+        this.showNotification('📊 Análise fechada', 'info');
     }
 
     // NOVA FUNÇÃO: Simular análise
@@ -300,32 +408,94 @@ class BrainSystem {
         }
     }
 
-    // NOVA FUNÇÃO: Popular insights do cérebro
-    populateBrainInsights() {
-        const knowledgeMap = document.getElementById('knowledge-map-analysis');
-        if (knowledgeMap) {
-            knowledgeMap.innerHTML = `
-                <div class="analysis-item">
-                    <strong>Domínios:</strong> 3 áreas principais com 47 notas
-                </div>
-                <div class="analysis-item">
-                    <strong>Cloud:</strong> 92% de domínio (área forte)
-                </div>
-            `;
-        }
+// CÓDIGO EDITADO PARA O PERFIL FRONT-END
 
-        const learningPatterns = document.getElementById('learning-patterns-analysis');
-        if (learningPatterns) {
-            learningPatterns.innerHTML = `
-                <div class="analysis-item">
-                    <strong>Horário ótimo:</strong> 14h-18h
-                </div>
-                <div class="analysis-item">
-                    <strong>Duração ideal:</strong> 45min
-                </div>
-            `;
-        }
+populateBrainInsights() {
+    // 1. Mapa de Conhecimento (-- EDITADO --)
+    // Adaptado para refletir as habilidades de front-end do usuário.
+    const knowledgeMap = document.getElementById('knowledge-map-analysis');
+    if (knowledgeMap) {
+        knowledgeMap.innerHTML = `
+            <div class="analysis-item">
+                <strong><span class="material-icons-outlined" style="font-size: 1rem; vertical-align: middle;">code</span> Front-End (HTML/CSS/JS):</strong> 83% de domínio (base sólida)
+            </div>
+            <div class="analysis-item">
+                <strong><span class="material-icons-outlined" style="font-size: 1rem; vertical-align: middle;">build_circle</span> Ferramentas (Git/GitHub):</strong> 76% de domínio (ótimo controle)
+            </div>
+            <div class="analysis-item">
+                <strong><span class="material-icons-outlined" style="font-size: 1rem; vertical-align: middle;">layers</span> React:</strong> 68% de domínio (principal área para foco)
+            </div>
+            <div class="analysis-item">
+                <strong><span class="material-icons-outlined" style="font-size: 1rem; vertical-align: middle;">dns</span> Back-End (Node.js):</strong> 62% de domínio (conhecimento complementar)
+            </div>
+        `;
     }
+
+    // 2. Padrões de Aprendizado (Mantido)
+    // Essas informações são pessoais e continuam válidas.
+    const learningPatterns = document.getElementById('learning-patterns-analysis');
+    if (learningPatterns) {
+        learningPatterns.innerHTML = `
+            <div class="analysis-item">
+                <strong>Horário ótimo:</strong> 14h-18h (82% de produtividade)
+            </div>
+            <div class="analysis-item">
+                <strong>Duração ideal:</strong> 45min por sessão
+            </div>
+            <div class="analysis-item">
+                <strong>Padrão semanal:</strong> Terças e quintas são seus dias mais produtivos
+            </div>
+            <div class="analysis-item">
+                <strong>Técnica preferida:</strong> Pomodoro + anotações markdown
+            </div>
+        `;
+    }
+
+    // 3. Otimização de Estudos (Mantido)
+    // Dicas de estudo genéricas que ainda se aplicam.
+    const studyOptimization = document.getElementById('study-optimization-analysis');
+    if (studyOptimization) {
+        studyOptimization.innerHTML = `
+            <div class="analysis-item">
+                <strong><span class="material-icons-outlined" style="font-size: 1rem; vertical-align: middle;">timer</span> Técnica Pomodoro:</strong> Use intervalos de 25min com pausas de 5min
+            </div>
+            <div class="analysis-item">
+                <strong><span class="material-icons-outlined" style="font-size: 1rem; vertical-align: middle;">update</span> Revisão Espaçada:</strong> Revise em 1 dia, 1 semana, 1 mês
+            </div>
+            <div class="analysis-item">
+                <strong><span class="material-icons-outlined" style="font-size: 1rem; vertical-align: middle;">model_training</span> Prática Ativa:</strong> 70% teoria + 30% hands-on
+            </div>
+            <div class="analysis-item">
+                <strong><span class="material-icons-outlined" style="font-size: 1rem; vertical-align: middle;">lightbulb</span> Ambiente Ideal:</strong> Local silencioso, sem distrações
+            </div>
+        `;
+    }
+
+    // 4. Próximos Tópicos (-- EDITADO --)
+    // Recomendações totalmente novas e focadas na carreira de front-end.
+    const nextTopics = document.getElementById('next-topics-analysis');
+    if (nextTopics) {
+        nextTopics.innerHTML = `
+            <div class="analysis-item">
+                <strong>🔥 URGENTE:</strong> Dominar Ecossistema React (Estado com Redux/Zustand, Testes com Jest)
+            </div>
+            <div class="analysis-item">
+                <strong>⚡ ALTA PRIORIDADE:</strong> Aprofundar em TypeScript e Acessibilidade (a11y)
+            </div>
+            <div class="analysis-item">
+                <strong>🎯 IMPORTANTE:</strong> Explorar Storybook para criação de catálogos de componentes de UI
+            </div>
+            <div class="analysis-item">
+                <strong>🚀 EVOLUÇÃO:</strong> Implementar um Pipeline de CI/CD para Front-end com GitHub Actions
+            </div>
+            <div class="analysis-item">
+                <strong>💎 DIFERENCIAL:</strong> Aprender GraphQL com Apollo Client para consumo de APIs
+            </div>
+        `;
+    }
+    
+    console.log('✅ Análises do Compass IA populadas com recomendações para Front-End!');
+}
 
     // NOVA FUNÇÃO: Alternar tabs
     switchAnalysisTab(tabName) {
@@ -1346,7 +1516,7 @@ Conteúdo da seção...`;
                     <span class="material-icons-outlined">smart_toy</span>
                 </div>
                 <div class="message-content">
-                    <div class="message-text">Entendi! Com base no seu perfil, posso ajudar com sugestões personalizadas. Em breve terei funcionalidades completas!</div>
+                    <div class="message-text">Olá Steve! Ainda estou sendo implementada pela CareerPath. Em breve terei funcionalidades completas!</div>
                 </div>
             `;
             messages.appendChild(aiResponse);

@@ -4,6 +4,11 @@
     <span>Segundo Cérebro</span>
 </header>
 
+<!-- Toggle do Menu - POSIÇÃO CORRIGIDA -->
+<button class="menu-toggle" id="menu-toggle">
+    <span class="material-icons-outlined">menu</span>
+</button>
+
 <!-- Container Principal do Sistema -->
 <div class="container">
     <!-- CONTENT HEADER MODERNIZADO - IGUAL AO DAS VAGAS -->
@@ -66,7 +71,7 @@
     <div class="brain-system-container">
         
         <!-- Sidebar de Plugins -->
-        <aside class="plugins-sidebar">
+        <aside class="plugins-sidebar" id="plugins-sidebar">
             <div class="plugins-header">
                 <h4>Meu Segundo Cérebro</h4>
                 <button class="plugin-manager-btn" id="plugin-manager-btn" title="Gerenciar Plugins">
@@ -80,12 +85,12 @@
                 <div class="notes-tree">
                     <!-- Pasta Cloud -->
                     <div class="folder-item">
-                        <div class="folder-header" data-folder="cloud">
+                        <div class="folder-header collapsed" data-folder="cloud">
                             <span class="folder-icon material-icons-outlined">folder</span>
                             <span class="folder-name">Cloud</span>
                             <span class="folder-toggle material-icons-outlined">expand_more</span>
                         </div>
-                        <ul class="notes-in-folder expanded">
+                        <ul class="notes-in-folder collapsed">
                             <li class="note-item">
                                 <a href="#anotacoes/editor/aws-fundamentos">
                                     <span class="note-icon material-icons-outlined">description</span>
@@ -109,12 +114,12 @@
 
                     <!-- Pasta Back-End -->
                     <div class="folder-item">
-                        <div class="folder-header" data-folder="backend">
+                        <div class="folder-header collapsed" data-folder="backend">
                             <span class="folder-icon material-icons-outlined">folder</span>
                             <span class="folder-name">Back-End</span>
                             <span class="folder-toggle material-icons-outlined">expand_more</span>
                         </div>
-                        <ul class="notes-in-folder expanded">
+                        <ul class="notes-in-folder collapsed">
                             <li class="note-item">
                                 <a href="#anotacoes/editor/nodejs-express">
                                     <span class="note-icon material-icons-outlined">description</span>
@@ -138,12 +143,12 @@
 
                     <!-- Pasta Dados e IA -->
                     <div class="folder-item">
-                        <div class="folder-header" data-folder="dados-ia">
+                        <div class="folder-header collapsed" data-folder="dados-ia">
                             <span class="folder-icon material-icons-outlined">folder</span>
                             <span class="folder-name">Dados e IA</span>
                             <span class="folder-toggle material-icons-outlined">expand_more</span>
                         </div>
-                        <ul class="notes-in-folder expanded">
+                        <ul class="notes-in-folder collapsed">
                             <li class="note-item">
                                 <a href="#anotacoes/editor/python-pandas">
                                     <span class="note-icon material-icons-outlined">description</span>
