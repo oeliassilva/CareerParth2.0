@@ -35,6 +35,12 @@
         </div>
         
         <div class="compass-content" id="compass-brain-content" style="display: none;">
+            <div class="compass-content-header">
+                <h4>📊 Análise do Seu Conhecimento</h4>
+                <button class="close-compass-btn" id="close-compass-analysis">
+                    <span class="material-icons-outlined">close</span>
+                </button>
+            </div>
             <div class="brain-insights-grid">
                 <div class="insight-card knowledge-map">
                     <h4>🧠 Mapa de Conhecimento</h4>
@@ -379,84 +385,6 @@
                 </div>
             </div>
         </main>
-    </div>
-</div>
-
-<!-- Modal Compass IA - Análise Global -->
-<div id="compass-brain-modal" class="modal-overlay">
-    <div class="modal-content compass-modal large-modal">
-        <div class="modal-header">
-            <h3>
-                <span class="material-icons-outlined">psychology</span>
-                Compass IA - Análise Completa do Segundo Cérebro
-            </h3>
-            <button class="modal-close">&times;</button>
-        </div>
-        <div class="modal-body">
-            <div class="compass-avatar">
-                <span class="material-icons-outlined">smart_toy</span>
-            </div>
-            <div class="compass-loading" id="compass-brain-loading">
-                <div class="typing-animation">
-                    <span></span><span></span><span></span>
-                </div>
-                <p>Analisando seu segundo cérebro e padrões de conhecimento...</p>
-            </div>
-            <div id="compass-brain-result" style="display: none;">
-                <div class="analysis-tabs">
-                    <button class="analysis-tab active" data-tab="overview">Visão Geral</button>
-                    <button class="analysis-tab" data-tab="knowledge">Mapa de Conhecimento</button>
-                    <button class="analysis-tab" data-tab="patterns">Padrões</button>
-                    <button class="analysis-tab" data-tab="recommendations">Recomendações</button>
-                </div>
-                
-                <div class="tab-content-area">
-                    <div class="tab-panel active" id="overview-panel">
-                        <div class="compass-response-card">
-                            <h4>📊 Status Geral do Conhecimento</h4>
-                            <div id="compass-knowledge-status"></div>
-                        </div>
-                        <div class="compass-response-card">
-                            <h4>🎯 Áreas de Foco</h4>
-                            <div id="compass-focus-areas"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-panel" id="knowledge-panel">
-                        <div class="compass-response-card">
-                            <h4>🗺️ Mapa de Conhecimento</h4>
-                            <div id="compass-knowledge-map"></div>
-                        </div>
-                        <div class="compass-response-card">
-                            <h4>🔗 Conexões de Tópicos</h4>
-                            <div id="compass-topic-connections"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-panel" id="patterns-panel">
-                        <div class="compass-response-card">
-                            <h4>📈 Padrões de Estudo</h4>
-                            <div id="compass-study-patterns"></div>
-                        </div>
-                        <div class="compass-response-card">
-                            <h4>⏰ Horários Otimais</h4>
-                            <div id="compass-optimal-times"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-panel" id="recommendations-panel">
-                        <div class="compass-response-card">
-                            <h4>🎓 Próximos Tópicos</h4>
-                            <div id="compass-next-topics"></div>
-                        </div>
-                        <div class="compass-response-card">
-                            <h4>⚡ Otimizações</h4>
-                            <div id="compass-optimizations"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
