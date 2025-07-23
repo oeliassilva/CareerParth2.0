@@ -45,7 +45,7 @@ class ComunidadeManager {
                 nivel: "Intermediário",
                 tags: ["React", "JWT", "Autenticação", "JavaScript"],
                 autor: {
-                    nome: "Elias Silva",
+                    nome: "Steve Jobs",
                     avatar: "/assets/images/perfil-elias-silva.png",
                     nivel: "Júnior"
                 },
@@ -60,7 +60,7 @@ class ComunidadeManager {
                     {
                         autor: {
                             nome: "Ana Souza",
-                            avatar: "/assets/images/avatar-ana.png"
+                            avatar: "/assets/images/ana-souza.jpg"
                         },
                         conteudo: "Recomendo usar React Context para gerenciar o estado de autenticação. Para armazenar o token, você pode usar localStorage ou sessionStorage dependendo se quer manter a sessão após fechar o browser.",
                         tempo: "há 1 hora"
@@ -68,7 +68,7 @@ class ComunidadeManager {
                     {
                         autor: {
                             nome: "Carlos Lima",
-                            avatar: "/assets/images/avatar-carlos.png"
+                            avatar: "/assets/images/avatar-carlos.jpg"
                         },
                         conteudo: "Cuidado com localStorage para tokens sensíveis. Uma alternativa mais segura é usar httpOnly cookies. Dá uma olhada na biblioteca 'react-query' para gerenciar o estado das requisições autenticadas.",
                         tempo: "há 45 min"
@@ -84,7 +84,7 @@ class ComunidadeManager {
                 tags: ["AWS", "Certificação", "Cloud", "Estudos"],
                 autor: {
                     nome: "Maria Paula",
-                    avatar: "/assets/images/avatar-maria.png",
+                    avatar: "/assets/images/maria-paula.jpg",
                     nivel: "Pleno"
                 },
                 tempo: "há 4 horas",
@@ -131,7 +131,7 @@ class ComunidadeManager {
                     {
                         autor: {
                             nome: "Fernanda Costa",
-                            avatar: "/assets/images/avatar-fernanda.png"
+                            avatar: "/assets/images/avatar-fernanda.jpg"
                         },
                         conteudo: "Fiz uma transição similar! Minha dica: monte um portfólio sólido no GitHub com pelo menos 3-4 projetos bem documentados. Sua experiência em suporte é valiosa - você entende o usuário final!",
                         tempo: "há 3 horas"

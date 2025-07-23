@@ -14,23 +14,282 @@ class BrainSystem {
         
         this.init();
     }
+        debugPlugins() {
+        console.log('🔍 === DEBUG DOS PLUGINS ===');
+        console.log('Total de plugins registrados:', this.plugins.size);
+        
+        this.plugins.forEach((plugin, key) => {
+            console.log(`Plugin: ${key}`, {
+                name: plugin.name,
+                active: plugin.active,
+                template: plugin.template,
+                hasInit: !!plugin.init
+            });
+        });
+        
+        console.log('🔍 === FIM DEBUG ===');
+    }
 
-    async init() {
-        console.log('🧠 Inicializando Sistema Segundo Cérebro Modernizado...');
+        async init() {
+            console.log('🧠 Inicializando Sistema Segundo Cérebro Modernizado...');
+            
+            this.setupModernHeader();
+            this.setupContainer();
+            this.setupEventListeners();
+            this.registerDefaultPlugins();
+            
+            // CHAMADA INICIAL PARA RENDERIZAR AS NOTAS
+            this.renderSidebarNotes(); 
+            
+            this.loadDefaultPlugin();
+            this.setupModernAnimations();
+            
+            setTimeout(() => { this.initCompassIA(); }, 1000);
+            
+            console.log('✅ Sistema Segundo Cérebro Modernizado inicializado!');
+            // ADICIONE ESTA LINHA DE DEBUG:
+            this.debugPlugins();
+        }
+
+        // anotacoes.js -> COLE ESTE BLOCO DENTRO DA CLASSE BrainSystem
+
+    // ==========================================================
+    // SEÇÃO DE UTILITÁRIOS (RECUPERADA DA VERSÃO ANTIGA)
+    // ==========================================================
+
+    loadData(key) {
+        try {
+            const data = localStorage.getItem(key);
+            return data ? JSON.parse(data) : null;
+        } catch (error) {
+            console.error(`Erro ao carregar dados da chave ${key}:`, error);
+            return null;
+        }
+    }
+
+    saveData(key, data) {
+        try {
+            localStorage.setItem(key, JSON.stringify(data));
+        } catch (error) {
+            console.error(`Erro ao salvar dados da chave ${key}:`, error);
+        }
+    }
+
+    formatTime(totalSeconds) {
+        if (isNaN(totalSeconds) || totalSeconds < 0) return "00:00:00";
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+        return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    getLocalDateString(date = new Date()) {
+        return date.toISOString().split('T')[0];
+    }
+
+    showConfirmModal(title, message, onConfirm) {
+        // Usando o confirm nativo do navegador como na versão antiga
+        if (window.confirm(`${title}\n${message}`)) {
+            if (onConfirm && typeof onConfirm === 'function') {
+                onConfirm();
+            }
+        }
+    }
+
+    navigateToHome() {
+    // Limpa a hash da URL
+    window.location.hash = '#anotacoes';
+    
+    // Mostra a welcome screen
+    this.showWelcomeScreen();
+    
+    // Remove indicadores ativos
+    this.updateActivePlugin(null);
+    this.updateActiveNote();
+    
+    // Notificação
+    this.showNotification('🏠 Página inicial carregada', 'info');
+}
+    // anotações.js -> Dentro da classe BrainSystem
+
+    // ==========================================================
+    // FUNÇÃO PARA RENDERIZAR AS NOTAS NA SIDEBAR DINAMICAMENTE
+    // ==========================================================
+    renderSidebarNotes() {
+        console.log('🔄 Renderizando notas na sidebar...');
+        const notesTree = document.querySelector('.notes-tree');
+        if (!notesTree) return;
+
+        // Obter todas as notas existentes
+        const allNoteSlugs = Object.keys(this.getNoteContent('all')); // Precisamos ajustar getNoteContent
+        const notesByFolder = {};
+
+        // Agrupar notas por pasta
+        allNoteSlugs.forEach(slug => {
+            const path = this.getNotePath(slug);
+            const folderName = path.split('/').pop(); // Pega o último nome do caminho como pasta
+            if (!notesByFolder[folderName]) {
+                notesByFolder[folderName] = [];
+            }
+            notesByFolder[folderName].push({
+                slug: slug,
+                title: this.getNoteTitle(slug)
+            });
+        });
+
+        let html = '';
+        for (const folderName in notesByFolder) {
+            html += `
+                <div class="folder-item">
+                    <div class="folder-header collapsed" data-folder="${folderName.toLowerCase()}">
+                        <span class="folder-icon material-icons-outlined">folder</span>
+                        <span class="folder-name">${folderName}</span>
+                        <span class="folder-toggle material-icons-outlined">expand_more</span>
+                    </div>
+                    <ul class="notes-in-folder collapsed">
+            `;
+            
+            notesByFolder[folderName].forEach(note => {
+                html += `
+                    <li class="note-item">
+                        <a href="#anotacoes/editor/${note.slug}">
+                            <span class="note-icon material-icons-outlined">description</span>
+                            <span class="note-name">${note.title}</span>
+                        </a>
+                    </li>
+                `;
+            });
+
+            html += '</ul></div>';
+        }
+
+        // Adicionar botões de ação no final
+        html += `
+            <div class="new-note-section">
+                <button class="new-note-btn" onclick="brainSystemInstance.createNewNote()">
+                    <span class="material-icons-outlined">add</span>
+                    <span>Nova Nota</span>
+                </button>
+                <button class="ai-note-btn" onclick="brainSystemInstance.createAINote()">
+                    <span class="material-icons-outlined">auto_awesome</span>
+                    <span>Nota com IA</span>
+                </button>
+            </div>
+        `;
+
+        notesTree.innerHTML = html;
+        this.updateActiveNote(); // Garante que a nota ativa seja destacada
+    }
+
+    // anotacoes.js -> Adicione esta NOVA função dentro da classe BrainSystem
+
+// anotações.js -> SUBSTITUA a função handleMarkdownFormatting inteira por esta
+
+    handleMarkdownFormatting(event) {
+        // Só acionar a formatação ao pressionar a tecla ESPAÇO
+        if (event.key !== ' ') return;
+
+        const selection = window.getSelection();
+        if (!selection.rangeCount) return;
+
+        const range = selection.getRangeAt(0);
+        const node = range.startContainer;
+
+        if (node.nodeType !== Node.TEXT_NODE) return;
+
+        const textContent = node.textContent;
+        // Pega o texto do início da linha até o cursor
+        const currentLine = textContent.substring(0, range.startOffset);
         
-        this.setupModernHeader();
-        this.setupContainer();
-        this.setupEventListeners();
-        this.registerDefaultPlugins();
-        this.loadDefaultPlugin();
-        this.setupModernAnimations();
+        let replacementHtml = null;
+        let textToReplace = null;
         
-        // Inicializar Compass IA após tudo estar pronto
+        // Mapeamento de sintaxe para HTML
+        const formatMap = {
+            '#': { text: '# ', html: '<h1></h1>' },
+            '##': { text: '## ', html: '<h2></h2>' },
+            '###': { text: '### ', html: '<h3></h3>' },
+            '####': { text: '#### ', html: '<h4></h4>' },
+            '#####': { text: '##### ', html: '<h5></h5>' },
+            '######': { text: '###### ', html: '<h6></h6>' },
+            '*': { text: '* ', html: '<li></li>' },
+            '-': { text: '- ', html: '<li></li>' }
+        };
+
+        const trimmedLine = currentLine.trim();
+        if (formatMap[trimmedLine]) {
+            textToReplace = formatMap[trimmedLine].text;
+            replacementHtml = formatMap[trimmedLine].html;
+        }
+
+        if (replacementHtml) {
+            event.preventDefault(); // Impede que o espaço seja inserido
+
+            // Seleciona e apaga a sintaxe Markdown (ex: "### ")
+            range.setStart(node, currentLine.indexOf(trimmedLine));
+            range.setEnd(node, range.startOffset);
+            range.deleteContents();
+            
+            // Insere o novo elemento HTML formatado (ex: <h3>)
+            const newElement = document.createRange().createContextualFragment(replacementHtml);
+            const childElement = newElement.firstChild;
+            range.insertNode(childElement);
+            
+            // Move o cursor para dentro do novo elemento para o usuário continuar digitando
+            range.selectNodeContents(childElement);
+            range.collapse(false);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+    }
+
+// anotações.js -> dentro da classe BrainSystem
+
+    // NOVO: Abre o modal para pedir o tópico da nota de IA
+    openAINoteModal() {
+        console.log('✨ Abrindo modal de nota com IA...');
+        const modal = document.getElementById('ai-note-modal');
+        if (modal) {
+            this.showModal(modal); // Reutilizando sua função de modal existente
+            // Focar no input após animação
+            setTimeout(() => {
+                const topicInput = document.getElementById('ai-note-topic');
+                if (topicInput) topicInput.focus();
+            }, 300);
+        }
+    }
+
+    // NOVO: Processa a criação da nota após o clique no modal
+    processAndCreateAINote() {
+        const topicInput = document.getElementById('ai-note-topic');
+        if (!topicInput || !topicInput.value.trim()) {
+            this.showNotification('⚠️ Por favor, digite um tema para a nota', 'warning');
+            return;
+        }
+        
+        const topic = topicInput.value.trim();
+        console.log(`🤖 Criando nota sobre: ${topic}`);
+
+        this.closeModal();
+        this.showNotification('🤖 Criando nota com IA...', 'info');
+
+        // Simular criação
         setTimeout(() => {
-            this.initCompassIA();
-        }, 1000);
-        
-        console.log('✅ Sistema Segundo Cérebro Modernizado inicializado!');
+            const noteSlug = this.generateNoteSlug(topic);
+            window.location.hash = `#anotacoes/editor/${noteSlug}`;
+            this.handleRouting(); // Usar seu roteador para carregar o plugin
+            this.renderSidebarNotes();
+            this.showNotification('📝 Nota criada com sucesso!', 'success');
+        }, 1500);
+    }
+
+    // NOVO: Gera um nome amigável para a URL
+    generateNoteSlug(topic) {
+        return topic
+            .toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9-]/g, '')
+            .substring(0, 50);
     }
 
     setupModernHeader() {
@@ -114,6 +373,25 @@ class BrainSystem {
         if (pluginManagerBtn) {
             pluginManagerBtn.addEventListener('click', () => this.openPluginManager());
         }
+
+        // NOVO: Event listener para o botão Home
+        const homeBtn = document.getElementById('home-btn');
+        if (homeBtn) {
+            homeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('🏠 Navegando para Home (Welcome Screen)');
+                
+                // Efeito visual no botão
+                homeBtn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    homeBtn.style.transform = 'scale(1)';
+                }, 150);
+                
+                // Navegar para a tela inicial
+                this.navigateToHome();
+            });
+        }
+
 
         // Plugin Navigation com efeitos modernos
         document.addEventListener('click', (e) => {
@@ -201,8 +479,12 @@ class BrainSystem {
             if (e.target.closest('#compass-brain-analyze')) {
                 this.startBrainAnalysis();
             }
+            
+            if (e.target.closest('#create-ai-note-btn')) {
+                this.processAndCreateAINote();
+            }
 
-              // Compass IA - Fechar Análise
+            // Compass IA - Fechar Análise
             if (e.target.closest('#close-compass-analysis')) {
                 this.closeCompassAnalysis();
             }
@@ -218,18 +500,26 @@ class BrainSystem {
                 this.switchAnalysisTab(tab.dataset.tab);
             }
             
-     // AI Note Modal - Chips de sugestão
-            if (e.target.closest('.chip-btn')) {
-                const topic = e.target.closest('.chip-btn').dataset.topic;
+            // ATUALIZADO: AI Note Modal - Chips de sugestão (novo seletor)
+            if (e.target.closest('.ai-chip')) {
+                const chip = e.target.closest('.ai-chip');
+                const topic = chip.dataset.topic;
                 const input = document.getElementById('ai-note-topic');
-                if (input) input.value = topic;
+                if (input) {
+                    input.value = topic;
+                    // Adicionar efeito visual
+                    chip.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        chip.style.transform = '';
+                    }, 150);
+                }
             }
             
-                // Fechar Modais
-            if (e.target.matches('.modal-close') || (e.target.matches('.modal') && !e.target.closest('.modal-content'))) {
+            // Fechar Modais
+            if (e.target.matches('.modal-close, .ai-modal-close') || 
+                (e.target.matches('.modal, .modal-overlay') && !e.target.closest('.modal-content, .ai-modal-container'))) {
                 this.closeModal();
             }
-
 
             // Sugestões do chat
             if (e.target.closest('.suggestion-btn')) {
@@ -515,14 +805,12 @@ populateBrainInsights() {
     }
 
     // NOVA FUNÇÃO: Criar nota com IA
+// anotações.js -> dentro da classe BrainSystem
+
+    // ALTERADO: Em vez de criar a nota direto, esta função agora abre o modal.
     createAINote() {
-        console.log('✨ Criando nota com IA...');
-        this.showNotification('🤖 Criando nota com IA...', 'info');
-        
-        setTimeout(() => {
-            window.location.hash = '#anotacoes/editor/nota-ia';
-            this.showNotification('📝 Nota com IA criada!', 'success');
-        }, 1500);
+        // A lógica de criação foi movida para processAndCreateAINote()
+        this.openAINoteModal();
     }
 
     // NOVA FUNÇÃO: Enviar mensagem rápida
@@ -535,11 +823,26 @@ populateBrainInsights() {
     }
 
     // NOVA FUNÇÃO: Mostrar modal
+// SUBSTITUA a função showModal() existente por esta versão:
+
     showModal(modal) {
         if (modal) {
-            modal.classList.add('show');
+            // Mostrar o modal
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
+            
+            // Aplicar animação
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+            
+            // Focar no input após animação
+            setTimeout(() => {
+                const topicInput = document.getElementById('ai-note-topic');
+                if (topicInput) {
+                    topicInput.focus();
+                }
+            }, 300);
         }
     }
 
@@ -565,20 +868,54 @@ populateBrainInsights() {
     }
 
     setupQuickActions() {
+        console.log('🔧 Configurando ações rápidas...');
+        
         // Definir funções globais para os botões de ação rápida
-        window.createNewNote = () => this.createNewNote();
-        window.createAINote = () => this.createAINote();
-        window.analyzeKnowledge = () => this.startBrainAnalysis();
-        window.openTaskManager = () => this.openTaskManager();
-        window.startStudySession = () => this.startStudySession();
-        window.askCompassIA = () => this.askCompassIA();
+        window.createNewNote = () => {
+            console.log('📝 Ação: Nova Nota');
+            this.createNewNote();
+        };
+        
+        window.createAINote = () => {
+            console.log('🤖 Ação: Nota com IA');
+            this.createAINote();
+        };
+        
+        window.analyzeKnowledge = () => {
+            console.log('🧠 Ação: Analisar Conhecimento');
+            this.startBrainAnalysis();
+        };
+        
+        window.openTaskManager = () => {
+            console.log('📋 Ação: Abrir Gerenciador de Tarefas');
+            this.openTaskManager();
+        };
+        
+        window.startStudySession = () => {
+            console.log('🎯 Ação: Iniciar Sessão de Estudos');
+            this.startStudySession();
+        };
+        
+        window.askCompassIA = () => {
+            console.log('💬 Ação: Perguntar à IA');
+            this.askCompassIA();
+        };
+        
         window.showMarkdownHelp = () => this.showMarkdownHelp();
         window.exportMarkdown = () => this.exportMarkdown();
         window.sendQuickMessage = (message) => this.sendQuickMessage(message);
+        
+        console.log('✅ Ações rápidas configuradas!');
     }
 
+// anotacoes.js -> SUBSTITUA A FUNÇÃO INTEIRA
+
+// anotacoes.js -> SUBSTITUA A FUNÇÃO INTEIRA
+
     registerDefaultPlugins() {
-        // Registrar plugins padrão (MANTÉM EXATAMENTE IGUAL)
+        console.log('Registrando plugins com caminhos finais...');
+        
+        // Editor não precisa de template
         this.registerPlugin('markdown-editor', {
             name: 'Editor Markdown',
             icon: 'edit_note',
@@ -587,67 +924,23 @@ populateBrainInsights() {
             active: true
         });
 
-        this.registerPlugin('task-manager', {
-            name: 'Gerenciador de Tarefas',
-            icon: 'task_alt',
-            template: 'templates/tarefas.html',
-            init: null,
-            active: true
-        });
+        // CORREÇÃO FINAL: Caminhos relativos simples, a partir do anotacoes.html
+        const pluginConfigs = {
+            'task-manager': { name: 'Gerenciador de Tarefas', icon: 'task_alt', template: 'templates/tarefas.html', init: null },
+            'study-cycle': { name: 'Ciclo de Estudos', icon: 'track_changes', template: 'templates/ciclo.html', init: initCiclo, libs: ['https://cdn.jsdelivr.net/npm/chart.js'] },
+            'reports': { name: 'Relatórios', icon: 'analytics', template: 'templates/relatorio.html', init: initRelatorio, libs: ['https://cdn.jsdelivr.net/npm/chart.js', 'https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js'] },
+            'calendar': { name: 'Calendário', icon: 'calendar_today', template: 'templates/calendario.html', init: initCalendario },
+            'pomodoro-timer': { name: 'Timer Pomodoro', icon: 'timer', template: 'templates/pomodoro.html', init: null, active: false },
+            'ai-assistant': { name: 'Assistente IA', icon: 'smart_toy', template: 'templates/compass-ia.html', init: null, active: false },
+            'flashcards': { name: 'Flashcards IA', icon: 'quiz', template: 'templates/flashcards.html', init: null, active: false }
+        };
 
-        this.registerPlugin('study-cycle', {
-            name: 'Ciclo de Estudos',
-            icon: 'track_changes',
-            template: 'templates/ciclo.html',
-            init: initCiclo,
-            libs: ['https://cdn.jsdelivr.net/npm/chart.js'],
-            active: true
-        });
-
-        this.registerPlugin('reports', {
-            name: 'Relatórios',
-            icon: 'analytics',
-            template: 'templates/relatorio.html',
-            init: initRelatorio,
-            libs: [
-                'https://cdn.jsdelivr.net/npm/chart.js',
-                'https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js'
-            ],
-            active: true
-        });
-
-        this.registerPlugin('calendar', {
-            name: 'Calendário',
-            icon: 'calendar_today',
-            template: 'templates/calendario.html',
-            init: initCalendario,
-            active: true
-        });
-
-        // Plugins futuros (inativos por enquanto)
-        this.registerPlugin('pomodoro-timer', {
-            name: 'Timer Pomodoro',
-            icon: 'timer',
-            template: 'templates/pomodoro.html',
-            init: null,
-            active: false
-        });
-
-        this.registerPlugin('ai-assistant', {
-            name: 'Assistente IA',
-            icon: 'smart_toy',
-            template: 'templates/compass-ia.html',
-            init: null,
-            active: false
-        });
-
-        this.registerPlugin('flashcards', {
-            name: 'Flashcards IA',
-            icon: 'quiz',
-            template: 'templates/flashcards.html',
-            init: null,
-            active: false
-        });
+        for (const [id, config] of Object.entries(pluginConfigs)) {
+            this.registerPlugin(id, {
+                ...config,
+                active: config.active !== false // Define como ativo por padrão, a menos que seja explicitamente falso
+            });
+        }
     }
 
     registerPlugin(id, config) {
@@ -659,34 +952,54 @@ populateBrainInsights() {
     }
 
     async navigateToPlugin(href) {
+        console.log('🚀 NavigateToPlugin chamado com:', href);
+        
         const pathParts = href.substring(1).split('/');
         const pluginKey = this.getPluginKeyFromPath(pathParts);
         
+        console.log('🔑 Plugin key encontrada:', pluginKey);
+        console.log('📋 Path parts:', pathParts);
+        
         if (!pluginKey) {
+            console.log('❌ Nenhum plugin encontrado, mostrando Welcome Screen');
             this.showWelcomeScreen();
             return;
         }
 
         const plugin = this.plugins.get(pluginKey);
         if (!plugin) {
+            console.error('❌ Plugin não encontrado no registro:', pluginKey);
             this.showNotification('Plugin não encontrado', 'error');
             return;
         }
 
         if (!plugin.active) {
+            console.warn('⚠️ Plugin inativo:', plugin.name);
             this.showNotification('Este plugin ainda não está disponível', 'warning');
             return;
         }
 
+        console.log('✅ Carregando plugin:', plugin.name);
         await this.loadPlugin(plugin);
         this.updateActivePlugin(pluginKey);
     }
 
+ // anotações.js -> dentro da função getPluginKeyFromPath
+
     getPluginKeyFromPath(pathParts) {
-        const subpage = pathParts[1];
+        console.log('🔍 Analisando path parts:', pathParts);
         
-        // Se for uma rota de editor com nota específica
+        const subpage = pathParts[1];
+        console.log('📄 Subpage detectada:', subpage);
+        
+        // Se não tem subpage ou é vazio, volta para home
+        if (!subpage || subpage === '') {
+            console.log('🏠 Sem subpage, retornando null para Welcome Screen');
+            return null;
+        }
+        
         if (subpage === 'editor') {
+            console.log('📝 Detectado editor, retornando markdown-editor');
             return 'markdown-editor';
         }
         
@@ -700,43 +1013,62 @@ populateBrainInsights() {
             'flashcards': 'flashcards'
         };
 
-        return routeMap[subpage] || null;
+        const pluginKey = routeMap[subpage] || null;
+        console.log(`🎯 Mapeamento de '${subpage}' para:`, pluginKey);
+        
+        return pluginKey;
     }
 
+    // anotacoes.js -> dentro da classe BrainSystem
+
     async loadPlugin(plugin) {
+        // Verifica se o plugin a ser carregado é válido
+        if (!plugin || !plugin.id) {
+            console.error("Tentativa de carregar um plugin inválido.");
+            this.showWelcomeScreen(); // Volta para a tela inicial em caso de erro
+            return;
+        }
+
         try {
+            // 1. Mostra uma tela de "carregando" para o usuário
             this.showPluginLoadingModern();
 
-            // Para o editor markdown, usar HTML inline
+            // 2. Carrega o HTML do plugin
+            // Se for o editor, ele usa o HTML gerado pela função getMarkdownEditorHTML
             if (plugin.id === 'markdown-editor') {
                 this.pluginContainer.innerHTML = this.getMarkdownEditorHTML();
-            } else if (plugin.template) {
+            } 
+            // Para outros plugins, ele busca o template de um arquivo externo
+            else if (plugin.template) {
                 const response = await fetch(plugin.template);
-                if (!response.ok) throw new Error(`Template não encontrado: ${plugin.template}`);
-                
+                if (!response.ok) {
+                    throw new Error(`Template não encontrado: ${plugin.template}`);
+                }
                 const content = await response.text();
                 this.pluginContainer.innerHTML = content;
             }
 
-            // Carregar bibliotecas externas
+            // 3. Carrega bibliotecas externas (como Chart.js), se o plugin precisar
             if (plugin.libs && plugin.libs.length > 0) {
                 await this.loadLibraries(plugin.libs);
             }
 
-            // Carregar script comum se necessário
+            // 4. **CORREÇÃO PRINCIPAL**: Carregar script comum se necessário
             if (plugin.id !== 'markdown-editor') {
                 await this.loadScript('js/pages/comum.js');
             }
 
-            // Executar inicialização do plugin
+            // 5. Inicializa o script específico do plugin
+            // É aqui que a função initMarkdownEditor() é chamada para o editor
             if (plugin.init && typeof plugin.init === 'function') {
                 plugin.init();
             }
 
+            // 6. Atualiza o estado interno e a interface do usuário
             plugin.loaded = true;
             this.activePlugin = plugin.id;
             
-            // Atualizar nota ativa na sidebar
+            // 7. Destaca a nota ou plugin ativo na sidebar (resolvendo um dos seus problemas)
             this.updateActiveNote();
 
         } catch (error) {
@@ -796,6 +1128,11 @@ populateBrainInsights() {
             }
         });
 
+        // Também remover active das notas
+        document.querySelectorAll('.note-item').forEach(item => {
+            item.classList.remove('active');
+        });
+
         if (pluginId) {
             const activeItem = document.querySelector(`[data-plugin="${pluginId}"]`);
             if (activeItem) {
@@ -812,18 +1149,39 @@ populateBrainInsights() {
             }
         }
     }
+// anotações.js -> SUBSTITUA a função loadDefaultPlugin por esta
 
     loadDefaultPlugin() {
         const hash = window.location.hash;
+        // Se existe uma hash válida, segue a rota
         if (hash && hash.startsWith('#anotacoes')) {
             this.handleRouting();
         } else {
+            // EM VEZ DE CARREGAR O EXPLORADOR, MOSTRA A WELCOME SCREEN
             this.showWelcomeScreen();
         }
     }
-
     handleRouting() {
         const hash = window.location.hash;
+        console.log('🔍 Roteamento chamado para:', hash);
+        
+        // Se a hash é apenas '#anotacoes' ou vazia, mostra a welcome screen
+        if (!hash || hash === '#anotacoes' || hash === '#') {
+            console.log('📍 Navegando para Welcome Screen');
+            this.showWelcomeScreen();
+            return;
+        }
+        
+        // CORREÇÃO: Verificar se é uma rota válida antes de navegar
+        const pathParts = hash.substring(1).split('/');
+        if (pathParts[0] !== 'anotacoes') {
+            console.log('❌ Rota inválida, voltando para Welcome Screen');
+            this.showWelcomeScreen();
+            return;
+        }
+        
+        // Se chegou até aqui, é uma rota válida do sistema
+        console.log('✅ Navegando para plugin:', hash);
         this.navigateToPlugin(hash);
     }
 
@@ -838,15 +1196,29 @@ populateBrainInsights() {
             }, 150);
         }
         
-        this.navigateToPlugin('#anotacoes/editor/nova-nota');
+        // Gerar slug único para nova nota
+        const timestamp = Date.now();
+        const newNoteSlug = `nova-nota-${timestamp}`;
+        
+        // Navegar para nova nota
+        this.navigateToPlugin(`#anotacoes/editor/${newNoteSlug}`);
+        
+        // Renderizar sidebar DEPOIS de navegar
+        setTimeout(() => {
+            this.renderSidebarNotes();
+        }, 100);
+        
         this.showNotification('Nova nota criada!', 'success');
     }
 
     openTaskManager() {
+        console.log('📋 Abrindo gerenciador de tarefas...');
         this.navigateToPlugin('#anotacoes/tarefas');
+        this.showNotification('Gerenciador de tarefas aberto!', 'success');
     }
 
     startStudySession() {
+        console.log('🎯 Iniciando sessão de estudos...');
         this.navigateToPlugin('#anotacoes/tracker-ciclo');
         this.showNotification('Sessão de estudos iniciada!', 'success');
     }
@@ -856,9 +1228,39 @@ populateBrainInsights() {
     }
 
     // Editor Markdown (MANTÉM EXATAMENTE IGUAL)
+    // anotações.js -> Substitua a função getMarkdownEditorHTML inteira
+
     getMarkdownEditorHTML() {
         return `
             <div class="markdown-editor-container">
+                <div class="editor-toolbar">
+                    </div>
+
+                <div class="note-header">
+                    <input type="text" class="note-title" id="note-title" placeholder="Título da nota...">
+                    <div class="note-meta">
+                        <span class="note-path" id="note-path">📁 /Minhas Notas</span>
+                        <span class="note-status" id="note-status">● Rascunho</span>
+                    </div>
+                </div>
+
+                <div class="editor-main-wysiwyg">
+                    <div class="editor-header">
+                        <span class="panel-title">📝 Editor</span>
+                        <div class="editor-stats">
+                            <span id="word-count">0 palavras</span>
+                            <span id="char-count">0 caracteres</span>
+                        </div>
+                    </div>
+                    <div 
+                        class="markdown-editor-live" 
+                        id="markdown-editor" 
+                        contenteditable="true" 
+                        spellcheck="false"
+                        placeholder="Comece a escrever aqui... Use # para títulos.">
+                    </div>
+                </div>
+                 <div class="markdown-editor-container">
                 <div class="editor-toolbar">
                     <div class="toolbar-section">
                         <button class="toolbar-btn" data-action="bold" title="Negrito (Ctrl+B)">
@@ -867,6 +1269,11 @@ populateBrainInsights() {
                         <button class="toolbar-btn" data-action="italic" title="Itálico (Ctrl+I)">
                             <span class="material-icons-outlined">format_italic</span>
                         </button>
+                        
+                        <button class="toolbar-btn" data-action="highlight" title="Marcar Texto">
+                            <span class="material-icons-outlined">border_color</span>
+                        </button>
+
                         <button class="toolbar-btn" data-action="heading1" title="Título 1">H1</button>
                         <button class="toolbar-btn" data-action="heading2" title="Título 2">H2</button>
                         <button class="toolbar-btn" data-action="list" title="Lista">
@@ -876,120 +1283,166 @@ populateBrainInsights() {
                     <div class="toolbar-actions">
                         <button class="toolbar-btn save-btn" data-action="save" title="Salvar (Ctrl+S)">
                             <span class="material-icons-outlined">save</span>
-                            <span>Salvar</span>
+                            Salvar
                         </button>
-                    </div>
-                </div>
-
-                <div class="note-header">
-                    <input type="text" class="note-title" id="note-title" placeholder="Título da nota..." value="">
-                    <div class="note-meta">
-                        <span class="note-path" id="note-path">📁 /Minhas Notas</span>
-                        <span class="note-status" id="note-status">● Rascunho</span>
-                    </div>
-                </div>
-
-                <div class="editor-main">
-                    <div class="editor-panel">
-                        <div class="editor-header">
-                            <span class="panel-title">📝 Editor</span>
-                            <div class="editor-stats">
-                                <span id="word-count">0 palavras</span>
-                                <span id="char-count">0 caracteres</span>
-                            </div>
-                        </div>
-                        <textarea class="markdown-textarea" id="markdown-input" placeholder="# Começe a escrever sua nota aqui...
-
-## Dicas de Markdown:
-- **Negrito** ou __negrito__
-- *Itálico* ou _itálico_
-- [Link](https://exemplo.com)
-- \`código inline\`
-
-### Lista:
-- Item 1
-- Item 2
-- Item 3
-
-### Citação:
-> Esta é uma citação
-
-**Atalhos úteis:**
-- Ctrl+B: Negrito
-- Ctrl+I: Itálico
-- Ctrl+S: Salvar"></textarea>
-                    </div>
-
-                    <div class="preview-panel">
-                        <div class="preview-header">
-                            <span class="panel-title">👁️ Visualização</span>
-                        </div>
-                        <div class="markdown-preview" id="markdown-preview">
-                            <div class="preview-placeholder">
-                                <span class="material-icons-outlined">preview</span>
-                                <p>A visualização aparecerá aqui conforme você digita...</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
                 <div class="editor-footer">
-                    <div class="editor-info">
-                        <span>Markdown Editor</span>
-                        <span class="separator">•</span>
-                        <span id="cursor-position">Linha 1, Coluna 1</span>
                     </div>
-                    <div class="editor-actions">
-                        <button class="footer-btn" onclick="brainSystemInstance.showMarkdownHelp()">
-                            <span class="material-icons-outlined">help</span>
-                            <span>Ajuda</span>
-                        </button>
-                        <button class="footer-btn" onclick="brainSystemInstance.exportMarkdown()">
-                            <span class="material-icons-outlined">download</span>
-                            <span>Exportar</span>
-                        </button>
-                    </div>
-                </div>
             </div>
         `;
     }
 
+        // anotações.js -> Adicione esta nova função à sua classe
+
+    // NOVO: Processa o markdown em tempo real no editor
+    processMarkdownRealTime() {
+        const editor = document.getElementById('markdown-editor');
+        if (!editor) return;
+
+        // Salvar posição do cursor de forma mais robusta
+        const selection = window.getSelection();
+        let cursorPosition = 0;
+        
+        if (selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            cursorPosition = range.startOffset;
+        }
+        
+        // Obter o texto puro
+        const plainText = editor.innerText || editor.textContent || '';
+        
+        // Processar markdown
+        const html = this.markdownToHTML(plainText);
+        
+        // Só atualizar se o HTML realmente mudou
+        if (editor.innerHTML !== html) {
+            editor.innerHTML = html;
+            
+            // Restaurar cursor na posição correta
+            try {
+                const textNode = this.findTextNodeAtPosition(editor, cursorPosition);
+                if (textNode) {
+                    const range = document.createRange();
+                    const selection = window.getSelection();
+                    
+                    range.setStart(textNode.node, Math.min(textNode.offset, textNode.node.textContent.length));
+                    range.collapse(true);
+                    
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+                }
+            } catch (e) {
+                console.warn("Não foi possível restaurar cursor:", e);
+            }
+        }
+    }
+
+    // ADICIONE ESTA NOVA FUNÇÃO após a processMarkdownRealTime():
+    findTextNodeAtPosition(element, position) {
+        let currentPos = 0;
+        const walker = document.createTreeWalker(
+            element,
+            NodeFilter.SHOW_TEXT,
+            null,
+            false
+        );
+        
+        let node;
+        while (node = walker.nextNode()) {
+            const nodeLength = node.textContent.length;
+            if (currentPos + nodeLength >= position) {
+                return {
+                    node: node,
+                    offset: position - currentPos
+                };
+            }
+            currentPos += nodeLength;
+        }
+        
+        // Se não encontrou, retorna o último nó
+        const lastNode = walker.currentNode;
+        return lastNode ? {
+            node: lastNode,
+            offset: lastNode.textContent.length
+        } : null;
+    }
+
+    // anotacoes.js -> DENTRO DA CLASSE BrainSystem
+
     initMarkdownEditor() {
-        console.log('🖊️ Inicializando Editor Markdown Modernizado...');
-        
-        const textarea = document.getElementById('markdown-input');
-        const preview = document.getElementById('markdown-preview');
+        console.log('🖊️ Inicializando Editor Estilo Obsidian (V3 - Escape de Títulos)...');
+
+        const editor = document.getElementById('markdown-editor'); 
         const titleInput = document.getElementById('note-title');
-        
-        if (!textarea) {
-            console.error('Textarea do editor não encontrada');
+
+        if (!editor || !titleInput) {
+            console.error('Elementos essenciais do editor não foram encontrados.');
             return;
         }
 
-        // Configurar nota baseada na URL
         this.setupNoteFromURL();
 
-        // Event listeners do editor
-        textarea.addEventListener('input', () => {
-            this.updatePreview();
+        // --- EVENT LISTENERS PRINCIPAIS ---
+
+        editor.addEventListener('keyup', (e) => {
+            this.handleMarkdownFormatting(e);
+        });
+        
+        editor.addEventListener('input', () => {
             this.updateStats();
+            this.updateNoteTitle();
         });
 
-        textarea.addEventListener('keydown', (e) => {
+        // O 'keydown' é onde vamos adicionar a nova lógica
+        editor.addEventListener('keydown', (e) => {
+            // Lógica de atalhos (continua igual)
             this.handleEditorShortcuts(e);
+
+            // =====================================================================
+            // NOVO: Lógica para "escapar" de blocos de título ao pressionar Enter
+            // =====================================================================
+            if (e.key === 'Enter') {
+                const selection = window.getSelection();
+                if (!selection.rangeCount) return;
+
+                const range = selection.getRangeAt(0);
+                const currentNode = range.startContainer;
+
+                // Encontra o elemento de título mais próximo (H1, H2, etc.)
+                const headingElement = currentNode.closest('h1, h2, h3, h4, h5, h6');
+
+                // Se o cursor estiver dentro de um elemento de título...
+                if (headingElement) {
+                    e.preventDefault(); // Previne a ação padrão do navegador (criar outro H2)
+
+                    // Cria um novo parágrafo (<p>) com um <br> para garantir que a linha seja criada
+                    const newParagraph = document.createElement('p');
+                    newParagraph.innerHTML = '<br>';
+
+                    // Insere o novo parágrafo logo após o título atual
+                    headingElement.parentNode.insertBefore(newParagraph, headingElement.nextSibling);
+
+                    // Move o cursor para o início do novo parágrafo
+                    const newRange = document.createRange();
+                    newRange.setStart(newParagraph, 0);
+                    newRange.collapse(true);
+                    selection.removeAllRanges();
+                    selection.addRange(newRange);
+                }
+            }
         });
 
-        textarea.addEventListener('click', () => {
+        editor.addEventListener('click', () => {
+            this.updateCursorPosition();
+        });
+        editor.addEventListener('keyup', () => {
             this.updateCursorPosition();
         });
 
-        if (titleInput) {
-            titleInput.addEventListener('input', () => {
-                this.updateNoteTitle();
-            });
-        }
+        titleInput.addEventListener('input', () => this.updateNoteTitle());
 
-        // Toolbar buttons
         document.querySelectorAll('.toolbar-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const action = btn.dataset.action;
@@ -997,11 +1450,11 @@ populateBrainInsights() {
             });
         });
 
-        // Inicializar preview
-        this.updatePreview();
+        // --- ESTADO INICIAL ---
         this.updateStats();
+        this.updateCursorPosition();
 
-        console.log('✅ Editor Markdown modernizado inicializado!');
+        console.log('✅ Editor Estilo Obsidian (V3) inicializado!');
     }
 
     // Sistema de Notificações Modernizado
@@ -1052,26 +1505,60 @@ populateBrainInsights() {
         return icons[type] || 'info';
     }
 
+// anotações.js -> SUBSTITUA a função setupNoteFromURL inteira por esta
+
     setupNoteFromURL() {
         const hash = window.location.hash;
         const pathParts = hash.substring(1).split('/');
         
-        if (pathParts.length >= 3) {
-            const noteName = pathParts[2];
-            const noteTitle = this.getNoteTitle(noteName);
-            const noteContent = this.getNoteContent(noteName);
-            const notePath = this.getNotePath(noteName);
+        // O slug da nota é a terceira parte da URL (ex: #anotacoes/editor/SLUG)
+        const noteName = pathParts.length >= 3 ? pathParts[2] : 'nova-nota';
+        console.log(`📄 Carregando nota com slug: ${noteName}`);
 
-            const titleInput = document.getElementById('note-title');
-            const textarea = document.getElementById('markdown-input');
-            const pathElement = document.getElementById('note-path');
-
-            if (titleInput) titleInput.value = noteTitle;
-            if (textarea) textarea.value = noteContent;
-            if (pathElement) pathElement.textContent = `📁 ${notePath}`;
+        // Busca os elementos do NOVO editor
+        const titleInput = document.getElementById('note-title');
+        const editor = document.getElementById('markdown-editor'); // Alvo correto!
+        const pathElement = document.getElementById('note-path');
+        
+        if (!titleInput || !editor || !pathElement) {
+            console.error("Elementos do editor não encontrados. Abortando carregamento de nota.");
+            return;
         }
+
+        // Busca o título, conteúdo e caminho da nota
+        const noteTitle = this.getNoteTitle(noteName);
+        let noteContent = this.getNoteContent(noteName);
+        const notePath = this.getNotePath(noteName);
+
+        // Caso especial para "nova-nota" para garantir que venha em branco
+        if (noteName === 'nova-nota') {
+            noteContent = `# Nova Nota\n\nComece a escrever sua nota aqui...`;
+        }
+
+        // Preenche o editor com os dados corretos
+        titleInput.value = noteTitle;
+        pathElement.textContent = `📁 ${notePath}`;
+        
+        // FORMA CORRETA de preencher o novo editor
+        // Usamos innerText para evitar problemas com formatação HTML inicial
+        editor.innerText = noteContent;
+
+        // Após preencher, chama a renderização para formatar o conteúdo inicial
+        setTimeout(() => {
+            this.processMarkdownRealTime();
+            this.updateStats();
+            // Define o status como Rascunho para notas novas ou carregadas
+            const status = document.getElementById('note-status');
+            if (status) {
+                status.textContent = '● Rascunho';
+                status.style.color = 'var(--text-light)';
+            }
+        }, 10); 
     }
 
+// anotações.js
+
+    // ALTERADO: Adicione a nova nota no objeto 'titles'
     getNoteTitle(noteName) {
         const titles = {
             'aws-fundamentos': 'AWS - Fundamentos',
@@ -1083,140 +1570,103 @@ populateBrainInsights() {
             'python-pandas': 'Python - Pandas',
             'machine-learning-intro': 'ML - Introdução',
             'data-visualization': 'Visualização de Dados',
-            'nota-ia': 'Nota Criada com Compass IA'
+            'nota-ia': 'Nota Criada com Compass IA',
+            // NOVO: Adicione esta linha
+            'aws-cloud-practitioner': 'AWS Cloud Practitioner - Guia Completo'
         };
-        return titles[noteName] || 'Nova Nota';
-    }
+        // Se for uma nova nota com timestamp
+        if (noteName.startsWith('nova-nota-')) {
+            return 'Nova Nota';
+        }
+        return titles[noteName] || 'Nova Nota';    }
 
+    // ALTERADO: Adicione a nova nota no objeto 'contents'
     getNoteContent(noteName) {
         const contents = {
-            'aws-fundamentos': `# AWS - Fundamentos
+            'aws-fundamentos': `...`, // seu conteúdo existente
+            'python-pandas': `...`, // seu conteúdo existente
+            'nota-ia': `...`, // seu conteúdo existente
 
-## O que é AWS?
-Amazon Web Services (AWS) é uma plataforma de serviços de computação em nuvem oferecida pela Amazon.
-
-## Principais Serviços:
-
-### Computação
-- **EC2** (Elastic Compute Cloud): Servidores virtuais
-- **Lambda**: Computação serverless
-- **ECS**: Container service
-
-### Armazenamento
-- **S3** (Simple Storage Service): Armazenamento de objetos
-- **EBS** (Elastic Block Store): Armazenamento em bloco
-
-### Banco de Dados
-- **RDS**: Banco relacional gerenciado
-- **DynamoDB**: Banco NoSQL
-
-## Conceitos Importantes
-
-### Regiões e Zonas de Disponibilidade
-- **Região**: Localização geográfica
-- **AZ**: Data centers isolados dentro de uma região
-
-### Modelo de Responsabilidade Compartilhada
-- AWS cuida da segurança **da** nuvem
-- Cliente cuida da segurança **na** nuvem`,
-
-            'python-pandas': `# Python - Pandas
-
-## Introdução
-Pandas é uma biblioteca Python para manipulação e análise de dados.
-
-## Estruturas de Dados
-
-### Series
-\`\`\`python
-import pandas as pd
-
-# Criar uma Series
-s = pd.Series([1, 2, 3, 4, 5])
-print(s)
-\`\`\`
-
-### DataFrame
-\`\`\`python
-# Criar um DataFrame
-df = pd.DataFrame({
-    'Nome': ['João', 'Maria', 'Pedro'],
-    'Idade': [25, 30, 35],
-    'Cidade': ['SP', 'RJ', 'BH']
-})
-\`\`\`
-
-## Operações Básicas
-
-### Leitura de dados
-\`\`\`python
-# Ler CSV
-df = pd.read_csv('arquivo.csv')
-\`\`\``,
-
-            'nota-ia': `# Machine Learning - Sugestão da IA
+            // NOVO: Adicione esta chave e todo o conteúdo abaixo
+            'aws-cloud-practitioner': `# AWS Cloud Practitioner - Guia Completo
 *Nota criada com assistência do Compass IA*
 
-## 🎯 Por que esta nota?
-Com base na análise do seu perfil, identifiquei que você tem conhecimento sólido em Python e AWS, mas uma lacuna em Machine Learning.
+## 🎯 Sobre o Exame AWS Cloud Practitioner
 
-## 📚 Conceitos Fundamentais
+O **AWS Certified Cloud Practitioner** é a certificação de entrada da Amazon Web Services, ideal para quem está começando na nuvem. É uma excelente porta de entrada para o mundo AWS!
 
-### O que é Machine Learning?
-- Subcampo da IA que permite sistemas aprenderem automaticamente
-- Usa algoritmos para encontrar padrões em dados
-- Aplicações: reconhecimento de imagem, recomendações, predições
+### 📋 Detalhes do Exame
+- **Código:** CLF-C02
+- **Duração:** 90 minutos
+- **Questões:** 65 questões múltipla escolha
+- **Pontuação:** 100-1000 (mínimo 700 para passar)
+- **Custo:** $100 USD
+- **Validade:** 3 anos
 
-### Tipos Principais
-1. **Supervisionado**: Aprende com exemplos rotulados
-2. **Não-supervisionado**: Encontra padrões ocultos
-3. **Por reforço**: Aprende através de recompensas
+## 📚 Domínios do Exame
 
-## 🔗 Conexão com seus conhecimentos
+### 1. Conceitos de Nuvem (24%)
+- **Definição de nuvem AWS**
+- **Proposta de valor da nuvem AWS**
+- **Princípios de design da nuvem**
 
-### Python + ML
-- **pandas**: Preparação e limpeza de dados
-- **scikit-learn**: Biblioteca principal para ML
-- **matplotlib/seaborn**: Visualização de resultados
+### 2. Segurança e Conformidade (30%)
+- **Modelo de responsabilidade compartilhada**
+- **Conceitos de segurança da nuvem AWS**
+- **Recursos de gerenciamento de acesso**
 
-### AWS + ML
-- **SageMaker**: Platform completa para ML
-- **Lambda**: Deploy de modelos simples
-- **S3**: Armazenamento de datasets
+### 3. Tecnologia (34%)
+- **Métodos de implantação e operação na nuvem AWS**
+- **Infraestrutura global da AWS**
+- **Serviços principais da AWS**
 
-## ✅ Próximos passos sugeridos
-- [ ] Instalar scikit-learn: \`pip install scikit-learn\`
-- [ ] Fazer tutorial com dataset Iris
-- [ ] Implementar primeiro classificador
-- [ ] Explorar SageMaker para deploy
+### 4. Cobrança e Preços (12%)
+- **Modelos de preços da AWS**
+- **Estruturas de cobrança**
+- **Recursos de gerenciamento de cobrança**
+
+## 🎓 Como Passar no Exame - Dicas Estratégicas
+
+### 📖 1. Estude com o Melhor Conteúdo
+**Recomendação GOLD:** Treinamento da **Escola da Nuvem** - **Professor:** Anderson Albuquerque (referência nacional em AWS!)
+- **Qualidade:** Conteúdo atualizado e didático excepcional
+- **Prático:** Laboratórios hands-on inclusos
+- **Suporte:** Comunidade ativa e mentoria
 
 ---
-*💡 Dica da IA: Comece com problemas simples e evolua gradualmente!*`
+
+## 💡 Dica Final do Compass IA
+
+A certificação AWS Cloud Practitioner é sua porta de entrada para um universo de oportunidades! Com dedicação, o treinamento excepcional da Escola da Nuvem com o professor Anderson Albuquerque, e prática constante, você conseguirá não apenas passar no exame, mas construir uma base sólida para sua jornada na nuvem.
+
+**Lembre-se:** O conhecimento é o melhor investimento que você pode fazer em si mesmo! 🚀
+
+*Boa sorte nos estudos! ☁️✨*`
         };
+            // ALTERAÇÃO AQUI
+        if (noteName === 'all') {
+            return contents;
+        }
         
-        return contents[noteName] || `# ${this.getNoteTitle(noteName)}
+        return contents[noteName] || `# ${this.getNoteTitle(noteName)}\n\nComece a escrever sua nota aqui...`;
+    }        
+  
 
-Comece a escrever sua nota aqui...
-
-## Seção 1
-Conteúdo da seção...`;
-    }
-
+    // ALTERADO: Adicione o caminho da nova nota
     getNotePath(noteName) {
         const paths = {
             'aws-fundamentos': '/Minhas Notas/Cloud',
             'azure-intro': '/Minhas Notas/Cloud',
-            'serverless-concepts': '/Minhas Notas/Cloud',
-            'nodejs-express': '/Minhas Notas/Back-End',
-            'api-rest-design': '/Minhas Notas/Back-End',
-            'database-modeling': '/Minhas Notas/Back-End',
-            'python-pandas': '/Minhas Notas/Dados e IA',
-            'machine-learning-intro': '/Minhas Notas/Dados e IA',
-            'data-visualization': '/Minhas Notas/Dados e IA',
-            'nota-ia': '/Minhas Notas/Geradas por IA'
+            // ... (seus outros paths)
+            'nota-ia': '/Minhas Notas/Geradas por IA',
+            // NOVO: Adicione esta linha
+            'aws-cloud-practitioner': '/Minhas Notas/Geradas por IA' 
         };
-        return paths[noteName] || '/Minhas Notas';
-    }
+        // Se for uma nova nota com timestamp
+        if (noteName.startsWith('nova-nota-')) {
+            return '/Minhas Notas/Recentes';
+        }
+        return paths[noteName] || '/Minhas Notas';    }
 
     updatePreview() {
         const textarea = document.getElementById('markdown-input');
@@ -1239,60 +1689,42 @@ Conteúdo da seção...`;
         preview.innerHTML = html;
     }
 
-    markdownToHTML(markdown) {
+    // anotações.js -> Ajuste sua função markdownToHTML
+
+        markdownToHTML(markdown) {
         let html = markdown;
-
-        // Headers
-        html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
-        html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
-        html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
-
-        // Bold
-        html = html.replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>');
-        html = html.replace(/__(.*?)__/gim, '<strong>$1</strong>');
-
-        // Italic
-        html = html.replace(/\*(.*?)\*/gim, '<em>$1</em>');
-        html = html.replace(/_(.*?)_/gim, '<em>$1</em>');
-
-        // Code blocks
-        html = html.replace(/```(\w+)?\n([\s\S]*?)```/gim, '<pre><code class="language-$1">$2</code></pre>');
         
-        // Inline code
-        html = html.replace(/`(.*?)`/gim, '<code>$1</code>');
-
-        // Links
-        html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank">$1</a>');
-
-        // Lists
-        html = html.replace(/^\* (.*$)/gim, '<li>$1</li>');
-        html = html.replace(/^- (.*$)/gim, '<li>$1</li>');
-
-        // Blockquotes
-        html = html.replace(/^> (.*$)/gim, '<blockquote>$1</blockquote>');
-
-        // Line breaks
-        html = html.replace(/\n\n/gim, '</p><p>');
-        html = html.replace(/\n/gim, '<br>');
-
-        // Wrap in paragraphs
-        html = '<p>' + html + '</p>';
-
-        // Fix list wrapping
-        html = html.replace(/<p>(<li>.*<\/li>)<\/p>/gim, '<ul>$1</ul>');
-        html = html.replace(/<\/li><br><li>/gim, '</li><li>');
-
+        // IMPORTANTE: Processar em ordem específica para evitar conflitos
+        
+        // 1. Headers (sem <br> no final)
+        html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+        html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+        html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+        
+        // 2. Bold e Italic
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        
+        // 3. Code inline
+        html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+        
+        // 4. Links
+        html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+        
+        // 5. Quebras de linha por último
+        html = html.replace(/\n/g, '<br>');
+        
         return html;
     }
 
     updateStats() {
-        const textarea = document.getElementById('markdown-input');
+        const editor = document.getElementById('markdown-editor'); // Alvo correto
         const wordCount = document.getElementById('word-count');
         const charCount = document.getElementById('char-count');
         
-        if (!textarea) return;
+        if (!editor) return;
 
-        const text = textarea.value;
+        const text = editor.innerText; // Lê de .innerText
         const words = text.trim() ? text.trim().split(/\s+/).length : 0;
         const chars = text.length;
 
@@ -1324,43 +1756,78 @@ Conteúdo da seção...`;
         }
     }
 
+// anotacoes.js -> SUBSTITUA a função handleToolbarAction inteira por esta
+
+    // anotacoes.js -> SUBSTITUA a função handleToolbarAction inteira por esta
+
     handleToolbarAction(action) {
-        const textarea = document.getElementById('markdown-input');
-        if (!textarea) return;
+        const editor = document.getElementById('markdown-editor');
+        if (!editor) return;
 
-        const start = textarea.selectionStart;
-        const end = textarea.selectionEnd;
-        const selectedText = textarea.value.substring(start, end);
-        let replacement = '';
+        editor.focus();
 
-        switch (action) {
-            case 'bold':
-                replacement = `**${selectedText || 'texto em negrito'}**`;
-                break;
-            case 'italic':
-                replacement = `*${selectedText || 'texto em itálico'}*`;
-                break;
-            case 'heading1':
-                replacement = `# ${selectedText || 'Título 1'}`;
-                break;
-            case 'heading2':
-                replacement = `## ${selectedText || 'Título 2'}`;
-                break;
-            case 'list':
-                replacement = `- ${selectedText || 'Item da lista'}`;
-                break;
-            case 'save':
-                this.saveNote();
-                return;
+        // Comandos padrão que já possuem comportamento de toggle na maioria dos navegadores
+        const standardCommands = ['bold', 'italic', 'underline', 'strikethrough'];
+
+        if (standardCommands.includes(action)) {
+            document.execCommand(action, false, null);
+        } else {
+            // Lógica para ações personalizadas
+            switch (action) {
+                case 'heading1':
+                    document.execCommand('formatBlock', false, 'H1');
+                    break;
+                case 'heading2':
+                    document.execCommand('formatBlock', false, 'H2');
+                    break;
+                case 'list':
+                    document.execCommand('insertUnorderedList', false, null);
+                    break;
+                
+                // LÓGICA DE TOGGLE ATUALIZADA PARA O MARCADOR DE TEXTO
+                case 'highlight':
+                    const selection = window.getSelection();
+                    if (selection.isCollapsed) {
+                        this.showNotification('Selecione um texto para marcar/desmarcar', 'warning');
+                        return;
+                    }
+
+                    // Pega o nó pai comum a toda a seleção
+                    let parentNode = selection.getRangeAt(0).commonAncestorContainer;
+                    if (parentNode.nodeType !== 1) { // Se não for um elemento, pega o elemento pai
+                        parentNode = parentNode.parentElement;
+                    }
+
+                    // Verifica se o texto selecionado ou seus pais já estão dentro de uma tag <mark>
+                    const existingMark = parentNode.closest('mark');
+
+                    if (existingMark) {
+                        // SE JÁ ESTIVER MARCADO: Remove a formatação (unwrap)
+                        const parent = existingMark.parentNode;
+                        // Pega todo o conteúdo de dentro do <mark>
+                        while (existingMark.firstChild) {
+                            // Insere o conteúdo antes do próprio <mark>
+                            parent.insertBefore(existingMark.firstChild, existingMark);
+                        }
+                        // Remove a tag <mark> agora vazia
+                        parent.removeChild(existingMark);
+
+                    } else {
+                        // SE NÃO ESTIVER MARCADO: Aplica a formatação (lógica original)
+                        const range = selection.getRangeAt(0);
+                        const markNode = document.createElement('mark');
+                        range.surroundContents(markNode);
+                    }
+                    break;
+
+                case 'save':
+                    this.saveNote();
+                    break;
+            }
         }
 
-        if (replacement) {
-            textarea.value = textarea.value.substring(0, start) + replacement + textarea.value.substring(end);
-            textarea.focus();
-            this.updatePreview();
-            this.updateStats();
-            this.updateNoteTitle();
-        }
+        // Atualiza o status da nota para "Modificado"
+        this.updateNoteTitle();
     }
 
     handleEditorShortcuts(e) {
@@ -1384,28 +1851,27 @@ Conteúdo da seção...`;
 
     saveNote() {
         const titleInput = document.getElementById('note-title');
-        const textarea = document.getElementById('markdown-input');
+        const editor = document.getElementById('markdown-editor'); // Alvo correto
         const status = document.getElementById('note-status');
         
-        if (!titleInput || !textarea) return;
+        if (!titleInput || !editor) return;
 
         // Simular salvamento
         const noteData = {
             title: titleInput.value || 'Nota sem título',
-            content: textarea.value,
+            content: editor.innerText, // Lê de .innerText
             timestamp: new Date().toISOString()
         };
 
-        // Salvar no localStorage (temporário)
+        // ... (resto da lógica de salvar no localStorage continua igual)
         const notes = JSON.parse(localStorage.getItem('brain_notes') || '{}');
         const noteId = this.getCurrentNoteId();
         notes[noteId] = noteData;
         localStorage.setItem('brain_notes', JSON.stringify(notes));
 
-        // Atualizar status
         if (status) {
             status.textContent = '● Salvo';
-            status.style.color = '#28a745';
+            status.style.color = 'var(--success-color)';
         }
 
         this.showNotification('Nota salva com sucesso!', 'success');
@@ -1543,28 +2009,37 @@ Conteúdo da seção...`;
         }
     }
 
-    closeModal() {
-        // Fechar modais tradicionais
-        const modals = document.querySelectorAll('.modal');
-        modals.forEach(modal => {
-            modal.style.opacity = '0';
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
-        });
+// SUBSTITUA a função closeModal() existente por esta versão:
 
-        // Fechar modais do Compass IA
-        const overlayModals = document.querySelectorAll('.modal-overlay');
+    closeModal() {
+        // Fechar modais modernos (com overlay)
+        const overlayModals = document.querySelectorAll('.modal-overlay.show');
         overlayModals.forEach(modal => {
-            modal.style.opacity = '0';
             modal.classList.remove('show');
             setTimeout(() => {
                 modal.style.display = 'none';
             }, 300);
         });
 
+        // Fechar modais tradicionais
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            if (!modal.classList.contains('modal-overlay')) {
+                modal.style.opacity = '0';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+            }
+        });
+
         // Restaurar scroll
         document.body.style.overflow = '';
+        
+        // Limpar input
+        const topicInput = document.getElementById('ai-note-topic');
+        if (topicInput) {
+            topicInput.value = '';
+        }
     }
 
     populatePluginManager() {
@@ -1619,12 +2094,29 @@ Conteúdo da seção...`;
     }
 }
 
-// Inicializar sistema MODERNIZADO
+
+
 let brainSystemInstance = null;
 
 export function init() {
     if (!brainSystemInstance) {
         brainSystemInstance = new BrainSystem();
+        window.brainSystemInstance = brainSystemInstance;
+
+        // =====================================================================
+        // CRIA A "PONTE" PARA AS FUNÇÕES GLOBAIS QUE OS PLUGINS ESPERAM
+        // =====================================================================
+        console.log("Expondo funções do sistema para os plugins...");
+        window.loadData = (key) => brainSystemInstance.loadData(key);
+        window.saveData = (key, data) => brainSystemInstance.saveData(key, data);
+        window.formatTime = (seconds) => brainSystemInstance.formatTime(seconds);
+        window.getLocalDateString = (date) => brainSystemInstance.getLocalDateString(date);
+        window.showConfirmModal = (title, message, onConfirm) => brainSystemInstance.showConfirmModal(title, message, onConfirm);
+        window.showAlertModal = (title, message) => brainSystemInstance.showNotification(`${title}: ${message}`, 'warning');
+        
+        // Adicionando referências que podem estar faltando em outros arquivos
+        const COLORS = ['#FF6B47', '#667eea', '#764ba2', '#28a745', '#17a2b8', '#ffc107'];
+        window.COLORS = COLORS;
     }
     return brainSystemInstance;
 }
@@ -1633,6 +2125,3 @@ export function init() {
 window.initBrainSystem = () => {
     return init();
 };
-
-// Expor instância globalmente para uso no HTML
-window.brainSystemInstance = brainSystemInstance;

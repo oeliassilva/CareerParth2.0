@@ -3,6 +3,109 @@
     <span class="material-icons-outlined">psychology</span>
     <span>Segundo Cérebro</span>
 </header>
+<body> 
+<!-- SUBSTITUA o modal existente #ai-note-modal por este código modernizado -->
+<div class="modal-overlay" id="ai-note-modal" style="display: none;">
+        <div class="ai-modal-container">
+            <div class="ai-modal-header">
+                <div class="ai-modal-icon">
+                    <span class="material-icons-outlined">auto_awesome</span>
+                </div>
+                <div class="ai-modal-title-area">
+                    <h2>Criar Nota com Compass IA</h2>
+                    <p>Transforme qualquer tópico em uma nota estruturada e completa</p>
+                </div>
+                <button class="ai-modal-close" onclick="brainSystemInstance.closeModal()">
+                    <span class="material-icons-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="ai-modal-body">
+                <div class="ai-input-section">
+                    <label for="ai-note-topic" class="ai-input-label">
+                        <span class="material-icons-outlined">lightbulb</span>
+                        Qual tópico você quer explorar?
+                    </label>
+                    <div class="ai-input-wrapper">
+                        <input type="text" id="ai-note-topic" class="ai-topic-input" 
+                            placeholder="Ex: Machine Learning, React Hooks, DevOps...">
+                        <div class="ai-input-underline"></div>
+                    </div>
+                </div>
+
+                <div class="ai-suggestions-section">
+                    <h4 class="suggestions-title">
+                        <span class="material-icons-outlined">psychology</span>
+                        Sugestões Inteligentes
+                    </h4>
+                    <div class="ai-chips-grid">
+                        <button class="ai-chip" data-topic="AWS Cloud Practitioner">
+                            <span class="chip-icon">☁️</span>
+                            <span class="chip-text">AWS Cloud Practitioner</span>
+                        </button>
+                        <button class="ai-chip" data-topic="React Hooks">
+                            <span class="chip-icon">⚛️</span>
+                            <span class="chip-text">React Hooks</span>
+                        </button>
+                        <button class="ai-chip" data-topic="Node.js Performance">
+                            <span class="chip-icon">🚀</span>
+                            <span class="chip-text">Node.js Performance</span>
+                        </button>
+                        <button class="ai-chip" data-topic="Machine Learning">
+                            <span class="chip-icon">🤖</span>
+                            <span class="chip-text">Machine Learning</span>
+                        </button>
+                        <button class="ai-chip" data-topic="TypeScript">
+                            <span class="chip-icon">📘</span>
+                            <span class="chip-text">TypeScript</span>
+                        </button>
+                        <button class="ai-chip" data-topic="DevOps e CI/CD">
+                            <span class="chip-icon">⚙️</span>
+                            <span class="chip-text">DevOps e CI/CD</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="ai-features-preview">
+                    <h4 class="features-title">
+                        <span class="material-icons-outlined">stars</span>
+                        O que a IA vai criar para você
+                    </h4>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <span class="feature-icon material-icons-outlined">article</span>
+                            <span class="feature-text">Estrutura organizada</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon material-icons-outlined">bookmark</span>
+                            <span class="feature-text">Pontos principais</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon material-icons-outlined">quiz</span>
+                            <span class="feature-text">Exemplos práticos</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon material-icons-outlined">trending_up</span>
+                            <span class="feature-text">Dicas de estudo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ai-modal-footer">
+                <button class="ai-btn ai-btn-secondary" onclick="brainSystemInstance.closeModal()">
+                    <span class="material-icons-outlined">close</span>
+                    Cancelar
+                </button>
+                <button class="ai-btn ai-btn-primary" id="create-ai-note-btn">
+                    <span class="material-icons-outlined">auto_awesome</span>
+                    Criar Nota Inteligente
+                </button>
+            </div>
+        </div>
+    </div>
+
+</body>
 
 <!-- Toggle do Menu - POSIÇÃO CORRIGIDA -->
 <button class="menu-toggle" id="menu-toggle">
@@ -72,12 +175,17 @@
         
         <!-- Sidebar de Plugins -->
         <aside class="plugins-sidebar" id="plugins-sidebar">
-            <div class="plugins-header">
-                <h4>Meu Segundo Cérebro</h4>
-                <button class="plugin-manager-btn" id="plugin-manager-btn" title="Gerenciar Plugins">
+        <div class="plugins-header">
+            <h4>Meu Segundo Cérebro</h4>
+            <div class="header-actions">
+                <a href="#anotacoes/explorer" class="header-action-btn" id="home-btn" title="Página Inicial (Explorador)">
+                    <span class="material-icons-outlined">home</span>
+                </a>
+                <button class="header-action-btn" id="plugin-manager-btn" title="Gerenciar Plugins">
                     <span class="material-icons-outlined">extension</span>
                 </button>
             </div>
+        </div>
 
             <!-- Seção de Notas Organizadas -->
             <div class="plugin-section">
@@ -188,20 +296,8 @@
             <div class="plugin-section">
                 <h5 class="section-title">Editor & Notas</h5>
                 <ul class="plugins-list">
-                    <li class="plugin-item active" data-plugin="markdown-editor">
-                        <a href="#anotacoes/editor">
-                            <span class="plugin-icon material-icons-outlined">edit_note</span>
-                            <span class="plugin-name">Editor Markdown</span>
-                            <span class="plugin-status active"></span>
-                        </a>
-                    </li>
-                    <li class="plugin-item" data-plugin="file-explorer">
-                        <a href="#anotacoes/explorer">
-                            <span class="plugin-icon material-icons-outlined">folder</span>
-                            <span class="plugin-name">Explorador</span>
-                            <span class="plugin-status active"></span>
-                        </a>
-                    </li>
+
+ 
                 </ul>
             </div>
 
